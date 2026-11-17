@@ -65,6 +65,9 @@
     const circ = 2 * Math.PI * r;
     const live = ROAD.filter((x) => x.status === 'published' && x.href).length;
     const dash = circ * (1 - live / n);
+    /* 中心默认文字跟随"最新一次已发布"，与环上圆弧终点一致 */
+    const baseItem = ROAD.filter((x) => x.status === 'published' && x.href).pop() || ROAD[0];
+    const baseName = baseItem.name;
 
     let out = `<defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="var(--accent-2)"/><stop offset="100%" stop-color="var(--accent)"/>
@@ -74,7 +77,7 @@
     out += `<circle class="ring__prog" id="ringProg" cx="${c}" cy="${c}" r="${r}"
       stroke-dasharray="${circ.toFixed(1)}" stroke-dashoffset="${dash.toFixed(1)}"
       transform="rotate(-90 ${c} ${c})"/>`;
-    out += `<text class="ring__c3" id="ringLabel" x="${c}" y="${c - 26}" text-anchor="middle">${esc(ROAD[0].name)}</text>`;
+    out += `<text class="ring__c3" id="ringLabel" x="${c}" y="${c - 26}" text-anchor="middle">${esc(baseName)}</text>`;
     out += `<text class="ring__c1" x="${c}" y="${c + 4}" text-anchor="middle">${String(pub).padStart(2, '0')}<tspan font-size="15" fill="var(--fg-3)"> / ${String(n).padStart(2, '0')}</tspan></text>`;
     out += `<text class="ring__c2" x="${c}" y="${c + 26}" text-anchor="middle">PUBLISHED</text>`;
 
@@ -91,7 +94,7 @@
     svg.innerHTML = out;
 
     const label = $('#ringLabel');
-    const base = ROAD[0].name;
+    const base = baseName;
     $$('#ringSvg .ring__node').forEach((g) => {
       const item = ROAD[+g.dataset.i];
       const go = () => {
