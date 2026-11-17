@@ -142,20 +142,38 @@ npx serve .
 
 ## 五、发布到 GitHub Pages
 
+本仓库已配置好，对应线上地址：
+
+**https://expolre323.github.io/complex-systems-2026/**
+
+- 仓库：`expolre323/complex-systems-2026`
+- 分支 `main`，根目录发布（仓库内已放 `.nojekyll`，避免 Jekyll 忽略以 `_` 开头的文件）
+- 站点是**零依赖纯静态**：无 CDN、无 npm、无构建步骤，推上去即可访问
+
+### 日常更新（改了内容之后）
+
 ```bash
-git init
-git add .
-git commit -m "CSE 2026 作业序列：轮腿式无人作战平台"
-git branch -M main
-git remote add origin https://github.com/<你的用户名>/<仓库名>.git
+git add -A
+git commit -m "作业 03：系统架构"
+git push
+```
+
+推送后 GitHub 会自动重新构建，约 30–60 秒生效（Actions 里能看到 `pages build and deployment`）。
+
+### 另建一个仓库时
+
+```bash
+git remote set-url origin https://github.com/<用户名>/<新仓库名>.git
 git push -u origin main
 ```
 
 然后仓库 **Settings → Pages**：Source 选 `Deploy from a branch`，分支 `main`，目录 `/ (root)`，保存。
 
-约 1 分钟后访问 `https://<用户名>.github.io/<仓库名>/`。
+> 若仓库名就叫 `<用户名>.github.io`，则站点直接在 `https://<用户名>.github.io/` 根路径。
 
-> 若仓库名就叫 `<用户名>.github.io`，则直接是 `https://<用户名>.github.io/`。
+### 换自定义域名
+
+在仓库 **Settings → Pages → Custom domain** 填域名，并把 DNS 的 `CNAME` 记录指向 `<用户名>.github.io`；勾选 `Enforce HTTPS`。仓库根目录会自动生成 `CNAME` 文件，不要删。
 
 ---
 
