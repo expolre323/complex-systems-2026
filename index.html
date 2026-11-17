@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IBEX-01 轮腿式无人作战平台 · 复杂系统工程 2026 课程作业序列</title>
+<meta name="description" content="复杂系统工程 2026 小组作业序列：以 IBEX-01 轮腿式无人作战平台为对象，五次作业逐层推进——系统构成与六层分解、需求定义与分析、系统架构、MBSE、场景驱动测试。">
+<meta name="theme-color" content="#07080a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307080a'/%3E%3Cpath d='M6 22h20M9 22v-6l3-4 3 4v6M17 22v-6l3-4 3 4v6' stroke='%23d8b45e' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/fx.css">
+<link rel="stylesheet" href="assets/css/home.css">
+<script>
+  /* 首屏前锁定主题：默认深色，只有用户主动选过浅色才覆盖 */
+  (function(){try{var t=localStorage.getItem('cse-theme-v2');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();
+</script>
+</head>
+<body>
+<div class="scrollbar" id="scrollbar" aria-hidden="true"></div>
+<a class="skip-link" href="#seq">跳到作业序列</a>
+
+<!-- ============================================================ 顶栏 -->
+<header class="topbar">
+  <div class="topbar__in">
+    <a class="brand" href="index.html" aria-label="返回首页">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M5 23h22M8 23v-7l4-5 4 5v7M16 23v-7l4-5 4 5v7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <circle cx="8" cy="23" r="1.6" fill="currentColor"/><circle cx="16" cy="23" r="1.6" fill="currentColor"/><circle cx="24" cy="23" r="1.6" fill="currentColor"/>
+      </svg>
+      <span class="brand__txt"><b>IBEX-01</b><i>轮腿式无人作战平台</i></span>
+    </a>
+
+    <nav class="layernav" id="nav" aria-label="页面导航">
+      <a href="#seq"><em>01</em><span>作业序列</span></a>
+      <a href="#inherit"><em>02</em><span>编号继承</span></a>
+      <a href="#about"><em>03</em><span>关于本页</span></a>
+    </nav>
+
+    <div class="topbar__tools">
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="切换明暗主题" aria-pressed="false">
+        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/>
+        </svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <path d="M20.5 14.4A8.6 8.6 0 0 1 9.6 3.5a8.7 8.7 0 1 0 10.9 10.9Z" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="iconbtn menu-btn" id="menuBtn" type="button" aria-label="展开导航" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================ HERO -->
+<section class="hero home-hero" id="top">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="wrap hero__wrap">
+    <div class="hero__body">
+      <div class="hero__l">
+        <div class="hero__meta">
+          <span class="tag tag--live"><i></i>2 / 5 已发布</span>
+          <span class="tag">复杂系统工程 2026</span>
+          <span class="tag">小组作业</span>
+          <span class="tag tag--ghost">GitHub Pages</span>
+        </div>
+
+        <h1 class="hero__title">
+          <span class="hero__code">IBEX-01</span>
+          <span class="hero__name">轮腿式无人作战平台</span>
+        </h1>
+        <p class="hero__sub">Complex Systems Engineering 2026&nbsp;&nbsp;/&nbsp;&nbsp;Course Work Sequence</p>
+
+        <p class="hero__lede">
+          这是本组五次课程作业的总入口。同一个平台对象，被<strong>反复从不同角度切开</strong>：
+          先解构它由什么构成，再定义它必须满足什么，然后决定各部分怎么组织、怎么建模、怎么验证。
+          每次作业一个独立页面，共用一套平台代号与编号。
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="a2.html">进入作业 02<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn" href="#seq">查看全部五次作业</a>
+          <a class="btn btn--ghost" href="#inherit">编号怎么继承</a>
+        </div>
+      </div>
+
+      <aside class="hero__viz" aria-label="五次作业的进度环，可点击进入已发布作业">
+        <div class="viz__h"><span class="mono">SEQUENCE MAP</span><i>作业进度</i></div>
+        <svg class="ring" id="ringSvg" viewBox="0 0 320 320" role="img" aria-label="五次作业进度环"></svg>
+        <p class="viz__f">悬停节点看主题 · 金色节点可直接进入</p>
+      </aside>
+    </div>
+
+    <div class="stats" id="stats"></div>
+  </div>
+</section>
+
+<!-- ============================================================ 序列 -->
+<section class="sec sec--tight" id="seq">
+  <div class="wrap">
+    <div class="seqhead">
+      <div class="seqhead__l">
+        <div class="sec__kicker"><span class="mono">SEQUENCE</span> 课程作业序列</div>
+        <h2 class="sec__title">五次作业，一条逐层加深的链</h2>
+        <p class="sec__lede">点击任意一次已发布的作业进入对应页面；预留位会在发布后自动变为可进入状态。</p>
+      </div>
+      <div class="prog">
+        <span class="prog__t" id="progT">1 / 5</span>
+        <span class="prog__bar"><i id="progBar" style="width:20%"></i></span>
+      </div>
+    </div>
+
+    <ol class="seq" id="seqList"></ol>
+  </div>
+</section>
+
+<!-- ============================================================ 继承 -->
+<section class="sec sec--alt" id="inherit">
+  <div class="wrap">
+    <header class="layerhead layerhead--slim">
+      <div class="layerhead__no">A</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">INHERITANCE</span> 编号与内容的继承关系</div>
+        <h2>为什么每次作业都要回到前一页的编号</h2>
+        <p class="layerhead__claim">课程要的不是五份互不相干的报告，而是<b>一条能追下去的系统链</b>。所以本站从第一次作业起就固定编号，后续作业只在其上追加，不改名、不重排。</p>
+      </div>
+    </header>
+
+    <div class="grid grid--3">
+      <article class="card">
+        <div class="card__no mono">R1</div>
+        <h3>编号只增不改</h3>
+        <p>S01–S11、47 个子系统、188 个末端模块一经发布即冻结。作业 02 的需求条目挂在系统编号上，作业 05 的测试用例落在模块编号上——中间任何一次改动都会让追溯链断开。</p>
+      </article>
+      <article class="card">
+        <div class="card__no mono">R2</div>
+        <h3>每一次都补上一层证据</h3>
+        <p>作业 01 回答“由什么构成”，作业 02 回答“凭什么这样要求”，作业 03 回答“怎么组织与权衡”，作业 04 回答“模型如何保持一致”，作业 05 回答“怎么证明它做到了”。</p>
+      </article>
+      <article class="card">
+        <div class="card__no mono">R3</div>
+        <h3>一页一次作业</h3>
+        <p>每次作业独立成页，历史页面保持发布时的样子。这样单次成果可以直接发给老师看，也不会因为后续补充把前面的结论改得对不上。</p>
+      </article>
+    </div>
+
+    <div class="note note--line">
+      <b>平台对象不换：</b>五次作业都以 IBEX-01 为对象。变化的只是观察角度——构成、需求、架构、模型、验证。任何一次作业里出现的数字，都以作业 01 的顶层指标为基准向上或向下对齐。
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 关于 -->
+<section class="sec" id="about">
+  <div class="wrap about">
+    <div class="about__l">
+      <div class="sec__kicker"><span class="mono">ABOUT</span> 关于本页</div>
+      <h2 class="sec__title">一个静态站点，没有后端</h2>
+    </div>
+    <div class="about__r">
+      <p>全站为纯静态页面，不依赖任何框架或 CDN，断网也能打开。所有结构化内容集中在 <span class="mono">assets/js/data.js</span>，新增一次作业只需新增一个页面文件并把序列条目的 <span class="mono">status</span> 改为 <span class="mono">published</span>，本页的序列与进度会自动更新。</p>
+      <p class="dim">课程：复杂系统工程 2026 · 授课：张玉新 · 站点部署：GitHub Pages</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__left">
+      <div class="foot__code mono">IBEX-01 / 课程作业序列</div>
+      <p>复杂系统工程 2026 · 轮腿式无人作战平台</p>
+    </div>
+    <div class="foot__right">
+      <p class="mono dim">STATIC SITE · NO DEPENDENCIES · GITHUB PAGES</p>
+      <p class="mono dim" id="footMeta"></p>
+      <a class="btn btn--sm" href="#top">回到顶部</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/fx.js"></script>
+<script src="assets/js/home.js"></script>
+</body>
+</html>

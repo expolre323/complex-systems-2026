@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作业 02 · 概念定义与需求分析 | IBEX-01 轮腿式无人作战平台</title>
+<meta name="description" content="复杂系统工程 2026 小组作业 02：依据 ISO/IEC/IEEE 29148 与郭宝柱《系统工程》第 4 章表 4-1、表 4-5 框架，完整输出 BRS 与 StRS，含业务/任务需求、ConOps、OpsCon、相关方列表与相关方需求。">
+<meta name="theme-color" content="#07080a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307080a'/%3E%3Cpath d='M6 22h20M9 22v-6l3-4 3 4v6M17 22v-6l3-4 3 4v6' stroke='%23d8b45e' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/fx.css">
+<link rel="stylesheet" href="assets/css/a2.css">
+<script>
+  /* 首屏前锁定主题：默认深色，只有用户主动选过浅色才覆盖 */
+  (function(){try{var t=localStorage.getItem('cse-theme-v2');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();
+</script>
+</head>
+<body class="a2">
+<div class="scrollbar" id="scrollbar" aria-hidden="true"></div>
+<a class="skip-link" href="#main">跳到正文</a>
+
+<!-- ============================================================ 顶栏 -->
+<header class="topbar" id="topbar">
+  <div class="topbar__in">
+    <a class="brand" href="#top" aria-label="回到顶部">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M5 23h22M8 23v-7l4-5 4 5v7M16 23v-7l4-5 4 5v7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <circle cx="8" cy="23" r="1.6" fill="currentColor"/><circle cx="16" cy="23" r="1.6" fill="currentColor"/><circle cx="24" cy="23" r="1.6" fill="currentColor"/>
+      </svg>
+      <span class="brand__txt"><b>IBEX-01</b><i>轮腿式无人作战平台</i></span>
+    </a>
+    <a class="backlink" href="index.html" aria-label="返回作业序列"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>作业序列</span></a>
+
+    <nav class="layernav" id="nav" aria-label="章节导航">
+      <a href="#method"><em>01</em><span>读法</span></a>
+      <a href="#docs"><em>02</em><span>两份文档</span></a>
+      <a href="#biz"><em>03</em><span>需求</span></a>
+      <a href="#conops"><em>04</em><span>ConOps</span></a>
+      <a href="#opscon"><em>05</em><span>OpsCon</span></a>
+      <a href="#stake"><em>06</em><span>相关方</span></a>
+      <a href="#reqs"><em>07</em><span>需求条目</span></a>
+      <a href="#trace"><em>08</em><span>追溯</span></a>
+    </nav>
+
+    <div class="topbar__tools">
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="切换明暗主题" aria-pressed="false">
+        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/>
+        </svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <path d="M20.5 14.4A8.6 8.6 0 0 1 9.6 3.5a8.7 8.7 0 1 0 10.9 10.9Z" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="iconbtn menu-btn" id="menuBtn" type="button" aria-label="展开导航" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================ HERO -->
+<section class="hero" id="top">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="wrap hero__wrap">
+    <div class="hero__body">
+      <div class="hero__l">
+        <div class="hero__meta">
+          <span class="tag tag--live"><i></i>作业 02 · 已发布</span>
+          <span class="tag">复杂系统工程 2026</span>
+          <span class="tag">BRS · StRS</span>
+          <span class="tag tag--ghost">第 0–1 步 / 需求定义</span>
+        </div>
+
+        <h1 class="hero__title">
+          <span class="hero__code">IBEX-01 / A-02</span>
+          <span class="hero__name">概念定义与需求分析</span>
+        </h1>
+        <p class="hero__sub">Concept Definition &amp; Requirements Analysis&nbsp;&nbsp;/&nbsp;&nbsp;BRS · StRS</p>
+
+        <p class="hero__lede">
+          作业 01 说清了它<strong>由什么构成</strong>，这一次说清它<strong>凭什么必须这样</strong>。
+          先把组织的业务写成一页纸，再把 18 类相关方的<strong>需要</strong>翻译成 40 条<strong>可验证的需求</strong>——
+          中间那一步（分析、协商、赋判据）才是需求工程真正的活儿。
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#docs">读两份规格说明<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn" href="#stake">看相关方图谱</a>
+          <a class="btn btn--ghost" href="#reqs">直接看需求条目</a>
+        </div>
+      </div>
+
+      <aside class="hero__viz" aria-label="相关方需要到需求基线的收敛过程">
+        <div class="viz__h"><span class="mono">NEED → REQUIREMENT</span><i>收敛过程</i></div>
+        <svg class="funnel" id="funnelSvg" viewBox="0 0 440 400" role="img" aria-label="需要收敛为需求基线的三层漏斗">
+          <defs>
+            <linearGradient id="fg1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--fg)" stop-opacity=".07"/>
+              <stop offset="100%" stop-color="var(--fg)" stop-opacity=".02"/>
+            </linearGradient>
+          </defs>
+          <!-- 第一层：需要 -->
+          <g class="fb" data-note="18 类相关方各自表达意图与期望：可不完整、可互相冲突、可不考虑可行性。">
+            <path class="funnel__band" d="M40 46 H400 L372 132 H68 Z" fill="url(#fg1)"/>
+            <text class="funnel__t" x="220" y="80" text-anchor="middle">相关方需要</text>
+            <text class="funnel__s" x="220" y="98" text-anchor="middle">NEEDS · 发散</text>
+            <text class="funnel__v" x="220" y="118" text-anchor="middle">18 类相关方</text>
+          </g>
+          <!-- 第二层：需求 -->
+          <g class="fb" data-note="经分析、协商、赋判据后收敛：每条单一、完整、可验证，写清来源与验证方法。">
+            <path class="funnel__band" d="M74 144 H366 L344 230 H96 Z" fill="url(#fg1)"/>
+            <text class="funnel__t" x="220" y="178" text-anchor="middle">相关方需求</text>
+            <text class="funnel__s" x="220" y="196" text-anchor="middle">REQUIREMENTS · 收敛</text>
+            <text class="funnel__v" x="220" y="216" text-anchor="middle">40 条 StR</text>
+          </g>
+          <!-- 第三层：基线 -->
+          <g class="fb" data-note="进入基线的必须级条目：未满足则方案不成立；其余条目按优先级排序，冲突已协商。">
+            <path class="funnel__band" d="M102 242 H338 L316 328 H124 Z" fill="url(#fg1)"/>
+            <text class="funnel__t" x="220" y="276" text-anchor="middle">需求基线</text>
+            <text class="funnel__s" x="220" y="294" text-anchor="middle">BASELINE · 可验证</text>
+            <text class="funnel__v" x="220" y="314" text-anchor="middle">24 条必须级</text>
+          </g>
+          <!-- 侧注 -->
+          <g fill="var(--fg-3)" font-size="8.5" font-family="var(--mono)" letter-spacing="1">
+            <text x="414" y="90" text-anchor="end">+ 主观 · 不完整</text>
+            <text x="414" y="188" text-anchor="end">+ 约束 · 判据</text>
+            <text x="414" y="286" text-anchor="end">+ 追溯 · 冻结</text>
+          </g>
+          <text x="220" y="368" text-anchor="middle" fill="var(--fg-3)" font-size="9" font-family="var(--mono)" letter-spacing="1.5">ANALYSE · NEGOTIATE · SPECIFY</text>
+        </svg>
+        <p class="viz__f" id="funnelNote">悬停任一层 → 看它在这一步发生了什么</p>
+      </aside>
+    </div>
+
+    <div class="stats" id="stats"></div>
+  </div>
+</section>
+
+<!-- ============================================================ 01 读法 -->
+<section class="sec sec--tight" id="method">
+  <div class="wrap">
+    <div class="sec__head">
+      <div class="sec__kicker"><span class="mono">METHOD</span> 读法说明</div>
+      <h2 class="sec__title">概念定义要走三个台阶，不能一步跨到指标</h2>
+      <p class="sec__lede">很多需求文档的毛病不在写得不细，而在跳级：直接从「组织为什么要」跳到「指标定多少」。中间的「谁在意什么」被省掉了，于是指标没有主张者，一变就崩。</p>
+    </div>
+
+    <div class="a2-lead" id="methodCards"></div>
+
+    <h3 class="sub">两份文档、两套章节：本页严格按表 4-1 与表 4-5 的轮廓输出</h3>
+    <p class="subnote">BRS 与 StRS 在 29148:2011 里本是同一份文档，2018 版拆成两份。拆开的理由很实际：<b>业务管理与业务运行不是同一批人</b>，用一份文档同时说服他们，必然有一方被敷衍。</p>
+    <div class="ol-compare" id="outlineCmp"></div>
+    <div id="outlineDiff"></div>
+
+    <div class="note">
+      <b>两句话分别概括这两份文档：</b>BRS 是写给「批不批这笔钱」的人看的，StRS 是写给「用不用这套东西」的人看的。同一件事，前者谈业务结果，后者谈运行场景。
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 02 文档 -->
+<section class="sec" id="docs">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">02</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">DOCUMENTS</span> BRS · StRS 正文</div>
+        <h2>两份规格说明，逐章写满</h2>
+        <p class="layerhead__claim">按表 4-1 与表 4-5 的章节顺序完整输出，<b>一章不缺、一节不跳</b>。左侧目录可切换章节，两份文档共用同一套平台代号与编号，与作业 01 的 S01–S11 对齐。</p>
+      </div>
+    </header>
+
+    <div class="con__tabs" id="docTabs" role="group" aria-label="选择文档">
+      <button type="button" class="con__tab on" data-doc="brs"><span class="mono">BRS</span>业务需求规格说明</button>
+      <button type="button" class="con__tab" data-doc="strs"><span class="mono">StRS</span>相关方需求规格说明</button>
+    </div>
+
+    <div class="doc">
+      <aside class="doc__side">
+        <div class="doc__sideh" id="docSideH"></div>
+        <nav class="doc__toc" id="docToc" aria-label="文档目录"></nav>
+      </aside>
+      <div class="doc__main">
+        <div class="doc__bar"><span class="mono">DOC</span><span id="docMeta"></span></div>
+        <article class="doc__art" id="docArt"></article>
+      </div>
+    </div>
+
+    <p class="table-hint mono">点击左侧章节目录切换 · 键盘 <span class="kbd">1</span>–<span class="kbd">8</span> 跳章节 · <span class="kbd">?</span> 查看全部快捷键</p>
+  </div>
+</section>
+
+<!-- ======================================================== 03 业务需求 -->
+<section class="sec sec--alt" id="biz">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">03</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">BUSINESS &amp; MISSION REQUIREMENTS</span> 重点论述 ①</div>
+        <h2>业务需求：先证明「不解决会怎样」</h2>
+        <p class="layerhead__claim">业务与任务需求的价值不在于写得全，而在于<b>不可反驳</b>。四个痛点全部量化，六条业务需求全部有主张者，十条任务需求全部挂到作业 01 的 MOE/MOS/MOP 上——任何一条都能被追问，也都能答上。</p>
+      </div>
+    </header>
+
+    <h3 class="sub">四个业务痛点：不能量化的痛点不是痛点</h3>
+    <div class="pains" id="pains"></div>
+
+    <h3 class="sub">六条业务需求（BRQ）：每条都要有主张者</h3>
+    <div class="brq" id="brq"></div>
+
+    <h3 class="sub">十条任务需求（TR）：与作业 01 的任务度量一一对应</h3>
+    <p class="subnote">TR 是<b>任务工程</b>的产物，不是系统需求。它描述「在什么条件下、做成什么事、怎么判成功」，不描述平台怎么实现。右列「任务」指向作业 01 的 M-01…M-05。</p>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr>
+          <th style="width:82px">编号</th><th style="width:120px">任务需求</th><th>需求陈述</th>
+          <th style="width:150px">度量</th><th style="width:56px">验证</th><th style="width:66px">任务</th>
+        </tr></thead>
+        <tbody id="trBody"></tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">目标的 SMART 检验：五条都过，目标才算立住</h3>
+    <div class="smart" id="smart"></div>
+
+    <div class="note note--line">
+      <b>业务需求与任务需求的分界：</b>BRQ-02「成本可控」删掉，项目照样能打仗，但采办不批；TR-03「能过 0.7 m 台阶」删掉，平台在城市废墟里就失去意义。前者约束项目，后者约束能力。
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================== 04 ConOps -->
+<section class="sec" id="conops">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">04</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">CONOPS</span> 重点论述 ② · 组织层</div>
+        <h2>运营概念：整个体系怎么转起来</h2>
+        <p class="layerhead__claim">ConOps 的主语是<b>组织</b>，关系是<b>多对多</b>。它不谈平台有几个模式，只谈三个阶段里，五类角色各自做什么、互相等什么。平台在这里只是体系中的一个可替换节点。</p>
+      </div>
+    </header>
+
+    <div class="con__tabs" id="conTabs" role="group" aria-label="运行阶段"></div>
+    <p class="con__desc" id="conDesc"></p>
+    <div class="con__grid" id="conGrid"></div>
+
+    <div class="conside">
+      <div id="conKv"></div>
+      <div id="conRoles"></div>
+    </div>
+
+    <div class="conside">
+      <div id="conAssume"></div>
+      <div>
+        <h3 class="sub" style="margin-top:0">What-if：ConOps 的价值在「如果……」</h3>
+        <p class="subnote" style="margin-bottom:12px">按第 4 章的写法，运行概念要用场景与 What-if 思维，在复杂不确定的环境中规划与决策。四条最可能发生的偏离如下。</p>
+        <div id="conWhatIf"></div>
+      </div>
+    </div>
+
+    <div class="note">
+      <b>ConOps 与 OpsCon 的分界（第 4 章原话的意思）：</b>ConOps 描述「构成体系的所有系统之间的交互」，是多对多；OpsCon 描述「以某个特定系统为核心、体系中其他系统与它的交互」，是一对多。下一页就把镜头收窄到一台平台。
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================== 05 OpsCon -->
+<section class="sec sec--alt" id="opscon">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">05</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">OPSCON</span> 重点论述 ③ · 系统层</div>
+        <h2>运行概念：十一个状态，一台平台怎么走</h2>
+        <p class="layerhead__claim">七个正常模式、四个降级模式。降级不是「出故障了」，而是<b>事先设计好的另一套行为</b>——链路断了做什么、丢星了做什么、断腿了做什么，都要在需求阶段写死，不能等到现场发挥。</p>
+      </div>
+    </header>
+
+    <div class="sm-wrap">
+      <div class="sm__hd">
+        <span class="mono">STATE MODEL · 11 STATES</span>
+        <span class="sm__legend"><span><i></i>正常模式</span><span class="dg"><i></i>降级模式</span></span>
+      </div>
+      <svg class="sm" id="smSvg" viewBox="0 0 690 330" role="img" aria-label="IBEX-01 运行状态机：七个正常模式与四个降级模式"></svg>
+      <div class="sm__detail" id="smDetail"></div>
+      <p class="sm__hint">悬停或点击任一状态查看进入/退出条件 · 图中只画主流程与降级路径，反向转移写在各状态说明里</p>
+    </div>
+
+    <h3 class="sub">十一个状态各自在做什么</h3>
+    <div class="modes" id="opsModes"></div>
+
+    <h3 class="sub">五个运行场景：把状态串成任务</h3>
+    <div class="scens">
+      <div class="scens__l" id="scenList" role="tablist" aria-label="运行场景"></div>
+      <div class="scens__r" id="scenBody"></div>
+    </div>
+
+    <h3 class="sub">What-if：OpsCon 必须回答的六种偏离</h3>
+    <div id="opsWhatIf"></div>
+  </div>
+</section>
+
+<!-- ========================================================= 06 相关方 -->
+<section class="sec" id="stake">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">06</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">STAKEHOLDERS</span> 重点论述 ④</div>
+        <h2>相关方：18 类，一个都不能少，但也不能再多了</h2>
+        <p class="layerhead__claim">识别相关方的难点不是「想不到」，而是<b>抽象层次</b>：把一条产线上的每个工人都列进来，清单就失去意义。本页按第 4 章的三分法抽象为 18 类，再用影响力—利益定位决定谁先谁后。</p>
+      </div>
+    </header>
+
+    <div class="quad">
+      <div class="quad__c">
+        <svg id="quadSvg" viewBox="0 0 660 420" role="img" aria-label="相关方影响力—利益四象限图"></svg>
+      </div>
+      <aside class="qd" id="qDetail" aria-live="polite"></aside>
+    </div>
+    <p class="table-hint mono">点击散点或下方矩阵行查看该相关方 · 四象限对应四种管理策略，不是四种重要性</p>
+
+    <h3 class="sub">四象限：四种关系，四种管法</h3>
+    <div class="qg" id="qGroups"></div>
+
+    <h3 class="sub">表 4-3 相关方分析表示矩阵</h3>
+    <p class="subnote">按郭宝柱书中表 4-3 的列项填写：利益点、态度（+2 支持 ~ −2 反对）、影响力、重要性、权利、资源、约束。末列优先级由「影响力 × 利益」推出，作为后续确定需求优先级的依据。</p>
+    <div class="table-wrap table-wrap--tall">
+      <table class="tbl mx">
+        <thead><tr>
+          <th style="width:52px">编号</th><th style="width:150px">相关方</th><th>利益点</th>
+          <th style="width:52px">态度</th><th style="width:96px">影响力</th><th style="width:86px">重要性</th>
+          <th>权利</th><th>资源</th><th>约束</th><th style="width:52px">优先</th>
+        </tr></thead>
+        <tbody id="mxBody"></tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <b>一个反直觉的结论：</b>影响力最小的四类（平民、公众、智库、仓储基地）在矩阵里优先级最低，但其中两类拥有<b>伦理否决权</b>——它们不能改变项目，却能让项目在舆论与国际规范层面失去合法性。这也是为什么 StR-SAF-01「不得自主释放效应」被定为「必须」而非「应该」。
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== 07 需求条目 -->
+<section class="sec sec--alt" id="reqs">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">07</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">STAKEHOLDER REQUIREMENTS</span> 重点论述 ⑤</div>
+        <h2>相关方需求：40 条，每条都能被验证</h2>
+        <p class="layerhead__claim">判断一条需求是否合格，只看四件事：<b>单一</b>（不含「和 / 或 / 但是」）、<b>可验证</b>（有且仅有一种主验证方法）、<b>有来源</b>（哪个相关方提出的）、<b>有优先级</b>（必须 / 应该 / 可能）。四条缺一，就不该进基线。</p>
+      </div>
+    </header>
+
+    <div class="filters">
+      <div id="reqCats" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+      <span class="sp"></span>
+      <div id="reqPris" style="display:flex;gap:8px">
+        <button type="button" class="fbtn on" data-pri="ALL">全部级别</button>
+        <button type="button" class="fbtn" data-pri="必须">必须</button>
+        <button type="button" class="fbtn" data-pri="应该">应该</button>
+        <button type="button" class="fbtn" data-pri="可能">可能</button>
+      </div>
+      <label class="reqsearch">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16.5 16.5 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <input id="reqQ" type="search" placeholder="搜索需求：输入「越障」「电池」「授权」…" autocomplete="off">
+      </label>
+    </div>
+    <p class="fstat" id="reqStat" style="margin-bottom:10px"></p>
+
+    <div class="table-wrap reqs">
+      <table class="tbl">
+        <thead><tr>
+          <th style="width:110px">编号</th><th style="width:88px">类别</th><th>需求陈述</th>
+          <th style="width:58px">优先级</th><th style="width:46px">验证</th>
+          <th style="width:88px">来源</th><th style="width:76px">追溯</th>
+        </tr></thead>
+        <tbody id="reqBody"></tbody>
+      </table>
+      <div class="empty" id="reqEmpty">没有匹配的需求条目。试试更短的关键词，或点「全部」重置。</div>
+    </div>
+    <p class="table-hint mono">验证方法：<b>T</b> 试验 · <b>A</b> 分析 · <b>D</b> 演示 · <b>I</b> 检查 ｜ 来源为相关方编号（见第 06 节）｜ 追溯指向任务需求或业务需求 · 按 <span class="kbd">/</span> 直接搜索 <button class="keyhint" id="keyHint" type="button">全部快捷键 <span class="kbd">?</span></button></p>
+
+    <h3 class="sub">从「需要」到「需求」：三步，缺一步就变成愿望清单</h3>
+    <p class="subnote">表 4-2 说清了需要与需求的区别：需要是某一方立场上的主观表达，需求是综合各方、带约束、可验证的共识。下面三组是本次讨论中最典型的三段转换。</p>
+    <div class="needs" id="needs"></div>
+
+    <h3 class="sub">五处冲突与它们的协商结果</h3>
+    <p class="subnote">需求不是收集来的，是谈出来的。凡是「都要」的文档，都是没谈过的文档。</p>
+    <div class="conf" id="conflicts"></div>
+  </div>
+</section>
+
+<!-- ============================================================ 08 追溯 -->
+<section class="sec" id="trace">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">08</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">TRACEABILITY</span> 需求追溯</div>
+        <h2>追溯：从一条需求，回到它凭什么存在</h2>
+        <p class="layerhead__claim">需求基线最怕的不是写错，而是<b>说不清来源</b>。下面这张矩阵把四条线接起来：业务需求 → 任务度量 → 相关方需求 → 系统（作业 01 的 S01–S11）。十条任务需求全部落在系统上，没有孤儿需求。</p>
+      </div>
+    </header>
+
+    <div class="tm">
+      <table>
+        <thead><tr>
+          <th style="width:90px">任务需求</th><th style="width:88px">业务需求</th><th style="width:96px">任务度量</th>
+          <th>相关方需求条目</th><th style="width:170px">承接系统（作业 01）</th>
+        </tr></thead>
+        <tbody id="tmBody"></tbody>
+      </table>
+    </div>
+    <div class="tm__legend">
+      <span><b>业务需求</b> BRQ-01…06 · 第 03 节</span>
+      <span><b>任务度量</b> MOE / MOS / MOP · 作业 01</span>
+      <span><b>相关方需求</b> StR-… · 第 07 节</span>
+      <span><b>系统</b> S01–S11 · 作业 01</span>
+    </div>
+
+    <div class="grid grid--3" style="margin-top:28px">
+      <article class="card">
+        <div class="card__no mono">Q1</div>
+        <h3>无孤儿需求</h3>
+        <p>40 条需求全部能上溯到一条任务或业务需求。凡是「行业惯例所以要有」的条目，一律删除，不留解释性备注。</p>
+      </article>
+      <article class="card">
+        <div class="card__no mono">Q2</div>
+        <h3>无无主指标</h3>
+        <p>每条量化指标都标了来源相关方。指标没有主张者，评审时就没有人为它辩护，改起来也没有人反对——这是指标失守的典型前兆。</p>
+      </article>
+      <article class="card">
+        <div class="card__no mono">Q3</div>
+        <h3>无不可验证项</h3>
+        <p>「应具备良好的机动性」这类句子在本页一条都没有。全部改为「在 X 条件下达到 Y，用 Z 方法验证」。</p>
+      </article>
+    </div>
+
+    <div class="note note--line">
+      <b>交给作业 03 的东西：</b>40 条 StR + 10 条 TR + 18 类相关方 + 5 个运行场景 + 11 个运行状态。作业 03 要用它们做功能分解与架构权衡——需求定义到此为止，不再往下写「怎么实现」。
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 参考 -->
+<section class="sec" id="refs">
+  <div class="wrap">
+    <header class="layerhead layerhead--slim">
+      <div class="layerhead__no">09</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">REFERENCES</span> 参考与声明</div>
+        <h2>参考</h2>
+      </div>
+    </header>
+    <ol class="refs" id="refsList"></ol>
+    <div class="disclaimer" id="disclaimer"></div>
+  </div>
+</section>
+
+<!-- ============================================================ 下一份 -->
+<section class="sec sec--alt sec--tight" id="next">
+  <div class="wrap nextbar">
+    <div>
+      <p class="mono dim">NEXT ASSIGNMENT</p>
+      <h3>作业 03 · 系统定义与架构</h3>
+      <p>把这里的 40 条 StR 分配下去：功能分解、接口定义、SysML 视图、架构权衡与 STPA 危险分析。作业 01 的 S01–S11 将第一次承担需求，而不是只承担质量。</p>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn" href="a1.html">← 回看作业 01</a>
+      <a class="btn btn--primary" href="index.html">返回作业序列<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__left">
+      <div class="foot__code mono">IBEX-01 / 作业 02</div>
+      <p>复杂系统工程 2026 · 概念定义与需求分析</p>
+    </div>
+    <div class="foot__right">
+      <p class="mono dim">STATIC SITE · NO DEPENDENCIES · GITHUB PAGES</p>
+      <p class="mono dim">BRS · StRS · 依据 ISO/IEC/IEEE 29148:2018 与第 4 章表 4-1 / 4-5</p>
+      <a class="btn btn--sm" href="#top">回到顶部</a>
+    </div>
+  </div>
+</footer>
+
+<!-- 悬浮章节跳转 -->
+<nav class="rail" id="rail" aria-label="章节快速跳转"></nav>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/a2-data.js"></script>
+<script src="assets/js/fx.js"></script>
+<script src="assets/js/a2.js"></script>
+<script>
+  /* 首屏漏斗：悬停/点击看该层的说明 */
+  (function () {
+    var note = document.getElementById('funnelNote');
+    if (!note) return;
+    var dft = note.textContent;
+    Array.prototype.forEach.call(document.querySelectorAll('#funnelSvg .fb'), function (g) {
+      function on() { note.textContent = g.dataset.note; g.classList.add('on'); }
+      function off() { note.textContent = dft; g.classList.remove('on'); }
+      g.addEventListener('mouseenter', on);
+      g.addEventListener('mouseleave', off);
+      g.style.cursor = 'pointer';
+    });
+  })();
+</script>
+</body>
+</html>
