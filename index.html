@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IBEX-01 轮腿式无人作战平台 · 复杂系统工程 2026 小组作业</title>
-<meta name="description" content="复杂系统工程 2026 小组作业：以 IBEX-01 轮腿式无人作战平台为对象。作业 01 回答它由什么构成（六层分解 + 预算闭合），作业 02 回答它凭什么这样要求（BRS + StRS + 40 条相关方需求）。">
+<meta name="description" content="复杂系统工程 2026 小组作业：以 IBEX-01 轮腿式无人作战平台为对象。作业 01 回答它由什么构成，作业 02 回答它凭什么这样要求，作业 03 回答谁来承担、失效时谁兜底。">
 <meta name="theme-color" content="#07080a">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307080a'/%3E%3Cpath d='M6 22h20M9 22v-6l3-4 3 4v6M17 22v-6l3-4 3 4v6' stroke='%23d8b45e' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/css/style.css">
@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="scrollbar" id="scrollbar" aria-hidden="true"></div>
-<a class="skip-link" href="#gates">跳到两个入口</a>
+<a class="skip-link" href="#gates">跳到三个入口</a>
 
 <!-- ============================================================ 顶栏 -->
 <header class="topbar">
@@ -33,7 +33,8 @@
     <nav class="layernav" id="nav" aria-label="页面导航">
       <a href="a1.html"><em>01</em><span>系统构成</span></a>
       <a href="a2.html"><em>02</em><span>需求分析</span></a>
-      <a href="#about"><em>03</em><span>说明</span></a>
+      <a href="a3.html"><em>03</em><span>架构安全</span></a>
+      <a href="#about"><em>04</em><span>说明</span></a>
     </nav>
 
     <div class="topbar__tools">
@@ -60,7 +61,7 @@
   <div class="wrap hero__wrap">
     <div class="home-hd">
       <div class="hero__meta">
-        <span class="tag tag--live"><i></i>2 / 2 已完成</span>
+        <span class="tag tag--live"><i></i>3 / 3 已完成</span>
         <span class="tag">复杂系统工程 2026</span>
         <span class="tag">小组作业</span>
         <span class="tag tag--ghost">GitHub Pages</span>
@@ -70,24 +71,25 @@
         <span class="hero__code">IBEX-01</span>
         <span class="hero__name">轮腿式无人作战平台</span>
       </h1>
-      <p class="hero__sub">Complex Systems Engineering 2026&nbsp;&nbsp;/&nbsp;&nbsp;Two Assignments</p>
+      <p class="hero__sub">Complex Systems Engineering 2026&nbsp;&nbsp;/&nbsp;&nbsp;Three Assignments</p>
 
       <p class="hero__lede">
-        同一台平台，两次作业回答两个不同的问题：作业 01 回答它<strong>由什么构成</strong>，
-        作业 02 回答它<strong>凭什么这样要求</strong>。前者把一台装备切成六层可交代的单元，
-        后者把 18 类相关方的意图压成 40 条可验证的需求。两次作业共用一套编号——
-        所以第 02 页的每一条需求，都能落回第 01 页的某个系统上。
+        同一台平台，三次作业回答三个层层递进的问题：作业 01 回答它<strong>由什么构成</strong>，
+        作业 02 回答它<strong>凭什么这样要求</strong>，作业 03 回答<strong>谁来承担、失效时谁兜底</strong>。
+        从六层分解到 40 条相关方需求，再到 41 条系统需求与 12 条安全需求——
+        三次共用一套编号，所以第 03 页的每一条安全需求，都能落回第 01 页的某个系统上。
       </p>
 
       <div class="hero__cta">
         <a class="btn btn--primary" href="a1.html">作业 01 · 系统构成<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <a class="btn" href="a2.html">作业 02 · 需求分析<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn" href="a3.html">作业 03 · 架构安全<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================ 两个入口 -->
+<!-- ============================================================ 三个入口 -->
 <section class="sec sec--tight" id="gates">
   <div class="wrap">
     <div class="gates" id="gateList"></div>
@@ -102,7 +104,7 @@
       <h2 class="sec__title">一个静态站点，没有后端</h2>
     </div>
     <div class="about__r">
-      <p>全站为纯静态页面，不依赖任何框架或 CDN，断网也能打开。所有结构化内容集中在 <span class="mono">assets/js/data.js</span> 与 <span class="mono">assets/js/a2-data.js</span>，页面结构只负责呈现。</p>
+      <p>全站为纯静态页面，不依赖任何框架或 CDN，断网也能打开。所有结构化内容集中在 <span class="mono">assets/js/data.js</span>、<span class="mono">assets/js/a2-data.js</span> 与 <span class="mono">assets/js/a3-data.js</span>，页面结构只负责呈现。</p>
       <p class="dim">课程：复杂系统工程 2026 · 授课：张玉新 · 小组作业：IBEX-01 轮腿式无人作战平台 · 站点部署：GitHub Pages</p>
     </div>
   </div>
@@ -113,7 +115,7 @@
 <footer class="foot">
   <div class="wrap foot__in">
     <div class="foot__left">
-      <div class="foot__code mono">IBEX-01 / 小组作业 01–02</div>
+      <div class="foot__code mono">IBEX-01 / 小组作业 01–03</div>
       <p>复杂系统工程 2026 · 轮腿式无人作战平台</p>
     </div>
     <div class="foot__right">

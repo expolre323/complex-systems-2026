@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作业 03 · 系统需求规格书与初始架构 | IBEX-01 轮腿式无人作战平台</title>
+<meta name="description" content="复杂系统工程 2026 小组作业 03：按 ISO/IEC/IEEE 29148 的 SyRS 范式输出 41 条系统需求，建立四层控制的初始系统架构（系统控制框图），并基于该架构做 STPA，导出 12 条安全需求与安全架构。">
+<meta name="theme-color" content="#07080a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307080a'/%3E%3Cpath d='M6 22h20M9 22v-6l3-4 3 4v6M17 22v-6l3-4 3 4v6' stroke='%23d8b45e' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/fx.css">
+<link rel="stylesheet" href="assets/css/a2.css">
+<link rel="stylesheet" href="assets/css/a3.css">
+<script>
+  /* 首屏前锁定主题：默认深色，只有用户主动选过浅色才覆盖 */
+  (function(){try{var t=localStorage.getItem('cse-theme-v2');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();
+</script>
+</head>
+<body class="a3">
+<div class="scrollbar" id="scrollbar" aria-hidden="true"></div>
+<a class="skip-link" href="#main">跳到正文</a>
+
+<!-- ============================================================ 顶栏 -->
+<header class="topbar" id="topbar">
+  <div class="topbar__in">
+    <a class="brand" href="#top" aria-label="回到顶部">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M5 23h22M8 23v-7l4-5 4 5v7M16 23v-7l4-5 4 5v7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <circle cx="8" cy="23" r="1.6" fill="currentColor"/><circle cx="16" cy="23" r="1.6" fill="currentColor"/><circle cx="24" cy="23" r="1.6" fill="currentColor"/>
+      </svg>
+      <span class="brand__txt"><b>IBEX-01</b><i>轮腿式无人作战平台</i></span>
+    </a>
+    <a class="backlink" href="index.html" aria-label="返回首页"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>首页</span></a>
+
+    <nav class="layernav" id="nav" aria-label="章节导航">
+      <a href="#method"><em>01</em><span>读法</span></a>
+      <a href="#syrs"><em>02</em><span>规格书</span></a>
+      <a href="#arch"><em>03</em><span>架构</span></a>
+      <a href="#stpa"><em>04</em><span>STPA</span></a>
+      <a href="#safety"><em>05</em><span>安全</span></a>
+      <a href="#trace"><em>06</em><span>追溯</span></a>
+    </nav>
+
+    <div class="topbar__tools">
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="切换明暗主题" aria-pressed="false">
+        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/>
+        </svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <path d="M20.5 14.4A8.6 8.6 0 0 1 9.6 3.5a8.7 8.7 0 1 0 10.9 10.9Z" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="iconbtn menu-btn" id="menuBtn" type="button" aria-label="展开导航" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================ HERO -->
+<section class="hero" id="top">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="wrap hero__wrap">
+    <div class="hero__body">
+      <div class="hero__l">
+        <div class="hero__meta">
+          <span class="tag tag--live"><i></i>作业 03 · 已发布</span>
+          <span class="tag">复杂系统工程 2026</span>
+          <span class="tag">MBSE · SyRS · STPA</span>
+          <span class="tag tag--ghost">第 1–3 步 / 需求 · 架构 · 安全</span>
+        </div>
+
+        <h1 class="hero__title">
+          <span class="hero__code">IBEX-01 / A-03</span>
+          <span class="hero__name">系统需求与初始架构</span>
+        </h1>
+        <p class="hero__sub">Model-Based Requirements &amp; Architecture&nbsp;&nbsp;/&nbsp;&nbsp;SyRS · STPA</p>
+
+        <p class="hero__lede">
+          作业 02 从外面往里要需求，这一次从里面往外长架构。
+          41 条系统需求必须先找到「谁来承担」，才谈得上可验证；
+          而一旦架构画成控制回路，<strong>安全需求就不再靠访谈得来</strong>——
+          STPA 会在结构上指出连相关方都没想到的危险。
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#syrs">先看需求规格书<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn" href="#arch">看系统控制框图</a>
+          <a class="btn btn--ghost" href="#safety">直达安全架构</a>
+        </div>
+      </div>
+
+      <aside class="hero__viz" aria-label="从需求到架构再到安全需求的三段闭环">
+        <div class="viz__h"><span class="mono">SPECIFY → ARCHITECT → ANALYSE</span><i>三段闭环</i></div>
+        <svg class="loop3" id="loopSvg" viewBox="0 0 460 400" role="img" aria-label="需求规格、控制结构、STPA 安全需求三段闭环">
+          <defs>
+            <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 1 L9 5 L0 9" fill="none" stroke="var(--accent)" stroke-width="1.6"/>
+            </marker>
+            <marker id="ar3b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 1 L9 5 L0 9" fill="none" stroke="var(--fg-3)" stroke-width="1.6"/>
+            </marker>
+          </defs>
+
+          <g class="lp" data-note="把 40 条相关方需求拆解、合并、补空白，写成 41 条可分配可验证的系统需求。">
+            <rect class="lp__box" x="40" y="36" width="330" height="88" rx="10"/>
+            <text class="lp__n" x="60" y="64">01 · SPECIFY</text>
+            <text class="lp__t" x="60" y="88">系统需求规格书 SyRS</text>
+            <text class="lp__v" x="60" y="110">41 条 SyR · 7 类 · 4 种验证方法</text>
+          </g>
+          <line class="lp__ln" x1="205" y1="124" x2="205" y2="164" marker-end="url(#ar3)"/>
+
+          <g class="lp" data-note="把 41 条需求分配到四层控制：谁有权改变谁的状态、依据哪一路反馈。">
+            <rect class="lp__box" x="40" y="168" width="330" height="88" rx="10"/>
+            <text class="lp__n" x="60" y="196">02 · ARCHITECT</text>
+            <text class="lp__t" x="60" y="220">初始系统架构</text>
+            <text class="lp__v" x="60" y="242">4 层 · 10 个控制动作 · 11 个分配单元</text>
+          </g>
+          <line class="lp__ln" x1="205" y1="256" x2="205" y2="296" marker-end="url(#ar3)"/>
+
+          <g class="lp" data-note="在控制结构上问四句话，得到 20 条 UCA 与 12 条安全需求——其中 7 条 StRS 里没有。">
+            <rect class="lp__box" x="40" y="300" width="330" height="88" rx="10"/>
+            <text class="lp__n" x="60" y="328">03 · ANALYSE</text>
+            <text class="lp__t" x="60" y="352">STPA → 安全需求</text>
+            <text class="lp__v" x="60" y="374">20 UCA · 12 条 SR · 4 个安全机制</text>
+          </g>
+
+          <path class="lp__back" d="M390 344 C430 344 430 300 430 220 C430 140 430 80 390 80" marker-end="url(#ar3b)"/>
+          <text class="lp__bt" x="440" y="26" text-anchor="end">返修 +12 条 · 基线 B2</text>
+        </svg>
+        <p class="viz__f" id="loopNote">悬停任一段 → 看这一步做了什么</p>
+      </aside>
+    </div>
+
+    <div class="stats" id="stats"></div>
+  </div>
+</section>
+
+<!-- ============================================================ 01 读法 -->
+<section class="sec sec--tight" id="method">
+  <div class="wrap">
+    <div class="sec__head">
+      <div class="sec__kicker"><span class="mono">METHOD</span> 读法说明</div>
+      <h2 class="sec__title">三个动作：把需求变成模型，再用模型反查需求</h2>
+      <p class="sec__lede">MBSE 不是「画图替代写字」。它的价值在于：一旦需求、架构、安全分析都变成同一套模型里的对象，改一处就能立刻知道哪几条需求、哪个控制动作、哪条安全约束会跟着动。</p>
+    </div>
+
+    <div class="a2-lead" id="methodCards"></div>
+
+    <h3 class="sub">这次落在 V 模型的哪一个位置</h3>
+    <p class="subnote">作业 01 做的是左下行中段的分解与架构，作业 02 做的是最上端的相关方需求，本次把两者接起来：<b>系统需求（右上角那一步的输入）与架构定义（左下行），再用安全分析回灌</b>。右侧的验证与确认只给出方法分配，不做实物试验。</p>
+    <div class="vmap" aria-hidden="true">
+      <div class="vmap__row">
+        <span class="vmap__s">相关方需求</span>
+        <span class="vmap__s">系统需求</span>
+        <span class="vmap__on">架构定义</span>
+        <span class="vmap__on">安全分析</span>
+        <span class="vmap__s">详细设计</span>
+        <span class="vmap__s">实现</span>
+      </div>
+      <div class="vmap__row vmap__row--up">
+        <span class="vmap__s">确认</span>
+        <span class="vmap__s">验证</span>
+        <span class="vmap__s">集成</span>
+        <span class="vmap__s">测试</span>
+        <span class="vmap__s">部署</span>
+        <span class="vmap__s">使用</span>
+      </div>
+    </div>
+
+    <div class="note note--line">
+      <b>一句话概括本页主张：</b>轮腿平台的架构难点不是「把十一个系统连起来」，而是<b>让两套物理机制共享同一个权威</b>——谁在什么条件下有权决定「现在用轮还是用腿」。这个决定一旦出现两个主人，其余所有指标都会失效。
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 02 规格书 -->
+<section class="sec sec--alt" id="syrs">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">02</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">SyRS</span> 系统需求规格说明</div>
+        <h2>把「谁在意什么」写成「系统必须做到什么」</h2>
+        <p class="layerhead__claim">按 29148 的 SyRS 范式，六章一节不缺。第 3 章 41 条需求全部携带<b>分配对象、来源、验证方法</b>三个属性——缺任何一个，这条需求就无法进入基线。</p>
+      </div>
+    </header>
+
+    <div class="doc">
+      <aside class="doc__side">
+        <div class="doc__sideh" id="docSideH"></div>
+        <nav class="doc__toc" id="docToc" aria-label="文档目录"></nav>
+      </aside>
+      <div class="doc__main">
+        <div class="doc__bar"><span class="mono">DOC</span><span id="docMeta"></span></div>
+        <article class="doc__art" id="docArt"></article>
+      </div>
+    </div>
+
+    <h3 class="sub">40 条 StR 是怎么变成 41 条 SyR 的</h3>
+    <p class="subnote">转换不是换措辞。四条动作各自对应一种判断：<b>合并</b>是因为两条相关方需求其实在说同一个系统口径；<b>拆分</b>是因为一条需求里塞了两种验证方法；<b>新增</b>是因为相关方不需要为一个包线签字，但系统必须有一个。</p>
+    <div class="table-wrap">
+      <table class="tbl tbl--acct">
+        <thead><tr><th class="c-id">动作</th><th class="c-num">条数</th><th>为什么这么做</th></tr></thead>
+        <tbody id="acctBody"></tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">41 条系统需求（SyR）</h3>
+    <div class="filters" id="syrFilters" role="group" aria-label="按类别筛选系统需求"></div>
+    <div class="table-wrap">
+      <table class="tbl tbl--syr">
+        <thead><tr><th class="c-id">编号</th><th>系统需求</th><th class="c-alloc">分配</th><th class="c-src">来源</th><th class="c-v">验证</th></tr></thead>
+        <tbody id="syrBody"></tbody>
+      </table>
+    </div>
+    <p class="table-hint mono">V：T 试验 · A 分析 · D 演示 · I 检查 · 点击上方类别筛选</p>
+  </div>
+</section>
+
+<!-- ============================================================ 03 架构 -->
+<section class="sec" id="arch">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">03</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">ARCHITECTURE</span> 初始系统架构 · 系统控制框图</div>
+        <h2>不用零件树，用控制回路</h2>
+        <p class="layerhead__claim">零件树回答「有什么」，控制回路回答「凭什么按预期动」。本平台的核心风险不在零件缺不缺，而在<b>指令与反馈之间是否对得上</b>——所以架构必须先把这条关系画清楚。</p>
+      </div>
+    </header>
+
+    <h3 class="sub">四个视图，各回答一个问题</h3>
+    <div class="grid grid--4 views" id="views"></div>
+
+    <h3 class="sub">系统控制框图：四层控制 + 一条使能链</h3>
+    <p class="subnote">实线为控制动作（谁让谁动），虚线为反馈（谁告诉谁现状）。左侧竖线是<b>使能链</b>：它不参与「怎么动」的决策，只决定「允不允许动」。这条线断在哪里，力矩就在哪里归零。</p>
+
+    <div class="csc">
+      <div class="csc__h">
+        <span class="mono">CONTROL STRUCTURE · IBEX-01</span>
+        <span class="csc__lg"><i class="csc__sw csc__sw--c"></i>控制动作 <i class="csc__sw csc__sw--f"></i>反馈 <i class="csc__sw csc__sw--e"></i>使能链</span>
+      </div>
+      <svg id="cscSvg" viewBox="0 0 1000 660" role="img" aria-label="IBEX-01 四层控制结构：操作手、任务与行为、运动协调、关节伺服，以及安全监督的使能链">
+        <defs>
+          <marker id="mk-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 1 L9 5 L0 9" fill="none" stroke="var(--accent)" stroke-width="1.7"/>
+          </marker>
+          <marker id="mk-f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+            <path d="M0 1 L9 5 L0 9" fill="none" stroke="var(--fg-3)" stroke-width="1.6"/>
+          </marker>
+          <marker id="mk-e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 1 L9 5 L0 9" fill="none" stroke="var(--accent)" stroke-width="1.7"/>
+          </marker>
+        </defs>
+
+        <!-- 使能链 -->
+        <line class="csc__en" x1="46" y1="548" x2="46" y2="56" marker-end="url(#mk-e)"/>
+        <text class="csc__ent" x="34" y="330" transform="rotate(-90 34 330)">使能链 ENABLE CHAIN · 断链即无力矩</text>
+
+        <!-- 第一回路 -->
+        <g class="csc__loop">
+          <rect class="csc__box" x="76" y="64" width="250" height="74" rx="8"/>
+          <text class="csc__t" x="94" y="92">C1 操作手 / 指挥所</text>
+          <text class="csc__s" x="94" y="114">S09 人机交互 · 授权与接管</text>
+          <line class="csc__c" x1="326" y1="88" x2="626" y2="88" marker-end="url(#mk-c)"/>
+          <text class="csc__lab" x="476" y="80" text-anchor="middle">CA-01 任务授权 / 撤销</text>
+          <line class="csc__f" x1="626" y1="118" x2="326" y2="118" marker-end="url(#mk-f)"/>
+          <text class="csc__flab" x="476" y="132" text-anchor="middle">FB-01 授权回执 · 有效期</text>
+          <rect class="csc__proc" x="630" y="64" width="310" height="74" rx="8"/>
+          <text class="csc__t" x="648" y="92">P1 任务与授权域</text>
+          <text class="csc__s" x="648" y="114">可执行状态 · 区域与时段约束</text>
+        </g>
+
+        <!-- 第二回路 -->
+        <g class="csc__loop">
+          <rect class="csc__box" x="76" y="186" width="250" height="74" rx="8"/>
+          <text class="csc__t" x="94" y="214">C2 任务与行为</text>
+          <text class="csc__s" x="94" y="236">S06 上层 · 航路与行为决策</text>
+          <line class="csc__c" x1="326" y1="210" x2="626" y2="210" marker-end="url(#mk-c)"/>
+          <text class="csc__lab" x="476" y="202" text-anchor="middle">CA-03 速度航路 · CA-09 链路切换</text>
+          <line class="csc__f" x1="626" y1="240" x2="326" y2="240" marker-end="url(#mk-f)"/>
+          <text class="csc__flab" x="476" y="254" text-anchor="middle">FB-02 定位 · 链路质量</text>
+          <rect class="csc__proc" x="630" y="186" width="310" height="74" rx="8"/>
+          <text class="csc__t" x="648" y="214">P2 航迹与链路</text>
+          <text class="csc__s" x="648" y="236">位置 · 速度 · 丢包与时延</text>
+        </g>
+
+        <!-- 第三回路 -->
+        <g class="csc__loop">
+          <rect class="csc__box" x="76" y="308" width="250" height="74" rx="8"/>
+          <text class="csc__t" x="94" y="336">C3 运动协调</text>
+          <text class="csc__s" x="94" y="358">S06 下层 · 步态与模态执行</text>
+          <line class="csc__c" x1="326" y1="332" x2="626" y2="332" marker-end="url(#mk-c)"/>
+          <text class="csc__lab" x="476" y="324" text-anchor="middle">CA-04 关节指令 · CA-05 支撑序列</text>
+          <line class="csc__f" x1="626" y1="362" x2="326" y2="362" marker-end="url(#mk-f)"/>
+          <text class="csc__flab" x="476" y="376" text-anchor="middle">FB-03 姿态 · 足端接触力</text>
+          <rect class="csc__proc" x="630" y="308" width="310" height="74" rx="8"/>
+          <text class="csc__t" x="648" y="336">P3 关节与足端</text>
+          <text class="csc__s" x="648" y="358">角度 · 力矩 · 接触 · 滑移</text>
+        </g>
+
+        <!-- 第四回路 -->
+        <g class="csc__loop">
+          <rect class="csc__box" x="76" y="430" width="250" height="74" rx="8"/>
+          <text class="csc__t" x="94" y="458">C4 关节伺服 / 电驱</text>
+          <text class="csc__s" x="94" y="480">S02 · S03 · 执行与功率</text>
+          <line class="csc__c" x1="326" y1="454" x2="626" y2="454" marker-end="url(#mk-c)"/>
+          <text class="csc__lab" x="476" y="446" text-anchor="middle">CA-06 力矩输出 · CA-08 功率分配</text>
+          <line class="csc__f" x1="626" y1="484" x2="326" y2="484" marker-end="url(#mk-f)"/>
+          <text class="csc__flab" x="476" y="498" text-anchor="middle">FB-04 转速 · 电流 · 温度</text>
+          <rect class="csc__proc" x="630" y="430" width="310" height="74" rx="8"/>
+          <text class="csc__t" x="648" y="458">P4 轮腿机构与地面</text>
+          <text class="csc__s" x="648" y="480">接地 · 牵引 · 扰动 · 坡度</text>
+        </g>
+
+        <!-- 层级关系 -->
+        <g class="csc__hier">
+          <line x1="201" y1="138" x2="201" y2="180" marker-end="url(#mk-c)"/>
+          <line x1="201" y1="260" x2="201" y2="302" marker-end="url(#mk-c)"/>
+          <line x1="201" y1="382" x2="201" y2="424" marker-end="url(#mk-c)"/>
+          <text x="212" y="164">目标分解</text>
+          <text x="212" y="286">步态约束</text>
+          <text x="212" y="408">力矩指令</text>
+        </g>
+
+        <!-- 安全与保障层 -->
+        <rect class="csc__safe" x="76" y="548" width="864" height="86" rx="8"/>
+        <text class="csc__st" x="96" y="574">C5 能源管理 · S03</text>
+        <text class="csc__ss" x="96" y="594">CA-08 功率分配 / 分级切载</text>
+        <text class="csc__ss" x="96" y="616">SOC · 温度 · 绝缘 · 压差</text>
+
+        <text class="csc__st" x="386" y="574">C6 安全监督 · S10　（唯一持有减法权）</text>
+        <text class="csc__ss" x="386" y="594">CA-10 使能 / 失能 / 急停 —— 只可减速、停车、切降级</text>
+        <text class="csc__ss" x="386" y="616">不可加速、不可越权、不可自动复位</text>
+
+        <text class="csc__st" x="706" y="574">C7 载荷管理 · S07</text>
+        <text class="csc__ss" x="706" y="594">CA-06 桅杆 · CA-07 上电与释放</text>
+        <text class="csc__ss" x="706" y="616">五条件互锁 · 一次性授权</text>
+
+        <line class="csc__en2" x1="546" y1="548" x2="546" y2="520" marker-end="url(#mk-e)"/>
+        <text class="csc__ent2" x="556" y="536">使能 = 1 才允许力矩输出</text>
+      </svg>
+    </div>
+
+    <h3 class="sub">十个控制动作：每个都要有反馈、有归属、有需求依据</h3>
+    <div class="table-wrap">
+      <table class="tbl tbl--ca">
+        <thead><tr><th class="c-id">编号</th><th class="c-from">控制者 → 被控</th><th>控制动作</th><th class="c-fb">反馈</th><th class="c-ref">需求依据</th></tr></thead>
+        <tbody id="caBody"></tbody>
+      </table>
+    </div>
+    <p class="subnote">表里最容易忽略的是最后一列：<b>没有需求依据的控制动作，等于没人要求它存在</b>。反过来，如果某条需求找不到承载它的控制动作，这条需求就落不了地。</p>
+
+    <h3 class="sub">需求落到系统：41 条的主责分配</h3>
+    <div class="split split--arch">
+      <div class="table-wrap">
+        <table class="tbl tbl--alloc">
+          <thead><tr><th class="c-id">系统</th><th>名称</th><th class="c-num">主责</th><th class="c-ca">承担控制动作</th><th class="c-ifc">体系接口</th></tr></thead>
+          <tbody id="allocBody"></tbody>
+        </table>
+      </div>
+      <aside class="ifacebox">
+        <div class="ifacebox__h mono">EXTERNAL INTERFACES · ICD-B</div>
+        <ul id="ifaceList"></ul>
+        <p class="ifacebox__f">五类接口在作业 01 冻结。本次只把它们分配到 SyR，不重新定义——<b>接口一改，两侧的验证都要重做</b>。</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 04 STPA -->
+<section class="sec sec--alt" id="stpa">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">04</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">STPA</span> 系统理论过程分析</div>
+        <h2>不问「哪个零件会坏」，只问「哪个动作在什么语境下不安全」</h2>
+        <p class="layerhead__claim">FMEA 从部件失效出发，STPA 从控制行为出发。两者最大的差别是：STPA 能发现<b>所有部件都正常、系统依然危险</b>的情形——本页 20 条 UCA 里有 8 条属于这一类，它们的成因不是坏了，而是「不是时候」。</p>
+      </div>
+    </header>
+
+    <div class="steps" id="stpaSteps"></div>
+
+    <h3 class="sub">第一步：损失、危险、系统级约束</h3>
+    <p class="subnote">危险（Hazard）是<b>系统状态</b>，不是部件故障。「平台以不可控速度接近人员」是危险，「制动器卡滞」只是它的一种成因。把两者混为一谈，安全需求就会写成「提高制动器可靠性」，而不是「任何单点故障下 5 s 内进入静止安全态」。</p>
+    <div class="trip">
+      <div class="trip__col">
+        <div class="trip__h"><span class="mono">LOSSES</span>损失 · 5</div>
+        <ul id="lossList"></ul>
+      </div>
+      <div class="trip__col">
+        <div class="trip__h"><span class="mono">HAZARDS</span>危险 · 7</div>
+        <ul id="hazList"></ul>
+      </div>
+      <div class="trip__col">
+        <div class="trip__h"><span class="mono">CONSTRAINTS</span>系统级约束 · 7</div>
+        <ul id="scList"></ul>
+      </div>
+    </div>
+
+    <h3 class="sub">第三步：20 条不安全控制行为（UCA）</h3>
+    <p class="subnote">对每个控制动作问四句话。四问至少命中一条即为 UCA；<b>「未提供」与「提供了」往往被一起想到，而「时机」与「持续时间」几乎总被漏掉</b>——本页 20 条里，这两类只找到 8 条，却覆盖了最危险的失稳与失控。</p>
+    <div class="filters" id="ucaFilters" role="group" aria-label="按类型筛选 UCA"></div>
+    <div class="table-wrap">
+      <table class="tbl tbl--uca">
+        <thead><tr><th class="c-id">编号</th><th class="c-ca">控制动作</th><th class="c-type">类型</th><th>不安全控制行为（语境）</th><th class="c-hz">危险</th></tr></thead>
+        <tbody id="ucaBody"></tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">第四步：致因场景——UCA 为什么会发生</h3>
+    <p class="subnote">UCA 只是现象。真正的设计输入是「它为什么会发生」：控制器算法是否完备、反馈是否缺失或延迟、执行器是否失效、被控过程是否被扰动。四族之中，<b>算法与反馈占 9 条</b>——这正是软件密集型系统里最难通过冗余解决的问题。</p>
+    <div class="causes" id="causeGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================ 05 安全 -->
+<section class="sec" id="safety">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">05</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">SAFETY</span> 安全需求与安全架构</div>
+        <h2>安全不是加一层急停，是改一遍权力结构</h2>
+        <p class="layerhead__claim">12 条安全需求里 7 条在 StRS 中无对应。它们共同指向同一件事：<b>把「谁有权让平台动」从隐含约定变成显式结构</b>——这正是安全架构要解决的问题。</p>
+      </div>
+    </header>
+
+    <div class="table-wrap">
+      <table class="tbl tbl--sr">
+        <thead><tr><th class="c-id">编号</th><th>安全需求</th><th class="c-uca">覆盖 UCA</th><th class="c-hz">危险</th><th class="c-rel">与 StRS 关系</th><th class="c-at">架构落点</th></tr></thead>
+        <tbody id="srBody"></tbody>
+      </table>
+    </div>
+    <p class="table-hint mono">关系分布：继承 2 · 细化 3 · 新增 7（新增即 StRS 中无对应条目）</p>
+
+    <h3 class="sub">安全架构：四个机制，一层不多加</h3>
+    <div class="grid grid--4 mech" id="mechGrid"></div>
+
+    <h3 class="sub">使能链：安全架构里最便宜也最容易被绕过的一环</h3>
+    <p class="subnote">使能门不判断对错，只执行许可。它的价值在于<b>把「允许动」与「怎么动」彻底分开</b>：功能通道再怎么升级、再多加自主行为，都无法绕过一道它不掌握的开关。</p>
+    <div class="saf">
+      <svg id="safSvg" viewBox="0 0 1000 300" role="img" aria-label="安全架构：功能通道经使能门到执行器，安全监督独立供能与反馈">
+        <defs>
+          <marker id="mk2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 1 L9 5 L0 9" fill="none" stroke="var(--accent)" stroke-width="1.7"/>
+          </marker>
+          <marker id="mk2f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+            <path d="M0 1 L9 5 L0 9" fill="none" stroke="var(--fg-3)" stroke-width="1.6"/>
+          </marker>
+        </defs>
+
+        <rect class="saf__box" x="40" y="50" width="250" height="72" rx="8"/>
+        <text class="saf__t" x="58" y="78">功能控制通道 C1–C4</text>
+        <text class="saf__s" x="58" y="100">任务 / 运动 / 关节指令</text>
+
+        <line class="saf__c" x1="290" y1="86" x2="348" y2="86" marker-end="url(#mk2)"/>
+
+        <rect class="saf__gate" x="352" y="50" width="250" height="72" rx="8"/>
+        <text class="saf__t" x="370" y="78">使能门 ENABLE GATE</text>
+        <text class="saf__s" x="370" y="100">硬件与门 · 不受软件状态影响</text>
+
+        <line class="saf__c" x1="602" y1="86" x2="660" y2="86" marker-end="url(#mk2)"/>
+
+        <rect class="saf__box" x="664" y="50" width="296" height="72" rx="8"/>
+        <text class="saf__t" x="682" y="78">执行器 · 关节伺服 / 电驱</text>
+        <text class="saf__s" x="682" y="100">力矩输出 · 制动保持</text>
+
+        <rect class="saf__mon" x="352" y="188" width="250" height="72" rx="8"/>
+        <text class="saf__t" x="370" y="216">C6 安全监督 S10</text>
+        <text class="saf__s" x="370" y="238">双路异构校验 · 只减不加</text>
+
+        <line class="saf__en" x1="477" y1="188" x2="477" y2="126" marker-end="url(#mk2)"/>
+        <text class="saf__lab" x="487" y="162">enable = 1</text>
+
+        <path class="saf__f" d="M812 122 V 224 H 610" marker-end="url(#mk2f)"/>
+        <text class="saf__flab" x="700" y="240">双路状态反馈 · 交叉校验</text>
+
+        <path class="saf__no" d="M165 122 V 282 H 812 V 122"/>
+        <circle class="saf__x" cx="560" cy="282" r="11"/>
+        <path class="saf__x2" d="M554 276 L566 288 M566 276 L554 288"/>
+        <text class="saf__not" x="578" y="272">禁止旁路：功能通道不得直连执行器</text>
+      </svg>
+    </div>
+
+    <h3 class="sub">降级不是失败，是能力收敛</h3>
+    <p class="subnote">「失效即断电停车」在坡道与狭窄地形上等价于失控。四种模式的定义要点不是能力上限，而是<b>进入条件与退出条件</b>——退出必须有人确认，否则系统会自己爬回正常态。</p>
+    <div class="table-wrap">
+      <table class="tbl tbl--degrade">
+        <thead><tr><th class="c-id">模式</th><th class="c-cond">进入条件</th><th>保留能力</th><th class="c-exit">退出条件</th></tr></thead>
+        <tbody id="degradeBody"></tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <b>为什么安全架构不能由安全需求反推：</b>安全需求说「必须保持两种降级模式可用」，但没有说这两者怎么共存、谁仲裁、冲突时听谁的。这些只能在架构里回答——<b>需求约束行为，架构分配权力</b>。
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 06 追溯 -->
+<section class="sec sec--alt" id="trace">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">06</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">TRACEABILITY</span> 全链追溯</div>
+        <h2>六环一条链：从一条相关方需求走到一个安全机制</h2>
+        <p class="layerhead__claim">选一条链，看它怎么从「谁在意」走到「谁兜底」。<b>任何一环断掉，都能立刻定位到是谁没写</b>——这就是 MBSE 里「单一事实源」的实际含义。</p>
+      </div>
+    </header>
+
+    <div class="chainpick" id="chainPick" role="group" aria-label="选择一条追溯链"></div>
+    <div class="chain" id="chainView"></div>
+    <div class="chain__note" id="chainNote"></div>
+
+    <h3 class="sub">三条完整性自检</h3>
+    <div class="grid grid--3" id="checkGrid"></div>
+
+    <div class="note note--line">
+      <b>闭合判据：</b>删掉任意一环，必须有人答不上话。若删掉后仍然「看起来完整」，说明这一环只是装饰，应该从基线里去掉——<b>需求文档里最贵的不是写错的条目，而是没人用的条目</b>。
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 参考 -->
+<section class="sec" id="refs">
+  <div class="wrap">
+    <header class="layerhead layerhead--slim">
+      <div class="layerhead__no">07</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">REFERENCES</span> 参考与声明</div>
+        <h2>参考</h2>
+      </div>
+    </header>
+    <ol class="refs" id="refsList"></ol>
+    <div class="disclaimer" id="disclaimer"></div>
+  </div>
+</section>
+
+<!-- ============================================================ 收束 -->
+<section class="sec sec--alt sec--tight" id="next">
+  <div class="wrap nextbar">
+    <div>
+      <p class="mono dim">CLOSURE · 三次作业的接口</p>
+      <h3>三次作业，一条链</h3>
+      <p>作业 01 说清「由什么构成」，作业 02 说清「凭什么这样要求」，作业 03 说清「谁来承担、失效时谁兜底」。三次合起来，才凑齐 V 模型左下行的一条完整下落路径：任务 → 需求 → 规格 → 架构 → 安全约束。</p>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn" href="a2.html">← 回看作业 02</a>
+      <a class="btn" href="a1.html">回看作业 01</a>
+      <a class="btn btn--primary" href="index.html">返回首页<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__left">
+      <div class="foot__code mono">IBEX-01 / 作业 03</div>
+      <p>复杂系统工程 2026 · 系统需求与架构定义</p>
+    </div>
+    <div class="foot__right">
+      <p class="mono dim">STATIC SITE · NO DEPENDENCIES · GITHUB PAGES</p>
+      <p class="mono dim">SyRS · 控制结构 · STPA · 依据 29148:2018 与第六课讲义</p>
+      <a class="btn btn--sm" href="#top">回到顶部</a>
+    </div>
+  </div>
+</footer>
+
+<!-- 悬浮章节跳转 -->
+<nav class="rail" id="rail" aria-label="章节快速跳转"></nav>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/a3-data.js"></script>
+<script src="assets/js/fx.js"></script>
+<script src="assets/js/a3.js"></script>
+<script>
+  /* 首屏闭环：悬停看每段说明 */
+  (function () {
+    var note = document.getElementById('loopNote');
+    if (!note) return;
+    var dft = note.textContent;
+    Array.prototype.forEach.call(document.querySelectorAll('#loopSvg .lp'), function (g) {
+      g.addEventListener('mouseenter', function () { note.textContent = g.dataset.note; g.classList.add('on'); });
+      g.addEventListener('mouseleave', function () { note.textContent = dft; g.classList.remove('on'); });
+      g.style.cursor = 'pointer';
+    });
+  })();
+</script>
+</body>
+</html>

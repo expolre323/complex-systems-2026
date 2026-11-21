@@ -1,5 +1,5 @@
 /* ============================================================================
-   首页 · 两次作业的两个入口
+   首页 · 三次作业的三个入口
    依赖 style.css 的 tokens / topbar / hero / card / foot
    ========================================================================== */
 
@@ -11,16 +11,16 @@
 /* --------------------------------------------------------------- 入口卡 */
 .gates {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
 }
 
 .gate {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 32px 34px 26px;
+  gap: 13px;
+  padding: 26px 24px 22px;
   border: 1px solid var(--line-2);
   border-radius: 14px;
   background:
@@ -49,7 +49,7 @@
 .gate__top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
 .gate__no {
   font-family: var(--mono);
-  font-size: 46px;
+  font-size: 40px;
   line-height: .9;
   letter-spacing: -.03em;
   color: transparent;
@@ -67,18 +67,18 @@
 .gate__q::before { content: '问 '; font-family: var(--mono); font-size: 10px; opacity: .7; }
 
 .gate__h {
-  font-size: 22px;
+  font-size: 19.5px;
   font-weight: 600;
   letter-spacing: -.01em;
   margin-top: -6px;
 }
 
-.gate__keys { display: grid; gap: 9px; }
+.gate__keys { display: grid; gap: 8px; }
 .gate__keys li {
   position: relative;
-  padding-left: 18px;
-  font-size: 13.5px;
-  line-height: 1.72;
+  padding-left: 16px;
+  font-size: 12.6px;
+  line-height: 1.7;
   color: var(--fg-2);
 }
 .gate__keys li::before {

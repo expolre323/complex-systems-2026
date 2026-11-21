@@ -1,5 +1,5 @@
 /* ============================================================================
-   首页 · 两次作业的两个入口
+   首页 · 三次作业的三个入口
    数据来源：assets/js/data.js 中的 CSE.meta / CSE.roadmap
    ========================================================================== */
 (function () {
@@ -34,7 +34,7 @@
         <span class="mono dim">${esc(r.date)}</span>
         <span class="gate__go">进入作业 ${esc(r.no)}${arrow}</span>
       </div>
-      <i class="gate__idx mono" aria-hidden="true">${i === 0 ? 'A' : 'B'}</i>
+      <i class="gate__idx mono" aria-hidden="true">${String.fromCharCode(65 + i)}</i>
     </a>`;
 
   $('#gateList').innerHTML = ROAD.map(card).join('');
