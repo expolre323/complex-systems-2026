@@ -100,6 +100,52 @@
     }).join('');
   }
 
+  /* -------------------------------------------------- 基线时间线·算术·改写 */
+  function renderBase() {
+    const steps = [
+      { k: 'B0', t: 'StRS 40 条', s: '作业 02 · 相关方基线' },
+      { k: 'B1', t: 'SyRS 41 条', s: '本次 · 转换后冻结' },
+      { k: '×', t: '架构 + STPA', s: '20 UCA · 不产生基线' },
+      { k: 'B2', t: 'SyRS 53 条', s: '回填 12 条 · 只增不改' }
+    ];
+    $('#baseLine').innerHTML = steps.map((x, i) => `
+      <div class="base__i${i === 3 ? ' is-end' : ''}${x.k === '×' ? ' is-mid' : ''}">
+        <em class="mono">${esc(x.k)}</em>
+        <b>${esc(x.t)}</b>
+        <span>${esc(x.s)}</span>
+      </div>`).join('');
+  }
+
+  function renderBal() {
+    const b = D.syr.balance;
+    $('#balStrip').innerHTML = `
+      <div class="bal__row">
+        <span class="bal__c is-end"><b>${esc(b.lhs.v)}</b><i>${esc(b.lhs.k)}</i><em>${esc(b.lhs.s)}</em></span>
+        ${b.ops.map((o) => `
+          <span class="bal__op"><b>${esc(o.op)}${esc(o.v)}</b><i>${esc(o.k)}</i><em>${esc(o.s)}</em></span>`).join('')}
+        <span class="bal__eq mono">=</span>
+        <span class="bal__c is-end"><b>${esc(b.rhs.v)}</b><i>${esc(b.rhs.k)}</i><em>${esc(b.rhs.s)}</em></span>
+      </div>
+      <p class="bal__n">${fmt(b.note)}</p>`;
+  }
+
+  function renderRewrites() {
+    $('#rwGrid').innerHTML = D.syr.rewrites.map((r) => `
+      <article class="rw__i">
+        <div class="rw__h"><span class="mono">${esc(r.id)}</span><i>${esc(r.bad_at)}</i></div>
+        <p class="rw__bad"><em>初稿</em>${esc(r.bad)}</p>
+        <p class="rw__good"><em>改后</em>${esc(r.good)}</p>
+        <p class="rw__why">${esc(r.why)}</p>
+      </article>`).join('');
+  }
+
+  function renderSyrHint() {
+    const p = D.syr.items.reduce((m, x) => { m[x.p] = (m[x.p] || 0) + 1; return m; }, {});
+    const pct = Math.round((p['必须'] / D.syr.items.length) * 100);
+    $('#syrHint').innerHTML = `优先级：必须 ${p['必须']} · 应该 ${p['应该']} · 可能 ${p['可能']}（必须占 ${pct}%）。` +
+      '<b>按 MoSCoW 的经验口径，Must 不宜超过六成</b>——本页偏高，说明部分「应该」被写成了「必须」；基线内先登记，待下一轮与相关方逐条确认，不在中途改动。';
+  }
+
   /* ============================================================== 03 架构 */
   function renderViews() {
     $('#views').innerHTML = D.arch.views.map((v) => `
@@ -211,25 +257,46 @@
   }
 
   /* ============================================================== 05 安全 */
+  const UCA_BY_ID = {};
+  D.stpa.uca.forEach((u) => { UCA_BY_ID[u.id] = u; });
+  const REL_CLS = { '新增': 'rel--new', '细化': 'rel--refine', '继承': 'rel--inherit' };
+  const COV = {};   /* UCA → [SR] */
+  D.sr.items.forEach((s) => s.cov.forEach((u) => { (COV[u] = COV[u] || []).push(s.id); }));
+
+  function srHazards(s) {
+    const set = [];
+    s.cov.forEach((u) => {
+      const h = UCA_BY_ID[u];
+      if (!h) return;
+      h.hz.split(',').forEach((k) => { k = k.trim(); if (k && set.indexOf(k) < 0) set.push(k); });
+    });
+    return set.sort().join(' · ');
+  }
+
   function renderSR() {
-    $('#srBody').innerHTML = D.sr.items.map((r) => {
-      const cls = r.rel.indexOf('新增') === 0 ? 'rel--new' : 'rel--inherit';
-      return `<tr>
+    $('#srBody').innerHTML = D.sr.items.map((r) => `
+      <tr>
         <td class="tid">${esc(r.id)}</td>
         <td>${esc(r.s)}</td>
-        <td><span class="uca-ref">${esc(r.uca)}</span></td>
-        <td><span class="tid">${esc(r.h)}</span></td>
-        <td><span class="rel ${cls}">${esc(r.rel)}</span></td>
+        <td><span class="uca-ref">${r.cov.map(esc).join(' · ')}</span></td>
+        <td><span class="tid">${esc(srHazards(r))}</span></td>
+        <td><span class="rel ${REL_CLS[r.rel] || 'rel--inherit'}">${esc(r.rel)}</span>${r.src && r.src !== '—' ? `<span class="rel-src">${esc(r.src)}</span>` : ''}</td>
         <td><span class="src">${esc(r.at)}</span></td>
-      </tr>`;
-    }).join('');
+      </tr>`).join('');
 
     $('#mechGrid').innerHTML = D.sr.mech.map((m) => `
       <article class="card">
         <div class="no">${esc(m.no)}</div>
         <h4>${esc(m.t)}</h4>
-        <p>${esc(m.p)}</p>
+        <p>${fmt(m.p)}</p>
       </article>`).join('');
+
+    $('#mechRiskBody').innerHTML = D.sr.mech.map((m) => `
+      <tr>
+        <td class="tid">${esc(m.no)}<br><span class="src">${esc(m.t)}</span></td>
+        <td>${esc(m.f)}</td>
+        <td>${esc(m.b)}</td>
+      </tr>`).join('');
 
     $('#degradeBody').innerHTML = D.sr.degrade.map((d) => `
       <tr>
@@ -238,6 +305,57 @@
         <td>${esc(d.cap)}</td>
         <td><span class="src">${esc(d.exit)}</span></td>
       </tr>`).join('');
+  }
+
+  /* ---------------------------------------------------------- 覆盖矩阵 */
+  function renderCov() {
+    const srs = D.sr.items, ucas = D.stpa.uca;
+    const head = `<div class="cov__grid" id="covGrid">
+      <span class="cov__c0 mono">UCA \\ SR</span>
+      ${srs.map((s) => `<button type="button" class="cov__ch" data-sr="${esc(s.id)}" title="${esc(s.id)}">${esc(s.id.slice(3))}</button>`).join('')}
+      ${ucas.map((u) => `
+        <button type="button" class="cov__rh" data-uca="${esc(u.id)}" title="${esc(u.id)} · ${esc(u.ctx)}">
+          <em>${esc(u.id.slice(4))}</em><i>${esc(u.t)}</i>
+        </button>
+        ${srs.map((s) => `<span class="cov__cell${s.cov.indexOf(u.id) > -1 ? ' on' : ''}" data-uca="${esc(u.id)}" data-sr="${esc(s.id)}"></span>`).join('')}
+      `).join('')}
+    </div>`;
+
+    const single = ucas.filter((u) => (COV[u.id] || []).length === 1).length;
+    const dbl = ucas.filter((u) => (COV[u.id] || []).length === 2).length;
+    let heavy = srs[0], hmax = 0;
+    srs.forEach((s) => { if (s.cov.length > hmax) { hmax = s.cov.length; heavy = s; } });
+
+    $('#covBox').innerHTML = `${head}
+      <div class="cov__foot">
+        <span><b>${ucas.length}/${ucas.length}</b> 覆盖</span>
+        <span><b>${single}</b> 单点覆盖</span>
+        <span><b>${dbl}</b> 双覆盖</span>
+        <span><b>${heavy.id}</b> 最重 · 管 ${hmax} 条</span>
+      </div>`;
+
+    const hint = $('#covHint');
+    const dft = `<b>怎么读：</b>一格 = 这条 SR 管辖这条 UCA。最重的 ${heavy.id} 一条管 ${hmax} 条——它必须逐行验证，否则一次「表看起来对」就放过 ${hmax} 种失效。`;
+    hint.innerHTML = dft;
+
+    $('#covBox').addEventListener('click', (e) => {
+      const t = e.target.closest('[data-uca],[data-sr]');
+      if (!t) { return; }
+      const u = t.dataset.uca, s = t.dataset.sr;
+      $$('#covBox .cov__cell').forEach((c) => {
+        c.classList.toggle('hl-r', !!u && c.dataset.uca === u);
+        c.classList.toggle('hl-c', !!s && c.dataset.sr === s);
+      });
+      if (u) {
+        const list = COV[u] || [];
+        hint.innerHTML = `<b>${esc(u)}</b>（${esc(UCA_BY_ID[u].ctx)}）→ 由 ${list.map(esc).join('、') || '无人管辖'} 管辖${list.length === 1 ? '，<b>单点覆盖</b>' : ''}。`;
+      } else {
+        const sr = srs.find((x) => x.id === s);
+        hint.innerHTML = `<b>${esc(s)}</b>（${esc(sr.rel)}）管辖 ${sr.cov.map(esc).join('、')}，共 ${sr.cov.length} 条。`;
+      }
+    });
+
+    $('#mergeList').innerHTML = D.sr.merge.map((m) => `<li>${fmt(m)}</li>`).join('');
   }
 
   /* ============================================================== 06 追溯 */
@@ -268,7 +386,18 @@
       </div>`).join('');
     $('#chainNote').innerHTML = `<b>读法：</b>${esc(c.stR)} 在 ${esc(c.syR)} 中被转成系统口径，落到 ${esc(c.sys)}；
       其控制关系是 ${esc(c.ca)}，一旦该动作在特定语境下失效即构成 ${esc(c.uca)}，
-      最终由 ${esc(c.sr)} 在架构上兜住。链条上任一环改名或删除，其余五环必须同步——这就是不重排编号的意义。`;
+      最终由 ${esc(c.sr)} 在架构上兜住。链条上任一环改名或删除，其余五环必须同步——这就是不重排编号的意义。
+      <span class="chain__why"><b>这条链的争点：</b>${fmt(c.note || '')}</span>`;
+  }
+
+  function renderImpact() {
+    $('#impactBody').innerHTML = D.trace.impact.map((r) => `
+      <tr>
+        <td class="tid">${esc(r.chg)}</td>
+        <td><span class="src">${esc(r.syr)}</span></td>
+        <td>${esc(r.redo)}</td>
+        <td><span class="rel ${/^是/.test(r.stpa) ? 'rel--new' : 'rel--inherit'}">${esc(r.stpa)}</span></td>
+      </tr>`).join('');
   }
 
   function renderChecks() {
@@ -361,18 +490,19 @@
   /* ================================================================== 启动 */
   function boot() {
     renderMethod();
+    renderBase();
     renderToc(); goItem(0);
-    renderAcct();
-    renderSyrFilters(); renderSyr();
+    renderAcct(); renderBal(); renderRewrites();
+    renderSyrFilters(); renderSyr(); renderSyrHint();
     renderViews(); renderCA(); renderAlloc();
     renderSteps(); renderTrip();
     renderUcaFilters(); renderUca(); renderCauses();
-    renderSR();
-    renderChainPick(); renderChain(); renderChecks();
+    renderSR(); renderCov();
+    renderChainPick(); renderChain(); renderImpact(); renderChecks();
     renderRefs();
     initStats(); initRail(); initKeys();
-    if (window.FX && FX.reveal) FX.reveal('.card, .step, .trip__col, .cause, .chain__n, .doc, .csc, .saf');
-    if (window.FX && FX.spotlight) FX.spotlight('.card, .gate');
+    if (window.FX && FX.reveal) FX.reveal('.card, .step, .trip__col, .cause, .chain__n, .doc, .csc, .saf, .base, .bal, .rw__i, .cov, .merge');
+    if (window.FX && FX.spotlight) FX.spotlight('.card');
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
