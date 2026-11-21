@@ -28,7 +28,7 @@
       </svg>
       <span class="brand__txt"><b>IBEX-01</b><i>轮腿式无人作战平台</i></span>
     </a>
-    <a class="backlink" href="index.html" aria-label="返回作业序列"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>作业序列</span></a>
+    <a class="backlink" href="index.html" aria-label="返回首页"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>首页</span></a>
 
     <nav class="layernav" id="layernav" aria-label="六层导航">
       <a href="#mission" data-sec="mission"><em>01</em><span>任务</span></a>
@@ -85,7 +85,7 @@
         <div class="hero__cta">
           <a class="btn btn--primary" href="#mission">开始逐层解构<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           <a class="btn" href="#trace">看一条追溯链</a>
-          <a class="btn btn--ghost" href="index.html">返回作业序列</a>
+          <a class="btn btn--ghost" href="index.html">返回首页</a>
         </div>
       </div>
 
@@ -128,7 +128,7 @@
       <article class="card card--method">
         <div class="card__no mono">M2</div>
         <h3>本作业处在 V 模型的左下行</h3>
-        <p>按课程的十步过程模型，本页对应第 2–3 步：<b>功能分解</b>与<b>系统架构</b>——把“要做什么”转成“由哪些部分承担”。需求定义（第 0–1 步）留给作业 02，详细设计与验证留给后续作业。</p>
+        <p>按课程的十步过程模型，本页对应第 2–3 步：<b>功能分解</b>与<b>系统架构</b>——把“要做什么”转成“由哪些部分承担”。需求定义（第 0–1 步）由作业 02 完成，详细设计与验证不在这两次作业的范围内。</p>
         <div class="vmicro" aria-hidden="true">
           <span class="vmicro__l">涉众需求</span><span class="vmicro__l">需求定义</span>
           <span class="vmicro__on">功能分解</span><span class="vmicro__on">系统架构</span>
@@ -270,6 +270,30 @@
         <thead><tr><th class="c-id">编号</th><th>接口</th><th class="c-dir">方向</th><th>交换内容</th><th>量化约束</th></tr></thead>
         <tbody id="ifaceBody"></tbody>
       </table>
+    </div>
+
+    <h3 class="sub">四种体系，和本平台的定位</h3>
+    <p class="subnote">Maier（1998）按「管理独立性 + 目标一致性」把体系分成四类。分类不是学术摆设——<b>它在体系层就决定了接口该做成什么形状</b>，也决定了下游哪些能力必须冗余。</p>
+    <div class="grid grid--2 gap-lg">
+      <div class="table-wrap">
+        <table class="tbl">
+          <thead><tr><th style="width:78px">类型</th><th>判据</th><th style="width:56px">本平台</th></tr></thead>
+          <tbody>
+            <tr><td><b>专属</b><br><span class="mono dim">DIRECTED</span></td><td>为体系目标专门组建，统一指挥、统一采办，成员没有独立存续的理由</td><td class="dim">否</td></tr>
+            <tr><td><b>公认</b><br><span class="mono dim">ACKNOWLEDGED</span></td><td>目标与指挥关系被公认，但成员各自采办、各自演进，可随时换代</td><td style="color:var(--accent)"><b>是</b></td></tr>
+            <tr><td><b>协作</b><br><span class="mono dim">COLLABORATIVE</span></td><td>没有公认的管理机构，靠自愿协作与协议达成一致目标</td><td class="dim">否</td></tr>
+            <tr><td><b>虚拟</b><br><span class="mono dim">VIRTUAL</span></td><td>没有中心目标，临时组合，完全依赖标准化接口粘合</td><td class="dim">否</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel">
+        <h4 class="panel__h">「公认体系」这条定位，推论出三件事</h4>
+        <ul class="mini-list">
+          <li><b>不能假设成员能力</b>：同编队的无人机、有人车随时换代，平台只能假设接口契约存在。所以感知与通信必须能退到<b>最低共同能力</b>——64 kbps 窄带 + 车载自主感知，而不是「等无人机给图」。</li>
+          <li><b>目标不归工程师定义</b>：体系的成功判据由联合指挥机构给出，任务层的 MOE 只能从作战指标往下走，不能拿平台指标反推。这正是作业 02 里 BRQ 必须先于指标写出来的原因。</li>
+          <li><b>平台是能力提供者，不是决策者</b>：在体系中它没有开火授权。这条边界决定了第 6 层安全模块的形态，也在作业 02 里成为唯一一条「伦理否决」级需求。</li>
+        </ul>
+      </div>
     </div>
 
     <div class="grid grid--2 gap-lg">
@@ -510,6 +534,39 @@
       </div>
     </div>
     <div class="note note--line" id="closeNote"></div>
+
+    <h3 class="sub">闭合 ≠ 有余量：三项预算的余量策略</h3>
+    <p class="subnote">「闭合」只说明各项加起来等于上限。工程上真正决定成败的是<b>分配之后还剩多少</b>——余量为零的方案，在第一次改设计时就会崩。</p>
+    <div class="table-wrap">
+      <table class="tbl tbl--budget">
+        <thead><tr>
+          <th style="width:88px">预算项</th><th style="width:186px">设计上限</th>
+          <th style="width:126px">当前分配</th><th style="width:98px">余量</th>
+          <th style="width:82px">余量率</th><th>余量留给谁</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><b>质量</b></td><td>1900 kg <span class="dim">（运输与吊装约束）</span></td><td>1800 kg <span class="dim">全重</span></td><td><b>100 kg</b></td><td>5.3%</td><td>装甲补强、第二批传感器</td></tr>
+          <tr><td><b>功率</b></td><td>60 kW <span class="dim">（4×15 kW 逆变器）</span></td><td>48 kW <span class="dim">峰值</span></td><td><b>12 kW</b></td><td>20.0%</td><td>低温启动、30° 坡连续爬升</td></tr>
+          <tr><td><b>数据</b></td><td>10 Gbps <span class="dim">（内部骨干）</span></td><td>5.8 Gbps <span class="dim">全传感器在线</span></td><td><b>4.2 Gbps</b></td><td>42.0%</td><td>第二路光电、点云回传</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid grid--2 gap-lg" style="margin-top:22px">
+      <div class="panel panel--warn">
+        <h4 class="panel__h">自评：质量余量偏低，这是真实的隐患</h4>
+        <p>按 NASA 系统工程手册的分阶段余量口径（方案阶段 20%–30%、详细设计 10%–20%、定型 5%–10%），5.3% 已经是「接近定型」的水平——原因是把 400 kg 任务载荷一次性全额计入了上限，余量被吃掉。</p>
+        <p class="panel__foot">这个隐患没有被藏起来：作业 02 第 07 节的五处冲突里，第二条正是「载荷 400 kg ↔ 1 台 / 20 ft 箱运输边界」，协商结果是载荷分两级（300 kg 常态 + 100 kg 任务包）。</p>
+      </div>
+      <div class="panel">
+        <h4 class="panel__h">余量不是越高越好</h4>
+        <ul class="mini-list">
+          <li><b>质量余量过高</b>：通常说明结构还没收敛，或者不敢定指标；超过 10% 要回头查是不是漏装了东西。</li>
+          <li><b>功率余量过低</b>：低于 10% 就等于没有环境裕度，−20 ℃ 电池内阻上升和 30° 坡连续爬升都会把它吃光。</li>
+          <li><b>数据余量最容易被浪费</b>：42% 看着宽裕，第二路光电一上就吃掉一半；带宽要按「传感器清单」算，不能按「当前配置」算。</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -528,17 +585,40 @@
   </div>
 </section>
 
-<!-- ============================================================ 下一份 -->
+<!-- ============================================================ 交接 -->
 <section class="sec sec--alt sec--tight" id="next">
-  <div class="wrap nextbar">
-    <div>
-      <p class="mono dim">NEXT ASSIGNMENT</p>
-      <h3>作业 02 · 概念定义与需求分析</h3>
-      <p>BMA 业务/任务分析 → BRS → ConOps → OpsCon → 相关方 → StRS。本页的 S01–S11 系统编号与接口清单已成为需求条目的挂载点，40 条相关方需求全部按系统编号分配。</p>
+  <div class="wrap">
+    <div class="nextbar">
+      <div>
+        <p class="mono dim">HANDOVER · 交给作业 02 的三样东西</p>
+        <h3>这一页不是结束，是下一份文档的地基</h3>
+        <p>作业 02 要写 BRS 与 StRS。它写不下去的地方，往往就是这一页没交代清楚的地方。所以这里留下三样锚点——后面每一条需求都必须挂上去，挂不上去的需求，就是没有来源的需求。</p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="index.html">首页</a>
+        <a class="btn btn--primary" href="a2.html">进入作业 02<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
     </div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <a class="btn" href="index.html">作业序列</a>
-      <a class="btn btn--primary" href="a2.html">进入作业 02<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+
+    <div class="grid grid--3" style="margin-top:20px">
+      <article class="card">
+        <div class="card__no mono">H1</div>
+        <h3>编号表 S01–S11</h3>
+        <p>作业 02 的每条需求都要落到一个系统上，否则在架构里找不到承担者。11 个编号连同 47 个子系统边界一起冻结，只追加不改名。</p>
+        <p class="card__foot">作业 02 用法：第 08 节追溯矩阵的「承接系统」列。</p>
+      </article>
+      <article class="card">
+        <div class="card__no mono">H2</div>
+        <h3>五类体系接口</h3>
+        <p>每条接口已经写成「方向 + 内容 + 速率 + 时延 + 失效行为」。作业 02 的通信、协同类需求直接引用它们，不重新造一遍约束。</p>
+        <p class="card__foot">作业 02 用法：COM / INT 两类需求的量化依据。</p>
+      </article>
+      <article class="card">
+        <div class="card__no mono">H3</div>
+        <h3>顶层度量 MOE / MOS / MOP</h3>
+        <p>任务层给出的成功判据，是需求优先级的唯一标尺：支撑 MOE 的条目进「必须」，只改善体验的进「可能」。</p>
+        <p class="card__foot">作业 02 用法：优先级判定与需求冲突的裁决依据。</p>
+      </article>
     </div>
   </div>
 </section>

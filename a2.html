@@ -29,7 +29,7 @@
       </svg>
       <span class="brand__txt"><b>IBEX-01</b><i>轮腿式无人作战平台</i></span>
     </a>
-    <a class="backlink" href="index.html" aria-label="返回作业序列"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>作业序列</span></a>
+    <a class="backlink" href="index.html" aria-label="返回首页"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>首页</span></a>
 
     <nav class="layernav" id="nav" aria-label="章节导航">
       <a href="#method"><em>01</em><span>读法</span></a>
@@ -40,6 +40,7 @@
       <a href="#stake"><em>06</em><span>相关方</span></a>
       <a href="#reqs"><em>07</em><span>需求条目</span></a>
       <a href="#trace"><em>08</em><span>追溯</span></a>
+      <a href="#vv"><em>09</em><span>验证</span></a>
     </nav>
 
     <div class="topbar__tools">
@@ -279,6 +280,26 @@
       </div>
     </header>
 
+    <h3 class="sub">先分清 ConOps 与 OpsCon：一个讲编组，一个讲系统</h3>
+    <p class="subnote">这两份文件最常被写混。区分它们不看篇幅，只看<b>主语是谁</b>：ConOps 的主语是「参战的各方」，OpsCon 的主语是「这一台平台」。</p>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th style="width:118px">比较维度</th><th>ConOps 运营概念</th><th>OpsCon 运行概念</th></tr></thead>
+        <tbody>
+          <tr><td><b>主语</b></td><td>作战编组、指挥机构、保障分队（多个主体）</td><td>IBEX-01 这一台平台（单一系统）</td></tr>
+          <tr><td><b>视角</b></td><td>组织与任务：谁在什么阶段做什么、谁指挥谁</td><td>系统与状态：什么条件下进入什么模式、怎么退出</td></tr>
+          <tr><td><b>结构</b></td><td>阶段 × 角色矩阵，多对多</td><td>状态机 + 场景脚本，一对多</td></tr>
+          <tr><td><b>时间尺度</b></td><td>任务周期（小时到天）</td><td>运行时刻（秒到小时）</td></tr>
+          <tr><td><b>回答</b></td><td>为什么这样编组、协同与交接怎么发生</td><td>平台内部怎么运转、异常时退到哪个状态</td></tr>
+          <tr><td><b>本页位置</b></td><td>第 04 节（三阶段 × 五角色，4 条 What-if）</td><td>本节（11 状态，5 场景，6 条 What-if）</td></tr>
+          <tr><td><b>不回答</b></td><td>平台内部的模式与切换条件</td><td>指挥关系与编组（那是上级的事）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note note--line" style="margin-top:18px">
+      <b>为什么要拆成两份：</b>把两者合成一份，会出现两种典型错误——要么把「谁指挥谁」写进平台需求，于是平台被迫承担不该有的决策逻辑；要么把状态转换写进 ConOps，于是作战参谋要读一份机电文档。分开之后，<b>ConOps 的每条交接动作都能被 OpsCon 的一个状态接住</b>，这正是本节末尾 What-if 的检查方向。
+    </div>
+
     <div class="sm-wrap">
       <div class="sm__hd">
         <span class="mono">STATE MODEL · 11 STATES</span>
@@ -339,8 +360,40 @@
       </table>
     </div>
 
+    <h3 class="sub">换一把标尺：权力 · 合法性 · 紧迫性</h3>
+    <p class="subnote">影响力—利益矩阵回答「谁重要」，却不回答「他凭什么重要」。Mitchell、Agle 与 Wood（1997）的三要素更接近本质：<b>权力</b>（能否把意志施加于项目）、<b>合法性</b>（诉求是否正当）、<b>紧迫性</b>（是否要求立刻响应）。具备几项，决定它属于哪一类、该用什么动作管。</p>
+    <div class="table-wrap">
+      <table class="tbl tbl--salience">
+        <thead><tr>
+          <th style="width:96px">类型</th><th style="width:154px">具备要素</th>
+          <th style="width:216px">本项目对象</th><th>管理动作（不是「加强沟通」这种空话）</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><b>确定型</b></td><td>权力 + 合法性 + 紧迫性</td><td>A5 采办、A1 总体研制</td><td>不需要说服，只需要按时交付：评审节点与验收条款本身就是管理手段</td></tr>
+          <tr><td><b>主导型</b></td><td>权力 + 合法性</td><td>A4 试验鉴定、C3 标准机构</td><td>把判据前置：试验大纲与标准条款在方案阶段就固化，避免定型时返工</td></tr>
+          <tr><td><b>依赖型</b></td><td>合法性 + 紧迫性</td><td>A3 使用方、B1 同编队、D1 平民</td><td>替他们投票：把诉求写成 MOE / MOP 指标，否则会在预算会上被「有权力的人」挤掉</td></tr>
+          <tr><td><b>危险型</b></td><td>权力 + 紧迫性</td><td>B2 战场目标（敌方）</td><td>不沟通，只设计：抗干扰、抗毁、诱骗与机动规避直接写进需求</td></tr>
+          <tr><td><b>自主型</b></td><td>合法性</td><td>C4 军控智库、D4 公众</td><td>合规与叙事：出口管制、伦理审查、对外表述口径</td></tr>
+          <tr><td><b>苛求型</b></td><td>紧迫性</td><td>临时性任务需求（预案中）</td><td>限时答复 + 纳入下一次基线评审，不做口头承诺</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid grid--2 gap-lg" style="margin-top:22px">
+      <div class="panel">
+        <h4 class="panel__h">最危险的一格是「依赖型」</h4>
+        <p>使用方（A3）的诉求正当、紧迫，但在需求阶段几乎没有权力——它的权力只体现在事后「拒绝接装」，那时改设计已经来不及。同编队（B1）与平民（D1）更极端：一个只能配合，一个只能承受。</p>
+        <p class="panel__foot">所以本项目不在文档里替他们「表达希望」，而是把 A3 的诉求直接写成 MOE / MOP：指标一旦进基线，就等于替没有投票权的人投了票。</p>
+      </div>
+      <div class="panel panel--warn">
+        <h4 class="panel__h">两个模型对不上的地方，才是真问题</h4>
+        <p>D1 平民与 D4 公众在影响力—利益矩阵里排在最低优先级（权力小、利益低），但在显著性模型里握着<b>合法性</b>：不需要任何权力，就能让项目在规范与舆论层面失去合法身份。</p>
+        <p class="panel__foot">这就是 StR-SAF-01「不得自主释放任何效应」被定为「必须」而不是「应该」的真正理由——它不是一条性能要求，而是一条合法性要求。</p>
+      </div>
+    </div>
+
     <div class="note">
-      <b>一个反直觉的结论：</b>影响力最小的四类（平民、公众、智库、仓储基地）在矩阵里优先级最低，但其中两类拥有<b>伦理否决权</b>——它们不能改变项目，却能让项目在舆论与国际规范层面失去合法性。这也是为什么 StR-SAF-01「不得自主释放效应」被定为「必须」而非「应该」。
+      <b>两个标尺一起用：</b>影响力—利益矩阵决定<b>投入多少精力</b>，显著性模型决定<b>用什么手段</b>。前者排顺序，后者选工具；只用前者，会把「没有权力但有合法性」的相关方误判成可以忽略。
     </div>
   </div>
 </section>
@@ -385,6 +438,48 @@
       <div class="empty" id="reqEmpty">没有匹配的需求条目。试试更短的关键词，或点「全部」重置。</div>
     </div>
     <p class="table-hint mono">验证方法：<b>T</b> 试验 · <b>A</b> 分析 · <b>D</b> 演示 · <b>I</b> 检查 ｜ 来源为相关方编号（见第 06 节）｜ 追溯指向任务需求或业务需求 · 按 <span class="kbd">/</span> 直接搜索 <button class="keyhint" id="keyHint" type="button">全部快捷键 <span class="kbd">?</span></button></p>
+
+    <h3 class="sub">单条需求的九项判据，逐条对照</h3>
+    <p class="subnote">ISO/IEC/IEEE 29148:2018 给单条需求列了九项特征：前四项决定它能不能进基线，后三项决定它能不能被验收，最后两项决定它有没有走偏。</p>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th style="width:152px">判据</th><th style="width:212px">含义</th><th>在本项目里的体现</th></tr></thead>
+        <tbody>
+          <tr><td><b>必要</b> Necessary</td><td>删掉它，某项任务或业务目标就失去支撑</td><td>40 条逐条回查：删任一条都会让某个 MOE / BRQ 失去承接（见第 08 节矩阵）</td></tr>
+          <tr><td><b>不预设实现</b> Implementation-free</td><td>说「要达到什么」，不说「用什么做」</td><td>写「通过 0.7 m 垂直台阶」，不写「采用四连杆腿式机构」——后者是架构的事</td></tr>
+          <tr><td><b>无歧义</b> Unambiguous</td><td>只有一种解释，单位、工况、判读方式唯一</td><td>「10 次试验成功率 ≥ 90%」而不是「可靠性高」；工况写明路面、载荷、电量</td></tr>
+          <tr><td><b>完整</b> Complete</td><td>条件、主体、动作、指标、验证方式齐全</td><td>每条都能读出「在什么条件下、谁、做什么、达到多少、怎么判」</td></tr>
+          <tr><td><b>单一</b> Singular</td><td>一条只讲一件事；出现「和 / 或」就拆开</td><td>「0.7 m 台阶 <i>与</i> 1.2 m 壕沟」被判为同一能力的两项判据，保留在一条内并共用验证方法</td></tr>
+          <tr><td><b>可行</b> Feasible</td><td>在给定约束下能被实现，不作超能力承诺</td><td>0.7 m 越障对应单腿 0.75 m 抬升行程，留 7% 行程余量，不是拍脑袋的数</td></tr>
+          <tr><td><b>可验证</b> Verifiable</td><td>存在一种成本可接受的方法能判定满足与否</td><td>每条只挂一种主验证方法（T / A / D / I），混合验证视同未定义</td></tr>
+          <tr><td><b>正确</b> Correct</td><td>确实反映真实需要，且来源可查</td><td>指标一律上溯到 BRQ 与 MOE，不允许「行业惯例所以要有」</td></tr>
+          <tr><td><b>合规</b> Conforming</td><td>术语、编号、格式符合约定的模板</td><td>StRS 章节按表 4-5 的八章轮廓；需求编号 StR-类别-序号，类别不复用</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid grid--2 gap-lg" style="margin-top:22px">
+      <div class="panel panel--warn">
+        <h4 class="panel__h">初稿（不合格）</h4>
+        <p style="font-size:14px">“平台应具备良好的越障能力，能适应城市复杂地形。”</p>
+        <ul class="mini-list">
+          <li><b>无歧义 ✗</b>　「良好」「复杂」没有判据，两个人读出两个数</li>
+          <li><b>可验证 ✗</b>　没有试验能判它不满足——这种句子永远不会被证伪</li>
+          <li><b>完整 ✗</b>　缺工况、缺载荷、缺成功率</li>
+          <li><b>正确 ✗</b>　说不清它支撑哪条任务需求，评审时无人为它辩护</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h4 class="panel__h">改后（StR-MOB-01，进基线）</h4>
+        <p style="font-size:14px">“平台应能以腿式越障模式通过 0.7 m 垂直台阶与 1.2 m 壕沟，通过成功率 ≥ 90%（10 次试验）。”</p>
+        <ul class="mini-list">
+          <li><b>单一 + 无歧义 ✓</b>　两项判据共用一套试验，指标唯一</li>
+          <li><b>可验证 ✓</b>　挂 <b>T</b>（试验），10 次里成功 9 次即判满足</li>
+          <li><b>正确 ✓</b>　上溯 TR-03 → MOP-01 → MOE-01，承接系统 S02 / S04</li>
+          <li><b>不预设实现 ✓</b>　只规定通过能力，不规定腿型与关节构型</li>
+        </ul>
+      </div>
+    </div>
 
     <h3 class="sub">从「需要」到「需求」：三步，缺一步就变成愿望清单</h3>
     <p class="subnote">表 4-2 说清了需要与需求的区别：需要是某一方立场上的主观表达，需求是综合各方、带约束、可验证的共识。下面三组是本次讨论中最典型的三段转换。</p>
@@ -443,7 +538,83 @@
     </div>
 
     <div class="note note--line">
-      <b>交给作业 03 的东西：</b>40 条 StR + 10 条 TR + 18 类相关方 + 5 个运行场景 + 11 个运行状态。作业 03 要用它们做功能分解与架构权衡——需求定义到此为止，不再往下写「怎么实现」。
+      <b>这张矩阵的第二个用途：</b>它不是给评审看的一张图，而是基线变更时的查询入口。任何一条需求要改，都从这里反查会牵动哪些任务度量、哪些系统、哪些试验工况——第 09 节会走一遍完整的例子。
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= 09 验证与确认 -->
+<section class="sec sec--alt" id="vv">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">09</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">V &amp; V</span> 验证口径与基线变更</div>
+        <h2>写完之后：这些需求凭什么算「做到了」</h2>
+        <p class="layerhead__claim">需求文档的最后一页不是结论，而是<b>验证口径</b>。同一条需求，如果验证方法没定，评审会上就无法判它满足或不满足——那等于没写。</p>
+      </div>
+    </header>
+
+    <h3 class="sub">验证与确认，是两件事</h3>
+    <p class="subnote">中文里常被合成一个词，英文里是两个过程。混掉的后果很实际：<b>验证通过但确认失败</b>的装备，是「完全按规格做对了，却解决不了任务」的那一类。</p>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th style="width:118px">维度</th><th>Verification 验证</th><th>Validation 确认</th></tr></thead>
+        <tbody>
+          <tr><td><b>问句</b></td><td>做得对不对？（Are we building the thing right?）</td><td>做得值不值？（Are we building the right thing?）</td></tr>
+          <tr><td><b>依据</b></td><td>规格说明：本页的 40 条 StR</td><td>任务需求与 ConOps：BRQ、MOE</td></tr>
+          <tr><td><b>对象</b></td><td>条目级——这一条满足了吗</td><td>任务级——这个任务能完成吗</td></tr>
+          <tr><td><b>手段</b></td><td>检查 / 分析 / 演示 / 试验</td><td>场景推演、作战试验、对抗仿真</td></tr>
+          <tr><td><b>本页落地</b></td><td>40 条 StR 逐条挂一种主验证方法</td><td>5 个运行场景 × 3 条 MOE 的闭环</td></tr>
+          <tr><td><b>失败意味着</b></td><td>实现有偏差，改设计</td><td>需求本身错了，改基线</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">四种方法，各自的强项与代价</h3>
+    <p class="subnote">一条需求<b>只允许挂一种主验证方法</b>。写「试验 + 分析 + 演示」三条并列，等于没有定口径——评审时谁都能挑一种说「这个没做」。</p>
+    <div class="table-wrap">
+      <table class="tbl tbl--method">
+        <thead><tr>
+          <th style="width:150px">方法</th><th style="width:210px">做法</th><th style="width:132px">强项 / 代价</th><th>本项目实例</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><b>T</b> 试验 Test</td><td>受控条件下实测，记录原始数据</td><td>最有说服力 / 成本最高</td><td>StR-MOB-01：10 次越障试验计成功率，路面、载荷、电量统一</td></tr>
+          <tr><td><b>A</b> 分析 Analysis</td><td>用模型、计算或仿真推算</td><td>可覆盖极端边界 / 依赖模型置信度</td><td>StR-SAF-02：急停 200 ms 由机构动力学 + 断电时序分析判定</td></tr>
+          <tr><td><b>D</b> 演示 Demonstration</td><td>按脚本操作，观察功能是否发生</td><td>直观 / 只验「有没有」不验「多好」</td><td>StR-MOB-04：行驶中模态切换，观察是否中断行进</td></tr>
+          <tr><td><b>I</b> 检查 Inspection</td><td>查文件、查实物、查记录</td><td>成本最低、覆盖面最大 / 不产生性能数据</td><td>StR-SAF-01：查授权链路设计与操作记录是否闭合</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">基线冻结之后，改动怎么走</h3>
+    <p class="subnote">「冻结」不是不能改，而是<b>改的时候必须知道会牵动什么</b>。第 08 节的矩阵在这里第二次发挥作用：它不是给老师看的，是变更影响分析的查询入口。</p>
+    <div class="grid grid--3">
+      <article class="card">
+        <div class="card__no mono">C1</div>
+        <h3>变更申请</h3>
+        <p>写清触发原因（试验不通过 / 用户提出 / 供应商器件停产），不写「优化一下」。原因决定它属于纠偏还是需求变更。</p>
+      </article>
+      <article class="card">
+        <div class="card__no mono">C2</div>
+        <h3>影响分析</h3>
+        <p>沿追溯矩阵反查：这条需求挂哪条 TR、影响哪些系统、牵动哪些试验工况与预算行。查不到影响面的变更，一定漏了追溯。</p>
+      </article>
+      <article class="card">
+        <div class="card__no mono">C3</div>
+        <h3>CCB 裁决</h3>
+        <p>接受 / 拒绝 / 延后到下个基线，三选一，都要记录理由。基线版本按 主.次 递增，只增加条目升次版本，改指标升主版本。</p>
+      </article>
+    </div>
+
+    <div class="panel" style="margin-top:22px">
+      <h4 class="panel__h">走一遍：把任务载荷从 400 kg 改成 300 kg</h4>
+      <p>触发原因是第 07 节的冲突——400 kg 载荷与「1 台 / 20 ft 箱」运输边界互斥。按 C2 反查：直接影响 StR-PAY-01 ～ 04、TR-05、S07 任务载荷系统的质量分配，以及试验大纲里的「满载越障」工况。</p>
+      <p class="panel__foot">裁决：接受，但同步修订单项预算（S07 由 95 kg 降到 72 kg，腾出的质量转入质量余量）与试验矩阵（满载工况改为 300 kg + 100 kg 任务包两种配置）。基线版本 v1.0 → v1.1：条目未变，指标变了。</p>
+    </div>
+
+    <div class="note note--line">
+      <b>两次作业在这里合上：</b>作业 01 给出 MOE / MOS（任务层怎么算成功）与 S01–S11（谁来承担），作业 02 把它们拆成 40 条可验证的 StR，并为每条规定验证方法。任取一条需求，向上能回到作业 01 的某个系统，向下能落到一种验证方法——这条链闭合，两份文档才是同一件工作的两半，而不是两份报告。
     </div>
   </div>
 </section>
@@ -452,7 +623,7 @@
 <section class="sec" id="refs">
   <div class="wrap">
     <header class="layerhead layerhead--slim">
-      <div class="layerhead__no">09</div>
+      <div class="layerhead__no">10</div>
       <div class="layerhead__txt">
         <div class="layerhead__kicker"><span class="mono">REFERENCES</span> 参考与声明</div>
         <h2>参考</h2>
@@ -463,17 +634,17 @@
   </div>
 </section>
 
-<!-- ============================================================ 下一份 -->
+<!-- ============================================================ 收束 -->
 <section class="sec sec--alt sec--tight" id="next">
   <div class="wrap nextbar">
     <div>
-      <p class="mono dim">NEXT ASSIGNMENT</p>
-      <h3>作业 03 · 系统定义与架构</h3>
-      <p>把这里的 40 条 StR 分配下去：功能分解、接口定义、SysML 视图、架构权衡与 STPA 危险分析。作业 01 的 S01–S11 将第一次承担需求，而不是只承担质量。</p>
+      <p class="mono dim">CLOSURE · 与作业 01 的接口</p>
+      <h3>两份文档，一件事</h3>
+      <p>作业 01 说清「由什么构成」，作业 02 说清「凭什么这样要求」。两份合起来才构成一条可运行的链：任务 → 度量 → 需求 → 系统 → 验证。缺任何一环，另一份都会变成孤立的报告。</p>
     </div>
     <div style="display:flex;gap:10px;flex-wrap:wrap">
       <a class="btn" href="a1.html">← 回看作业 01</a>
-      <a class="btn btn--primary" href="index.html">返回作业序列<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn btn--primary" href="index.html">返回首页<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div>
 </section>

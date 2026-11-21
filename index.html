@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>IBEX-01 轮腿式无人作战平台 · 复杂系统工程 2026 课程作业序列</title>
-<meta name="description" content="复杂系统工程 2026 小组作业序列：以 IBEX-01 轮腿式无人作战平台为对象，五次作业逐层推进——系统构成与六层分解、需求定义与分析、系统架构、MBSE、场景驱动测试。">
+<title>IBEX-01 轮腿式无人作战平台 · 复杂系统工程 2026 小组作业</title>
+<meta name="description" content="复杂系统工程 2026 小组作业：以 IBEX-01 轮腿式无人作战平台为对象。作业 01 回答它由什么构成（六层分解 + 预算闭合），作业 02 回答它凭什么这样要求（BRS + StRS + 40 条相关方需求）。">
 <meta name="theme-color" content="#07080a">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307080a'/%3E%3Cpath d='M6 22h20M9 22v-6l3-4 3 4v6M17 22v-6l3-4 3 4v6' stroke='%23d8b45e' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/css/style.css">
@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="scrollbar" id="scrollbar" aria-hidden="true"></div>
-<a class="skip-link" href="#seq">跳到作业序列</a>
+<a class="skip-link" href="#gates">跳到两个入口</a>
 
 <!-- ============================================================ 顶栏 -->
 <header class="topbar">
@@ -31,9 +31,9 @@
     </a>
 
     <nav class="layernav" id="nav" aria-label="页面导航">
-      <a href="#seq"><em>01</em><span>作业序列</span></a>
-      <a href="#inherit"><em>02</em><span>编号继承</span></a>
-      <a href="#about"><em>03</em><span>关于本页</span></a>
+      <a href="a1.html"><em>01</em><span>系统构成</span></a>
+      <a href="a2.html"><em>02</em><span>需求分析</span></a>
+      <a href="#about"><em>03</em><span>说明</span></a>
     </nav>
 
     <div class="topbar__tools">
@@ -58,96 +58,44 @@
 <section class="hero home-hero" id="top">
   <div class="hero__grid" aria-hidden="true"></div>
   <div class="wrap hero__wrap">
-    <div class="hero__body">
-      <div class="hero__l">
-        <div class="hero__meta">
-          <span class="tag tag--live"><i></i>2 / 5 已发布</span>
-          <span class="tag">复杂系统工程 2026</span>
-          <span class="tag">小组作业</span>
-          <span class="tag tag--ghost">GitHub Pages</span>
-        </div>
-
-        <h1 class="hero__title">
-          <span class="hero__code">IBEX-01</span>
-          <span class="hero__name">轮腿式无人作战平台</span>
-        </h1>
-        <p class="hero__sub">Complex Systems Engineering 2026&nbsp;&nbsp;/&nbsp;&nbsp;Course Work Sequence</p>
-
-        <p class="hero__lede">
-          这是本组五次课程作业的总入口。同一个平台对象，被<strong>反复从不同角度切开</strong>：
-          先解构它由什么构成，再定义它必须满足什么，然后决定各部分怎么组织、怎么建模、怎么验证。
-          每次作业一个独立页面，共用一套平台代号与编号。
-        </p>
-
-        <div class="hero__cta">
-          <a class="btn btn--primary" href="a2.html">进入作业 02<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a class="btn" href="#seq">查看全部五次作业</a>
-          <a class="btn btn--ghost" href="#inherit">编号怎么继承</a>
-        </div>
+    <div class="home-hd">
+      <div class="hero__meta">
+        <span class="tag tag--live"><i></i>2 / 2 已完成</span>
+        <span class="tag">复杂系统工程 2026</span>
+        <span class="tag">小组作业</span>
+        <span class="tag tag--ghost">GitHub Pages</span>
       </div>
 
-      <aside class="hero__viz" aria-label="五次作业的进度环，可点击进入已发布作业">
-        <div class="viz__h"><span class="mono">SEQUENCE MAP</span><i>作业进度</i></div>
-        <svg class="ring" id="ringSvg" viewBox="0 0 320 320" role="img" aria-label="五次作业进度环"></svg>
-        <p class="viz__f">悬停节点看主题 · 金色节点可直接进入</p>
-      </aside>
-    </div>
+      <h1 class="hero__title">
+        <span class="hero__code">IBEX-01</span>
+        <span class="hero__name">轮腿式无人作战平台</span>
+      </h1>
+      <p class="hero__sub">Complex Systems Engineering 2026&nbsp;&nbsp;/&nbsp;&nbsp;Two Assignments</p>
 
-    <div class="stats" id="stats"></div>
+      <p class="hero__lede">
+        同一台平台，两次作业回答两个不同的问题：作业 01 回答它<strong>由什么构成</strong>，
+        作业 02 回答它<strong>凭什么这样要求</strong>。前者把一台装备切成六层可交代的单元，
+        后者把 18 类相关方的意图压成 40 条可验证的需求。两次作业共用一套编号——
+        所以第 02 页的每一条需求，都能落回第 01 页的某个系统上。
+      </p>
+
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="a1.html">作业 01 · 系统构成<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn" href="a2.html">作业 02 · 需求分析<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ============================================================ 序列 -->
-<section class="sec sec--tight" id="seq">
+<!-- ============================================================ 两个入口 -->
+<section class="sec sec--tight" id="gates">
   <div class="wrap">
-    <div class="seqhead">
-      <div class="seqhead__l">
-        <div class="sec__kicker"><span class="mono">SEQUENCE</span> 课程作业序列</div>
-        <h2 class="sec__title">五次作业，一条逐层加深的链</h2>
-        <p class="sec__lede">点击任意一次已发布的作业进入对应页面；预留位会在发布后自动变为可进入状态。</p>
-      </div>
-      <div class="prog">
-        <span class="prog__t" id="progT">1 / 5</span>
-        <span class="prog__bar"><i id="progBar" style="width:20%"></i></span>
-      </div>
-    </div>
+    <div class="gates" id="gateList"></div>
 
-    <ol class="seq" id="seqList"></ol>
-  </div>
-</section>
-
-<!-- ============================================================ 继承 -->
-<section class="sec sec--alt" id="inherit">
-  <div class="wrap">
-    <header class="layerhead layerhead--slim">
-      <div class="layerhead__no">A</div>
-      <div class="layerhead__txt">
-        <div class="layerhead__kicker"><span class="mono">INHERITANCE</span> 编号与内容的继承关系</div>
-        <h2>为什么每次作业都要回到前一页的编号</h2>
-        <p class="layerhead__claim">课程要的不是五份互不相干的报告，而是<b>一条能追下去的系统链</b>。所以本站从第一次作业起就固定编号，后续作业只在其上追加，不改名、不重排。</p>
-      </div>
-    </header>
-
-    <div class="grid grid--3">
-      <article class="card">
-        <div class="card__no mono">R1</div>
-        <h3>编号只增不改</h3>
-        <p>S01–S11、47 个子系统、188 个末端模块一经发布即冻结。作业 02 的需求条目挂在系统编号上，作业 05 的测试用例落在模块编号上——中间任何一次改动都会让追溯链断开。</p>
-      </article>
-      <article class="card">
-        <div class="card__no mono">R2</div>
-        <h3>每一次都补上一层证据</h3>
-        <p>作业 01 回答“由什么构成”，作业 02 回答“凭什么这样要求”，作业 03 回答“怎么组织与权衡”，作业 04 回答“模型如何保持一致”，作业 05 回答“怎么证明它做到了”。</p>
-      </article>
-      <article class="card">
-        <div class="card__no mono">R3</div>
-        <h3>一页一次作业</h3>
-        <p>每次作业独立成页，历史页面保持发布时的样子。这样单次成果可以直接发给老师看，也不会因为后续补充把前面的结论改得对不上。</p>
-      </article>
-    </div>
-
-    <div class="note note--line">
-      <b>平台对象不换：</b>五次作业都以 IBEX-01 为对象。变化的只是观察角度——构成、需求、架构、模型、验证。任何一次作业里出现的数字，都以作业 01 的顶层指标为基准向上或向下对齐。
+    <div class="note note--line gate__note">
+      <b>编号怎么交接：</b>作业 01 发布的 S01–S11 编号、47 个子系统边界、188 个末端模块与五类体系接口，
+      在作业 02 中直接作为需求的挂载点使用。两次作业之间不新增、不改名、不重排——
+      这是「需求 → 系统」这条线能对上的唯一前提，也是两份报告不是两张皮的原因。
     </div>
   </div>
 </section>
@@ -160,8 +108,8 @@
       <h2 class="sec__title">一个静态站点，没有后端</h2>
     </div>
     <div class="about__r">
-      <p>全站为纯静态页面，不依赖任何框架或 CDN，断网也能打开。所有结构化内容集中在 <span class="mono">assets/js/data.js</span>，新增一次作业只需新增一个页面文件并把序列条目的 <span class="mono">status</span> 改为 <span class="mono">published</span>，本页的序列与进度会自动更新。</p>
-      <p class="dim">课程：复杂系统工程 2026 · 授课：张玉新 · 站点部署：GitHub Pages</p>
+      <p>全站为纯静态页面，不依赖任何框架或 CDN，断网也能打开。所有结构化内容集中在 <span class="mono">assets/js/data.js</span> 与 <span class="mono">assets/js/a2-data.js</span>，页面结构只负责呈现。</p>
+      <p class="dim">课程：复杂系统工程 2026 · 授课：张玉新 · 小组作业：IBEX-01 轮腿式无人作战平台 · 站点部署：GitHub Pages</p>
     </div>
   </div>
 </section>
@@ -171,7 +119,7 @@
 <footer class="foot">
   <div class="wrap foot__in">
     <div class="foot__left">
-      <div class="foot__code mono">IBEX-01 / 课程作业序列</div>
+      <div class="foot__code mono">IBEX-01 / 小组作业 01–02</div>
       <p>复杂系统工程 2026 · 轮腿式无人作战平台</p>
     </div>
     <div class="foot__right">

@@ -355,3 +355,11 @@ html[data-theme="light"] #themeBtn .ico-moon { transform: rotate(-18deg); }
   body::after, .hero::before, .hero__viz, #keyPanel { display: none !important; }
   .card::after, .syscard::after, .panel::after, .figure::after, .seq__row::after { display: none; }
 }
+
+/* ------------------------------------------------------------ 宽表窄屏 */
+/* 固定列宽较多的表，在窄屏保持最小可读宽度，避免末列被压成竖条 */
+@media (max-width: 760px) {
+  .table-wrap > .tbl.tbl--budget { min-width: 900px; }
+  .table-wrap > .tbl.tbl--salience { min-width: 840px; }
+  .table-wrap > .tbl.tbl--method { min-width: 780px; }
+}

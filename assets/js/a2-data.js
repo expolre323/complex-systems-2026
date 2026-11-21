@@ -37,7 +37,7 @@ window.CSE.a2 = {
     {
       no: 'S3', k: '系统层', en: 'SYSTEM',
       t: '这台机器必须做到什么',
-      p: '把相关方需求转成系统级可验证条目，交给作业 03 去做功能分解与架构。本页只定义「做什么」，不定义「怎么做」。',
+      p: '把相关方需要收敛成系统级可验证的条目。本页只定义「做什么」，不定义「怎么做」——功能分解与架构权衡属于下游，不在本次作业范围内。',
       out: 'StRS 第 4 章 + 追溯'
     }
   ],
@@ -384,7 +384,7 @@ window.CSE.a2 = {
         id: 'strs-1-1', no: '1.1', t: '相关方目的', en: 'STAKEHOLDER PURPOSE',
         blocks: [
           { t: 'p', v: 'BRS 说明组织为什么要变；StRS 说明**各相关方要从这个系统里得到什么**。同一件事在两份文档里的说法不同：BRS 说「降低人员暴露」，StRS 说「侦察班长要能在 200 m 外看清一扇窗后的情况，而不必派人过去」。' },
-          { t: 'p', v: '本 StRS 的目的：把 18 类相关方的需要，收敛成一组彼此不冲突、可验证、可追溯到业务目标的需求条目，作为作业 03 架构设计的上游输入。' }
+          { t: 'p', v: '本 StRS 的目的：把 18 类相关方的需要，收敛成一组彼此不冲突、可验证、可追溯到业务目标的需求条目。它同时是作业 01 中 S01–S11 编号与需求之间的接合面：每条需求都要落到具体系统上，否则这条需求在架构里找不到承担者。' }
         ]
       },
       {
@@ -1003,7 +1003,10 @@ window.CSE.a2 = {
     { id: 'R5', t: 'IIBA. BABOK Guide v3（业务需求与相关方需求的拆分依据）.', tag: '方法' },
     { id: 'R6', t: 'U.S. DoD Directive 3000.09. Autonomy in Weapon Systems.', tag: '政策' },
     { id: 'R7', t: 'ISO 9241-220. Ergonomics of human-system interaction — 使用质量.', tag: '标准' },
-    { id: 'R8', t: 'NASA. Systems Engineering Handbook, Rev.2, 2023（ConOps / OpsCon 的写法参考）.', tag: '参考' }
+    { id: 'R8', t: 'NASA. Systems Engineering Handbook, Rev.2, 2023（ConOps / OpsCon 的写法参考）.', tag: '参考' },
+    { id: 'R9', t: 'R. K. Mitchell, B. R. Agle, D. J. Wood. Toward a Theory of Stakeholder Identification and Salience: Defining the Principle of Who and What Really Counts. Academy of Management Review, 22(4), 1997.（第 06 节权力·合法性·紧迫性模型的出处）', tag: '相关方理论' },
+    { id: 'R10', t: 'IEEE Std 1362-1998. Guide for Information Technology — System Definition — Concept of Operations (ConOps) Document.（ConOps 与 OpsCon 边界的经典定义）', tag: '标准' },
+    { id: 'R11', t: 'INCOSE. Systems Engineering Handbook, 5th ed., 2023（验证与确认、基线管理的术语口径）.', tag: '系统工程' }
   ],
 
   disclaimer: '本页所有指标、场景、成本与进度数据均为课程概念设计设定，用于演示需求定义与追溯方法，不代表任何在研或在役装备的真实参数、编制或采购信息。'

@@ -576,7 +576,7 @@
   const SECS = [
     ['method', '01', '读法'], ['docs', '02', '两份文档'], ['biz', '03', '需求'],
     ['conops', '04', 'ConOps'], ['opscon', '05', 'OpsCon'], ['stake', '06', '相关方'],
-    ['reqs', '07', '需求条目'], ['trace', '08', '追溯']
+    ['reqs', '07', '需求条目'], ['trace', '08', '追溯'], ['vv', '09', '验证与确认']
   ];
 
   function initRail() {
