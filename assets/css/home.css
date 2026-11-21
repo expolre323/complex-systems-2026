@@ -112,8 +112,6 @@
   user-select: none;
 }
 
-.gate__note { margin-top: 26px; }
-
 /* ------------------------------------------------------------------ 关于 */
 .about { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; align-items: start; }
 .about__r p { color: var(--fg-2); font-size: 14.5px; line-height: 1.9; }
