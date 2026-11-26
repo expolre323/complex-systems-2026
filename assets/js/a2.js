@@ -207,7 +207,7 @@
 
     /* 只画主流程（向右）与降级路径；反向转移写在各状态说明里 */
     const DRAWN = ['M1>M2', 'M2>M3', 'M3>M4', 'M3>M5', 'M3>M6', 'M5>M7',
-      'M3>D1', 'M3>D2', 'M4>D3', 'M5>D4'];
+      'M3>DL', 'M3>DN', 'M4>DG', 'M5>DP'];
     let edges = '';
 
     function seg(p1, p2, cls, label, lx, ly) {

@@ -118,16 +118,16 @@
         <h3>层级与方法论的对应关系</h3>
         <p>任务层用任务工程（ME），体系层用体系工程（SoSE），整机层用车辆工程，系统与子系统层用系统工程（SE），模块层靠领域知识。方法论错配，分解就会失焦。</p>
         <ul class="mini-list">
-          <li><b>任务</b> 回答“为什么、算成功”——不是需求清单</li>
-          <li><b>体系</b> 回答“和谁、换什么”——不是组织架构图</li>
-          <li><b>整机</b> 回答“为什么是这个形态”——不是外形设计</li>
+          <li><b>任务</b> 回答「为什么、算成功」——不是需求清单</li>
+          <li><b>体系</b> 回答「和谁、换什么」——不是组织架构图</li>
+          <li><b>整机</b> 回答「为什么是这个形态」——不是外形设计</li>
         </ul>
       </article>
 
       <article class="card card--method">
         <div class="card__no mono">M2</div>
         <h3>本作业在 V 模型中的位置</h3>
-        <p>按课程的十步过程模型，本页对应第 2–3 步：<b>功能分解</b>与<b>系统架构</b>——把“要做什么”转成“由哪些部分承担”。需求定义（第 0–1 步）由作业 02 完成，详细设计与实物验证不在本系列作业的范围内。</p>
+        <p>按课程的十步过程模型，本页对应第 2–3 步：<b>功能分解</b>与<b>系统架构</b>——把「要做什么」转成「由哪些部分承担」。需求定义（第 0–1 步）由作业 02 完成，详细设计与实物验证不在本系列作业的范围内。</p>
         <div class="vmicro" aria-hidden="true">
           <span class="vmicro__l">涉众需求</span><span class="vmicro__l">需求定义</span>
           <span class="vmicro__on">功能分解</span><span class="vmicro__on">系统架构</span>
@@ -139,7 +139,7 @@
       <article class="card card--method">
         <div class="card__no mono">M3</div>
         <h3>三层判据：系统、子系统与模块</h3>
-        <p>分解不是越细越好，而是要停在“可以独立交代”的地方。本页用三条可检验的标准划线：</p>
+        <p>分解不是越细越好，而是要停在「可以独立交代」的地方。本页用三条可检验的标准划线：</p>
         <ul class="mini-list">
           <li><b>系统</b>：可独立指派接口责任人、可独立验收、失效会影响整机任务</li>
           <li><b>子系统</b>：完成一项完整功能、有明确输入输出、可整体更换</li>
@@ -150,7 +150,7 @@
     </div>
 
     <div class="note note--line">
-      <b>一句话概括本页主张：</b>轮腿式平台的真正难点不在“能不能走”，而在“轮式效率与腿式越障这两种物理机制，如何在同一套层级、同一套接口、同一套预算里共存并被验证”。
+      <b>一句话概括本页主张：</b>轮腿式平台的真正难点不在「能不能走」，而在「轮式效率与腿式越障这两种物理机制，如何在同一套层级、同一套接口、同一套预算里共存并被验证」。
     </div>
   </div>
 </section>
@@ -162,8 +162,8 @@
       <div class="layerhead__no">01</div>
       <div class="layerhead__txt">
         <div class="layerhead__kicker"><span class="mono">MISSION</span> 第 1 层 · 任务工程 ME</div>
-        <h2>任务层：以人员后送替代人员前出</h2>
-        <p class="layerhead__claim">层级结论：本平台的存在理由，是用“机先进入”替换“人先进入”，在 GNSS 受限、战术网断续的复杂地形中维持 8 h 以上的连续观察与目标指示。任务层的产出不是功能清单，而是<b>可度量的成功判据</b>。</p>
+        <h2>任务层：以无人前出替代有人前出</h2>
+        <p class="layerhead__claim">层级结论：本平台的存在理由，是用「机先进入」替换「人先进入」，在 GNSS 受限、战术网断续的复杂地形中维持 8 h 以上的连续观察与目标指示。任务层的产出不是功能清单，而是<b>可度量的成功判据</b>。</p>
       </div>
     </header>
 
@@ -175,7 +175,7 @@
           <div class="prob"><span class="prob__k mono">矛盾 02</span><h4>观察高度与隐蔽互斥</h4><p>要看穿街区与草丛必须抬高传感器，抬高就意味着被发现；压低车体又失去视线。</p></div>
           <div class="prob"><span class="prob__k mono">矛盾 03</span><h4>持续在位与后勤互斥</h4><p>8 h 任务窗口内不允许 90 min 的充电停机，而拉电缆又等于把平台钉死在原地。</p></div>
         </div>
-        <p class="probs__note">这三对矛盾直接决定了整机层“四轮腿 + 升降桅杆 + 快换电池”的三个选择——不是风格偏好，是矛盾解。</p>
+        <p class="probs__note">这三对矛盾直接决定了整机层「四轮腿 + 升降桅杆 + 快换电池」的三个选择——不是风格偏好，是矛盾解。</p>
       </div>
 
       <aside class="missioncard">
@@ -189,8 +189,8 @@
     <h3 class="sub">同一台平台的四项支援任务</h3>
     <div class="grid grid--4" id="supports"></div>
 
-    <h3 class="sub">任务度量：MOE 判“是否有效”，MOS 判“是否合用”，MOP 判“是否达标”</h3>
-    <p class="subnote">任务工程的度量分三层：<b>MOE</b>（Measure of Effectiveness，任务效能）、<b>MOS</b>（Measure of Suitability，适用性）、<b>MOP</b>（Measure of Performance，性能）。三者不是并列关系，而是“效能牵引适用性、适用性约束性能”的约束链。</p>
+    <h3 class="sub">任务度量：MOE 判「是否有效」，MOS 判「是否合用」，MOP 判「是否达标」</h3>
+    <p class="subnote">任务工程的度量分三层：<b>MOE</b>（Measure of Effectiveness，任务效能）、<b>MOS</b>（Measure of Suitability，适用性）、<b>MOP</b>（Measure of Performance，性能）。三者不是并列关系，而是「效能牵引适用性、适用性约束性能」的约束链。</p>
     <div class="table-wrap">
       <table class="tbl tbl--moe">
         <thead><tr><th class="c-id">编号</th><th>度量</th><th class="c-tar">目标值</th><th>为什么是这条</th></tr></thead>
@@ -210,7 +210,7 @@
     <div class="scen" id="scen"></div>
 
     <div class="note">
-      <b>任务层不做什么：</b>不写“应具备 XX 功能”，不列设备，不谈指标实现方式。这些属于第 3–6 层。任务层只回答：谁、何时、何地、为何，以及什么叫做成了。
+      <b>任务层不做什么：</b>不写「应具备 XX 功能」，不列设备，不谈指标实现方式。这些属于第 3–6 层。任务层只回答：谁、何时、何地、为何，以及什么叫做成了。
     </div>
   </div>
 </section>
@@ -223,14 +223,14 @@
       <div class="layerhead__txt">
         <div class="layerhead__kicker"><span class="mono">SYSTEM OF SYSTEMS</span> 第 2 层 · 体系工程 SoSE</div>
         <h2>体系层：作为可替换节点的接口定位</h2>
-        <p class="layerhead__claim">层级结论：IBEX-01 接入 7 类运行独立、管理独立的成员系统，自身不指挥任何成员。体系层的设计目标不是“功能最多”，而是<b>接口最稳</b>——任一成员换代，平台只需换接口适配，不需改架构。</p>
+        <p class="layerhead__claim">层级结论：IBEX-01 接入 7 类运行独立、管理独立的成员系统，自身不指挥任何成员。体系层的设计目标不是「功能最多」，而是<b>接口最稳</b>——任一成员换代，平台只需换接口适配，不需改架构。</p>
       </div>
     </header>
 
     <div class="split split--rev">
       <div class="sosdef">
         <h3 class="sub">体系的判定：五条判据同时成立</h3>
-        <p class="quote">“<span id="sosDef"></span>”</p>
+        <p class="quote">「<span id="sosDef"></span>」</p>
         <ul class="features" id="sosFeatures"></ul>
       </div>
       <figure class="figure figure--sos">
@@ -255,7 +255,7 @@
           </g>
           <g class="sos-nodes" id="sosNodes"></g>
         </svg>
-        <figcaption>七个成员系统围绕同一节点，连线只表示“存在接口”，不表示指挥关系。</figcaption>
+        <figcaption>七个成员系统围绕同一节点，连线只表示「存在接口」，不表示指挥关系。</figcaption>
       </figure>
     </div>
 
@@ -263,7 +263,7 @@
     <div class="grid grid--sos" id="sosMembers"></div>
 
     <h3 class="sub">五类接口：协同的可验收表述</h3>
-    <p class="subnote">体系层最容易犯的错，是把“要协同”当成交付物。协同必须落到接口：有什么方向、传什么、多少速率、多少时延、失效怎么办。</p>
+    <p class="subnote">体系层的常见误判，是把「要协同」当成交付物。协同须落到接口：方向、内容、速率、时延与失效行为。</p>
     <div class="table-wrap">
       <table class="tbl">
         <thead><tr><th class="c-id">编号</th><th>接口</th><th class="c-dir">方向</th><th>交换内容</th><th>量化约束</th></tr></thead>
@@ -297,7 +297,7 @@
 
     <div class="grid grid--2 gap-lg">
       <div class="panel">
-        <h4 class="panel__h">体系级涌现能力：单机指标加不出来的东西</h4>
+        <h4 class="panel__h">体系级涌现能力：单机指标无法合成的能力</h4>
         <ul class="emerge" id="emerge"></ul>
       </div>
       <div class="panel panel--warn">
@@ -317,7 +317,7 @@
       <div class="layerhead__txt">
         <div class="layerhead__kicker"><span class="mono">VEHICLE</span> 第 3 层 · 车辆工程</div>
         <h2>整机层：四轮腿构型的约束求解</h2>
-        <p class="layerhead__claim">层级结论：在“静态稳定 × 载荷 400 kg × 运输 1 台/20 ft 箱”的三重约束下，<b>四轮腿独立驱动 + 轮端转向 + 髋膝两自由度</b>是唯一同时满足的构型。选型依据可经权重检验，而非形态偏好。</p>
+        <p class="layerhead__claim">层级结论：在「静态稳定 × 载荷 400 kg × 运输 1 台/20 ft 箱」的三重约束下，<b>四轮腿独立驱动 + 轮端转向 + 髋膝两自由度</b>是唯一同时满足的构型。选型依据可经权重检验，而非形态偏好。</p>
       </div>
     </header>
 
@@ -407,7 +407,7 @@
       <div class="layerhead__txt">
         <div class="layerhead__kicker"><span class="mono">SYSTEMS</span> 第 4 层 · 系统工程 SE</div>
         <h2>系统层：11 个可独立追责的单元</h2>
-        <p class="layerhead__claim">层级结论：整机分解为 11 个一级系统，按“机动平台 / 智能信息 / 任务载荷 / 人机与保障”四类归口。每个系统都有一条<b>不可替代的职责</b>、一组<b>对外接口</b>和一份<b>质量指标</b>——缺少任一条，它就不该独立成系统。</p>
+        <p class="layerhead__claim">层级结论：整机分解为 11 个一级系统，按「机动平台 / 智能信息 / 任务载荷 / 人机与保障」四类归口。每个系统都有一条<b>不可替代的职责</b>、一组<b>对外接口</b>和一份<b>质量指标</b>——缺少任一条，它就不该独立成系统。</p>
       </div>
     </header>
 
@@ -415,7 +415,7 @@
     <div class="grid grid--sys" id="sysGrid"></div>
 
     <div class="note">
-      <b>为什么不是“按设备分”：</b>如果把相机、雷达、电机直接列成“系统”，架构就退化成清单。本页的划线依据是<b>失效影响</b>——S02 失效则不能动，S04 失效则看不见，S08 失效则失联，三者对任务的影响方式不同，因此必须是三个系统，而不是一个“机电系统”。
+      <b>不按设备划分的理由：</b>若把相机、雷达、电机直接列为「系统」，架构即退化为清单。本页的划线依据是<b>失效影响</b>——S02 失效则不能动，S04 失效则看不见，S08 失效则失联，三者对任务的影响方式不同，因此必须是三个系统，而不是一个「机电系统」。
     </div>
   </div>
 </section>
@@ -428,7 +428,7 @@
       <div class="layerhead__txt">
         <div class="layerhead__kicker"><span class="mono">SUB-SYSTEMS</span> 第 5 层 · 系统工程 SE</div>
         <h2>子系统层：按功能完整性切分</h2>
-        <p class="layerhead__claim">层级结论：47 个子系统，平均每个系统 4.3 个。切分标准是<b>功能完整性</b>——一个子系统必须能独立完成一件完整的事（如“组合导航”能独立输出位姿），并且能整体拆下换掉。</p>
+        <p class="layerhead__claim">层级结论：47 个子系统，平均每个系统 4.3 个。切分标准是<b>功能完整性</b>——一个子系统必须能独立完成一件完整的事（如「组合导航」能独立输出位姿），并且能整体拆下换掉。</p>
       </div>
     </header>
 
@@ -444,14 +444,14 @@
       <div class="layerhead__txt">
         <div class="layerhead__kicker"><span class="mono">MODULES</span> 第 6 层 · 领域知识</div>
         <h2>模块层：分解的终止条件</h2>
-        <p class="layerhead__claim">层级结论：188 个末端模块，每个都有唯一归属、可写规格、可单独采购或研制。到这一层，“系统工程”让位于“领域知识”——一个髋关节电机的选型，靠的是电机学而不是架构方法。</p>
+        <p class="layerhead__claim">层级结论：188 个末端模块，每个都有唯一归属、可写规格、可单独采购或研制。到这一层，「系统工程」让位于「领域知识」——一个髋关节电机的选型，靠的是电机学而不是架构方法。</p>
       </div>
     </header>
 
     <div class="tools">
       <div class="search">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16.5 16.5 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        <input id="modSearch" type="search" placeholder="搜索模块：输入“电池”“激光”“桅杆”“安全链”…" autocomplete="off">
+        <input id="modSearch" type="search" placeholder="搜索模块：输入「电池」「激光」「桅杆」「安全链」…" autocomplete="off">
         <button id="modClear" class="search__clear" type="button" aria-label="清空">×</button>
       </div>
       <div class="tools__meta mono" id="modMeta"></div>
@@ -469,7 +469,7 @@
         <thead><tr><th class="c-id">模块编号</th><th>名称</th><th>所属子系统</th><th class="c-type">类型</th><th class="c-spec">关键规格</th></tr></thead>
         <tbody id="modBody"></tbody>
       </table>
-      <div class="empty" id="modEmpty">没有匹配的模块。试试更短的关键词，或点“全部”重置。</div>
+      <div class="empty" id="modEmpty">没有匹配的模块。试试更短的关键词，或点「全部」重置。</div>
     </div>
     <p class="table-hint mono">点击任意行 → 查看它在六层中的完整追溯路径 · 按 <span class="kbd">/</span> 搜索 · <span class="kbd">R</span> 随机抽一个 <button class="keyhint" id="keyHint" type="button" style="margin-left:6px">全部快捷键 <span class="kbd">?</span></button></p>
   </div>
@@ -483,7 +483,7 @@
       <div class="layerhead__txt">
         <div class="layerhead__kicker"><span class="mono">TRACEABILITY</span> 双向可追溯</div>
         <h2>追溯：由末端模块向上验证必要性</h2>
-        <p class="layerhead__claim">六层分解的检验方式只有一条：<b>任取一个末端模块，能否逐层向上说清它服务于哪条任务</b>。下面六条链是抽样，每条都给出“为什么上一层需要它”的理由，而不是简单的名词串联。</p>
+        <p class="layerhead__claim">六层分解的检验方式只有一条：<b>任取一个末端模块，能否逐层向上说清它服务于哪条任务</b>。下面六条链是抽样，每条都给出「为什么上一层需要它」的理由，而不是简单的名词串联。</p>
       </div>
     </header>
 
@@ -495,9 +495,9 @@
     <div class="panel panel--wide">
       <h4 class="panel__h">分解质量的四条自检</h4>
       <div class="grid grid--4 gap-sm">
-        <div class="qc"><b>01 无孤儿</b><p>188 个模块全部能上溯到一条任务；没有“因为行业惯例所以要有”的模块。</p></div>
-        <div class="qc"><b>02 无重叠</b><p>任一功能只在一个系统内实现。例如“定位”只在 S05，S06 只用不建。</p></div>
-        <div class="qc"><b>03 无断链</b><p>每层接口都有对端。凡说“对外接口”的，必须指出对方是谁（SoS-0X 或 S0X）。</p></div>
+        <div class="qc"><b>01 无孤儿</b><p>188 个模块全部能上溯到一条任务；没有「因为行业惯例所以要有」的模块。</p></div>
+        <div class="qc"><b>02 无重叠</b><p>任一功能只在一个系统内实现。例如「定位」只在 S05，S06 只用不建。</p></div>
+        <div class="qc"><b>03 无断链</b><p>每层接口都有对端。凡说「对外接口」的，必须指出对方是谁（SoS-0X 或 S0X）。</p></div>
         <div class="qc"><b>04 预算闭合</b><p>质量、功率、信息流三项从模块向上汇总，与整机指标闭合，误差 ≤ 5%。</p></div>
       </div>
     </div>
@@ -560,7 +560,7 @@
       <div class="panel">
         <h4 class="panel__h">余量并非越高越优</h4>
         <ul class="mini-list">
-          <li><b>质量余量过高</b>：通常说明结构还没收敛，或者不敢定指标；超过 10% 要回头查是不是漏装了东西。</li>
+          <li><b>质量余量过高</b>：通常说明结构尚未收敛，或指标未敢定死；超过 10% 须复核是否存在漏计的组成部分。</li>
           <li><b>功率余量过低</b>：低于 10% 就等于没有环境裕度，−20 ℃ 电池内阻上升和 30° 坡连续爬升都会把它吃光。</li>
           <li><b>数据余量最容易被浪费</b>：42% 看着宽裕，第二路光电一上就吃掉一半；带宽要按「传感器清单」算，不能按「当前配置」算。</li>
         </ul>
@@ -589,9 +589,9 @@
   <div class="wrap">
     <div class="nextbar">
       <div>
-        <p class="mono dim">HANDOVER · 交给作业 02 的三样东西</p>
+        <p class="mono dim">HANDOVER · 交给作业 02 的三项输入</p>
         <h3>本页输出作为下一阶段的输入</h3>
-        <p>作业 02 要写 BRS 与 StRS。它写不下去的地方，往往就是这一页没交代清楚的地方。所以这里留下三样锚点——后面每一条需求都必须挂上去，挂不上去的需求，就是没有来源的需求。</p>
+        <p>作业 02 要写 BRS 与 StRS。它写不下去的地方，往往就是这一页没交代清楚的地方。所以这里留下三项锚点——后面每一条需求都必须挂上去，挂不上去的需求，就是没有来源的需求。</p>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <a class="btn" href="index.html">首页</a>

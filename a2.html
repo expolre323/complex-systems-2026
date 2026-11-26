@@ -82,7 +82,7 @@
 
         <p class="hero__lede">
           作业 01 界定系统的<strong>构成</strong>，本次界定其<strong>成立依据</strong>。
-          先将组织业务表述为业务需求，再将 18 类相关方的<strong>需要</strong>转换为 40 条<strong>可验证的需求</strong>；中间的<strong>分析、协商与判据赋予</strong>构成需求工程的实质工作。
+          先将组织业务表述为业务需求，再将 18 类相关方的<strong>需要</strong>转换为 40 条<strong>可验证的需求</strong>；中间的<strong>分析、协商与判据赋予</strong>，构成需求工程的实质工作。
         </p>
 
         <div class="hero__cta">
@@ -150,12 +150,12 @@
     <div class="a2-lead" id="methodCards"></div>
 
     <h3 class="sub">两份文档、两套章节：按表 4-1 与表 4-5 的轮廓成文</h3>
-    <p class="subnote">BRS 与 StRS 在 29148:2011 里本是同一份文档，2018 版拆成两份。拆开的理由很实际：<b>业务管理与业务运行不是同一批人</b>，用一份文档同时说服他们，必然有一方被敷衍。</p>
+    <p class="subnote">BRS 与 StRS 在 29148:2011 中分列两套模板（表 4-1 与表 4-5），2018 版仍保持两份文档的分工。分列的理由不在篇幅：<b>业务管理与业务运行不是同一批读者</b>，用一份文档同时说服两者，必有一方的关切被弱化。</p>
     <div class="ol-compare" id="outlineCmp"></div>
     <div id="outlineDiff"></div>
 
     <div class="note">
-      <b>两句话分别概括这两份文档：</b>BRS 是写给「批不批这笔钱」的人看的，StRS 是写给「用不用这套东西」的人看的。同一件事，前者谈业务结果，后者谈运行场景。
+      <b>两份文档的读者不同：</b>BRS 面向业务管理与采办方，判定依据是业务结果与投入效益；StRS 面向使用、保障与合规方，判定依据是运行场景中的可验证条件。
     </div>
   </div>
 </section>
@@ -280,7 +280,7 @@
     </header>
 
     <h3 class="sub">ConOps 与 OpsCon 的区分：编组层与系统层</h3>
-    <p class="subnote">这两份文件最常被写混。区分它们不看篇幅，只看<b>主语是谁</b>：ConOps 的主语是「参战的各方」，OpsCon 的主语是「这一台平台」。</p>
+    <p class="subnote">两份文件常被混同。区分依据不是篇幅，而是<b>主语</b>：ConOps 的主语是参战各方，OpsCon 的主语是这一台平台。</p>
     <div class="table-wrap">
       <table class="tbl">
         <thead><tr><th style="width:118px">比较维度</th><th>ConOps 运营概念</th><th>OpsCon 运行概念</th></tr></thead>
@@ -296,7 +296,7 @@
       </table>
     </div>
     <div class="note note--line" style="margin-top:18px">
-      <b>为什么要拆成两份：</b>把两者合成一份，会出现两种典型错误——要么把「谁指挥谁」写进平台需求，于是平台被迫承担不该有的决策逻辑；要么把状态转换写进 ConOps，于是作战参谋要读一份机电文档。分开之后，<b>ConOps 的每条交接动作都能被 OpsCon 的一个状态接住</b>，这正是本节末尾 What-if 的检查方向。
+      <b>拆分为两份的理由：</b>合并为一份会出现两类典型错误——把指挥关系写进平台需求，平台被迫承担本不属于它的决策逻辑；或把状态转换写进 ConOps，作战参谋须阅读一份机电文档。分开之后，<b>ConOps 的每条交接动作都能被 OpsCon 的一个状态接住</b>，这正是本节末尾 What-if 的检查方向。
     </div>
 
     <div class="sm-wrap">
@@ -306,7 +306,7 @@
       </div>
       <svg class="sm" id="smSvg" viewBox="0 0 690 330" role="img" aria-label="IBEX-01 运行状态机：七个正常模式与四个降级模式"></svg>
       <div class="sm__detail" id="smDetail"></div>
-      <p class="sm__hint">悬停或点击任一状态查看进入/退出条件 · 图中只画主流程与降级路径，反向转移写在各状态说明里</p>
+      <p class="sm__hint">悬停或点击任一状态查看进入/退出条件 · 图中只画主流程与降级路径，反向转移写在各状态说明里<br>降级态按<b>失效源</b>命名（DL 链路 · DN 导航 · DG 单腿 · DP 能源），与作业 03 按<b>能力档</b>命名的 D0–D3 属两个维度：前者指哪一类失效，后者指收敛到哪一档能力</p>
     </div>
 
     <h3 class="sub">11 个状态的职责与迁移</h3>
@@ -331,7 +331,7 @@
       <div class="layerhead__txt">
         <div class="layerhead__kicker"><span class="mono">STAKEHOLDERS</span> 重点论述 ④</div>
         <h2>相关方：18 类抽象的完备性与最小性</h2>
-        <p class="layerhead__claim">识别相关方的难点不是「想不到」，而是<b>抽象层次</b>：把一条产线上的每个工人都列进来，清单就失去意义。本页按第 4 章的三分法抽象为 18 类，再以影响力—利益定位确定优先级。</p>
+        <p class="layerhead__claim">相关方识别的难点在<b>抽象层次</b>，不在数量覆盖：把产线上的每个工人都列入，清单即失去判别意义。本页按第 4 章的三分法抽象为 18 类，再以影响力—利益定位确定优先级。</p>
       </div>
     </header>
 
@@ -346,7 +346,7 @@
     <h3 class="sub">影响力—利益四象限与对应策略</h3>
     <div class="qg" id="qGroups"></div>
 
-    <h3 class="sub">表 4-3 相关方分析表示矩阵</h3>
+    <h3 class="sub">表 4-3 相关方分析表（矩阵形式）</h3>
     <p class="subnote">按郭宝柱书中表 4-3 的列项填写：利益点、态度（+2 支持 ~ −2 反对）、影响力、重要性、权利、资源、约束。末列优先级由「影响力 × 利益」推出，作为后续确定需求优先级的依据。</p>
     <div class="table-wrap table-wrap--tall">
       <table class="tbl mx">
@@ -365,12 +365,12 @@
       <table class="tbl tbl--salience">
         <thead><tr>
           <th style="width:96px">类型</th><th style="width:154px">具备要素</th>
-          <th style="width:216px">本项目对象</th><th>管理动作（不是「加强沟通」这种空话）</th>
+          <th style="width:216px">本项目对象</th><th>管理动作（非「加强沟通」一类泛化表述）</th>
         </tr></thead>
         <tbody>
           <tr><td><b>确定型</b></td><td>权力 + 合法性 + 紧迫性</td><td>A5 采办、A1 总体研制</td><td>不需要说服，只需要按时交付：评审节点与验收条款本身就是管理手段</td></tr>
           <tr><td><b>主导型</b></td><td>权力 + 合法性</td><td>A4 试验鉴定、C3 标准机构</td><td>把判据前置：试验大纲与标准条款在方案阶段就固化，避免定型时返工</td></tr>
-          <tr><td><b>依赖型</b></td><td>合法性 + 紧迫性</td><td>A3 使用方、B1 同编队、D1 平民</td><td>替他们投票：把诉求写成 MOE / MOP 指标，否则会在预算会上被「有权力的人」挤掉</td></tr>
+          <tr><td><b>依赖型</b></td><td>合法性 + 紧迫性</td><td>A3 使用方、B1 同编队、D1 平民</td><td>代为表达：把诉求写成 MOE / MOP 指标，否则将在预算评审中被权力方挤出</td></tr>
           <tr><td><b>危险型</b></td><td>权力 + 紧迫性</td><td>B2 战场目标（敌方）</td><td>不沟通，只设计：抗干扰、抗毁、诱骗与机动规避直接写进需求</td></tr>
           <tr><td><b>自主型</b></td><td>合法性</td><td>C4 军控智库、D4 公众</td><td>合规与叙事：出口管制、伦理审查、对外表述口径</td></tr>
           <tr><td><b>苛求型</b></td><td>紧迫性</td><td>临时性任务需求（预案中）</td><td>限时答复 + 纳入下一次基线评审，不做口头承诺</td></tr>
@@ -382,7 +382,7 @@
       <div class="panel">
         <h4 class="panel__h">高风险格：依赖型关系</h4>
         <p>使用方（A3）的诉求正当、紧迫，但在需求阶段几乎没有权力——它的权力只体现在事后「拒绝接装」，那时改设计已经来不及。同编队（B1）与平民（D1）更极端：一个只能配合，一个只能承受。</p>
-        <p class="panel__foot">所以本项目不在文档里替他们「表达希望」，而是把 A3 的诉求直接写成 MOE / MOP：指标一旦进基线，就等于替没有投票权的人投了票。</p>
+        <p class="panel__foot">所以本项目不在文档里替他们「表达希望」，而是把 A3 的诉求直接写成 MOE / MOP：指标一旦进基线，即在需求层面代其行使了表达权。</p>
       </div>
       <div class="panel panel--warn">
         <h4 class="panel__h">两个模型的差异即待裁决项</h4>
@@ -522,7 +522,7 @@
       <article class="card">
         <div class="card__no mono">Q1</div>
         <h3>无孤儿需求</h3>
-        <p>40 条需求全部能上溯到一条任务或业务需求。凡是「行业惯例所以要有」的条目，一律删除，不留解释性备注。</p>
+        <p>38 条挂到任务需求（见上表），2 条直接挂业务需求（StR-SUS-04 → BRQ-02、StR-INT-01 → BRQ-05），40 条均有来源。凡以「行业惯例」为据的条目，一律删除，不留解释性备注。</p>
       </article>
       <article class="card">
         <div class="card__no mono">Q2</div>

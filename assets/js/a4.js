@@ -100,7 +100,7 @@
     $('#critBox').innerHTML = L.criterion.items.map((c) => `
       <div class="checks2__i crit"><b><em class="mono">${esc(c.id)}</em>${esc(c.t)}</b><p>${fmt(c.d)}</p></div>`).join('');
     $('#critNote').innerHTML = `
-      <p class="l7__h"><span class="mono">L7?</span>查出来的一个缺口</p>
+      <p class="l7__h"><span class="mono">S7</span>正交性检验发现的一处缺口</p>
       <p>${fmt(L.criterion.layer7)}</p>
       <p class="l7__b">${fmt(L.criterion.layer7b)}</p>`;
 

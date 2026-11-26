@@ -82,7 +82,7 @@
           在作业 02 的相关方需求之上，本次先在系统层完成<b>需求分析</b>：按功能、性能、接口与其他四类展开，并校验三项预算能否加回总账。
           41 条系统需求分配至四层控制结构，形成责任归属；
           控制结构一旦成立，<strong>安全需求即可由结构反推而非依赖访谈</strong>——
-          STPA 沿回路识别 20 条不安全控制行为，回填 12 条基线中缺失的安全需求。
+          STPA 沿回路识别 20 条不安全控制行为，回填基线中缺失的 12 条安全需求。
         </p>
 
         <div class="hero__cta">
@@ -144,7 +144,7 @@
     <div class="sec__head">
       <div class="sec__kicker"><span class="mono">METHOD</span> 读法说明</div>
       <h2 class="sec__title">四个环节：分析、规格化、架构化、反向校验</h2>
-      <p class="sec__lede">讲义中的系统定义不是单一环节，而是四个环节：需求分析 → 需求定义（成文为 SyRS）→ 架构定义（三视图 + 权衡）→ 系统分析（含 STPA）。四步之间非线性流水，而是<b>相互修订</b>：分析结果决定条目的表述方式，架构成形后才暴露此前未被提出的需求。</p>
+      <p class="sec__lede">讲义中的系统定义不是单一环节，而是四个环节：需求分析 → 需求定义（成文为 SyRS）→ 架构定义（三视图 + 权衡）→ 系统分析（含 STPA）。四步之间并非线性流水，而是<b>相互修订</b>：分析结果决定条目的表述方式，架构成形后才暴露此前未被提出的需求。</p>
     </div>
 
     <div class="a2-lead" id="methodCards"></div>
@@ -604,7 +604,7 @@
     <p class="table-hint" id="injNote"></p>
 
     <div class="note">
-      <b>为什么安全架构不能由安全需求反推：</b>安全需求说「必须保持两种降级模式可用」，但没有说这两者怎么共存、谁仲裁、冲突时听谁的。这些只能在架构里回答——<b>需求约束行为，架构分配权力</b>。
+      <b>安全架构不能由安全需求反推的理由：</b>安全需求说「必须保持两种降级模式可用」，但没有说这两者怎么共存、谁仲裁、冲突时听谁的。这些只能在架构里回答——<b>需求约束行为，架构分配权力</b>。
     </div>
   </div>
 </section>
@@ -626,7 +626,7 @@
     <div class="chain__note" id="chainNote"></div>
 
     <h3 class="sub">变更传播：单条变更的影响面</h3>
-    <p class="subnote">把需求、架构、安全放进同一条链，最实际的收益不是「图画得好看」，而是<b>改一个数就能算出哪些条目要跟着动</b>。下表是四种真实变更的影响面——注意第三、四行：<b>不是所有变更都需要重开安全分析</b>，随口说「全都得重做」和说「都不用改」一样不专业。</p>
+    <p class="subnote">把需求、架构、安全放进同一条链，最实际的收益不在于图面完整，而在于<b>改一个数就能算出哪些条目要跟着动</b>。下表是四种真实变更的影响面——注意第三、四行：<b>不是所有变更都需要重开安全分析</b>，「全都得重做」与「都不用改」同样缺乏依据。</p>
     <div class="table-wrap">
       <table class="tbl tbl--impact">
         <thead><tr><th class="c-chg">变更</th><th>受影响的 SyR / SR</th><th>要重做的验证</th><th class="c-stpa">重开 STPA</th></tr></thead>
@@ -685,7 +685,7 @@
     </div>
     <div class="foot__right">
       <p class="mono dim">STATIC SITE · NO DEPENDENCIES · GITHUB PAGES</p>
-      <p class="mono dim">SyRS · 控制结构 · STPA · 依据 29148:2018 与第六课讲义</p>
+      <p class="mono dim">SyRS · 控制结构 · STPA · 依据 29148:2018 与第五课讲义</p>
       <a class="btn btn--sm" href="#top">回到顶部</a>
     </div>
   </div>

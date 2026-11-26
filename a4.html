@@ -93,9 +93,9 @@
         </div>
       </div>
 
-      <aside class="hero__viz" aria-label="六层场景要素与三类许可的关系">
-        <div class="viz__h"><span class="mono">LAYER → PERMIT → ENTER</span><i>六层与三类许可</i></div>
-        <svg viewBox="0 0 460 400" role="img" aria-label="六层场景要素汇入环境许可、系统许可、人员许可，三类许可全过才允许进入">
+      <aside class="hero__viz" aria-label="六层场景要素与四类许可的关系">
+        <div class="viz__h"><span class="mono">LAYER → PERMIT → ENTER</span><i>六层与四类许可</i></div>
+        <svg viewBox="0 0 460 400" role="img" aria-label="六层场景要素汇入环境、系统、人员、其他四类许可，四类许可全过才允许进入">
           <defs>
             <marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path d="M0 1 L9 5 L0 9" fill="none" stroke="var(--fg-3)" stroke-width="1.6"/>
@@ -177,7 +177,7 @@
     <div class="sec__head">
       <div class="sec__kicker"><span class="mono">METHOD</span> 读法说明</div>
       <h2 class="sec__title">分层、定界、取点、反推：四个环节的递进关系</h2>
-      <p class="sec__lede">讲义将场景置于末章，其原因不在难度，而在于它是前序工作的<b>收敛点</b>：需求须有场景方可验证，架构须有场景方可评估，安全分析须有场景方可触发。四项工作实为同一命题的四种表述——先有维度，方有边界；先有边界，方有界内轨迹；轨迹确定后，方可识别其贴近边界的区段。</p>
+      <p class="sec__lede">讲义将场景置于末章，其原因不在难度，而在于它是前序工作的<b>收敛点</b>：需求须有场景方可验证，架构须有场景方可评估，安全分析须有场景方可触发。三者各有判据，而判据的成立条件均由场景给出。</p>
     </div>
     <div class="a4spine" id="spineBox"></div>
     <div class="a2-lead" id="methodCards"></div>
@@ -244,12 +244,12 @@
     </table></div>
 
     <h3 class="sub">六层的成立条件：四条正交性检验</h3>
-    <p class="subnote">分层不是爱分几层就分几层。<b>能被叫「一层」的，得同时过这四条</b>——否则它只是另一层的条目。</p>
+    <p class="subnote">分层的层数不能任意设定。<b>一个层级须同时满足以下四条</b>——否则它只是另一层的条目。</p>
     <div class="checks2 crits" id="critBox"></div>
     <div class="l7" id="critNote"></div>
 
     <h3 class="sub">六层要素明细</h3>
-    <p class="subnote">每层先给一个问题，再给要素。<b>「影响路径」这一列是这张表的价值所在</b>——只写取值不写影响，等于把字典抄了一遍。</p>
+    <p class="subnote">每层先给一个问题，再给要素。<b>「影响路径」这一列是这张表的判据所在</b>——只写取值不写影响，表即退化为取值字典。</p>
     <div id="layerBox"></div>
 
     <h3 class="sub">跨层耦合：要素取值的跨层传递</h3>
