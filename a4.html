@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>作业 04 · 场景分层与运行设计条件 | IBEX-01 轮腿式无人作战平台</title>
-<meta name="description" content="复杂系统工程 2026 小组作业 04：按第七课把 IBEX-01 所处的环境拆成六层、42 项场景要素，给出 ODD／系统状态／人员状态／其他条件四类运行设计条件共 33 项判据，选取一个具体场景做时间轴论述，并沿控制结构反推 10 条风险场景。">
+<meta name="description" content="复杂系统工程 2026 小组作业 04：把 IBEX-01 所处的环境拆成六层、42 项场景要素并做正交性检验；给出 ODD／系统状态／人员状态／其他条件共 33 项判据，说明四张票如何串联合成；按三条取值规则从 G2 参数域收敛到 G3 具体场景，做七段时间轴论述；沿控制结构反推 10 条风险场景并按 PI／MIS／FLT 分类，给出判据与标准指标的映射。">
 <meta name="theme-color" content="#07080a">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307080a'/%3E%3Cpath d='M6 22h20M9 22v-6l3-4 3 4v6M17 22v-6l3-4 3 4v6' stroke='%23d8b45e' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/css/style.css">
@@ -80,10 +80,10 @@
         <p class="hero__sub">Scenario-Based Systems Engineering&nbsp;&nbsp;/&nbsp;&nbsp;Layering · ODC · Risk</p>
 
         <p class="hero__lede">
-          前三次作业都在回答「系统该是什么样」，这一次问的是「它到底在什么里面跑」。
-          六层、42 项要素，不是为了把环境写全——是为了让每一层能<b>单独拧一个旋钮</b>；
-          ODC 也不是 ODD 的同义词，<strong>环境许可只是三票里的一票</strong>。
-          最后一段场景里链路断了 96 秒，它照出了作业 03 里四条没人写过的需求。
+          前三次作业都在回答「系统该是什么样」，这一次问「它在什么里面跑」。
+          分层给出环境的<b>维度</b>，ODC 圈出允许的<b>边界</b>，场景是界内的一条<b>轨迹</b>——
+          <strong>风险不是某个状态坏，是轨迹贴着边界走而余量不够</strong>。
+          落到 10 条风险场景，其中 7 条不是「坏了」，是「不够」。
         </p>
 
         <div class="hero__cta">
@@ -176,9 +176,10 @@
   <div class="wrap">
     <div class="sec__head">
       <div class="sec__kicker"><span class="mono">METHOD</span> 读法说明</div>
-      <h2 class="sec__title">四个动作：分层，定界，取材，反推</h2>
-      <p class="sec__lede">讲义把场景这一章放在最后一讲，不是因为它最简单，而是因为它是前面所有工作的<b>落地口</b>：需求要有场景才可验证，架构要有场景才可评估，安全分析要有场景才可触发。四个动作的顺序不能倒——先分层才有参数，先定界才知道哪些参数在界内，先取材才有可分析的实例，最后才可能反推出风险。</p>
+      <h2 class="sec__title">四个动作，一条几何</h2>
+      <p class="sec__lede">讲义把场景放在最后一讲，不是因为它最简单，而是因为它是前面所有工作的<b>落地口</b>：需求要有场景才可验证，架构要有场景才可评估，安全分析要有场景才可触发。而这四件事其实是同一件事的四种问法——先有维度，才有边界；先有边界，才谈得上「界内的一条线」；线画出来了，才找得到它贴边的那一段。</p>
     </div>
+    <div class="a4spine" id="spineBox"></div>
     <div class="a2-lead" id="methodCards"></div>
   </div>
 </section>
@@ -196,6 +197,9 @@
     </header>
 
     <div class="scn-def" id="defBox"></div>
+
+    <h3 class="sub">把定义写成式子，三个推论就自己掉出来了</h3>
+    <div class="a4form" id="formBox"></div>
 
     <h3 class="sub">五个术语，各管一段</h3>
     <div class="table-wrap"><table class="tbl tbl--terms">
@@ -239,6 +243,11 @@
       <tbody id="mapBody"></tbody>
     </table></div>
 
+    <h3 class="sub">这六层凭什么成立：四条正交性检验</h3>
+    <p class="subnote">分层不是爱分几层就分几层。<b>能被叫「一层」的，得同时过这四条</b>——否则它只是另一层的条目。</p>
+    <div class="checks2 crits" id="critBox"></div>
+    <div class="l7" id="critNote"></div>
+
     <h3 class="sub">六层要素明细</h3>
     <p class="subnote">每层先给一个问题，再给要素。<b>「影响路径」这一列是这张表的价值所在</b>——只写取值不写影响，等于把字典抄了一遍。</p>
     <div id="layerBox"></div>
@@ -246,6 +255,10 @@
     <h3 class="sub">跨层耦合：有的层改的是另一层的有效值</h3>
     <div class="couples" id="coupleBox"></div>
     <p class="subnote" id="coupleNote"></p>
+
+    <h3 class="sub">三类跨层耦合，三种测法</h3>
+    <div class="ckind" id="ckindBox"></div>
+    <p class="subnote" id="ckindNote"></p>
   </div>
 </section>
 
@@ -287,6 +300,9 @@
       <tbody id="othBody"></tbody>
     </table></div>
 
+    <h3 class="sub">四张票怎么合成：不是投票，是串联</h3>
+    <div class="compose" id="composeBox"></div>
+
     <h3 class="sub">一个例子：同一个坡度，两个结论</h3>
     <div class="odc-case" id="caseBox"></div>
   </div>
@@ -304,9 +320,13 @@
       </div>
     </header>
 
-    <h3 class="sub">十项参数：每个值都得有出处</h3>
+    <h3 class="sub">取值不是挑一个数：先定三条规则</h3>
+    <div class="pick" id="pickBox"></div>
+    <p class="subnote" id="pickNote"></p>
+
+    <h3 class="sub">十项参数：从 G2 参数域收敛到 G3 取值点</h3>
     <div class="table-wrap"><table class="tbl tbl--params">
-      <thead><tr><th class="c-e2">参数</th><th class="c-v2">取值</th><th class="c-s2">取值来源</th></tr></thead>
+      <thead><tr><th class="c-e2">参数</th><th class="c-dom">逻辑域 G2</th><th class="c-v2">具体值 G3</th><th>为什么取这个点 · 出处</th></tr></thead>
       <tbody id="paramBody"></tbody>
     </table></div>
 
@@ -334,12 +354,17 @@
     </div>
     <p class="subnote" id="riskRule"></p>
 
+    <h3 class="sub">先分类，再打分：分错类就开错药</h3>
+    <div class="cls3" id="clsBox"></div>
+    <p class="subnote" id="clsNote"></p>
+    <p class="subnote" id="clsWarn"></p>
+
     <h3 class="sub">风险场景列表</h3>
     <div class="table-wrap"><table class="tbl tbl--rs">
       <thead><tr>
         <th class="c-id">编号</th><th class="c-ph">段</th><th class="c-rn">风险场景</th>
         <th class="c-hz2">H</th><th class="c-uca">UCA</th><th class="c-k">K</th>
-        <th class="c-sec">S/E/C</th><th class="c-lv">等级</th><th class="c-fix">对策</th>
+        <th class="c-sec">S/E/C</th><th class="c-lv">等级 · 类</th><th class="c-fix">对策</th>
       </tr></thead>
       <tbody id="rsBody"></tbody>
     </table></div>
@@ -349,6 +374,13 @@
       <table class="mx4" id="mxBox"></table>
       <p class="subnote" id="mxNote"></p>
     </div>
+
+    <h3 class="sub">判据从哪来：借标准，还是自己造</h3>
+    <div class="table-wrap"><table class="tbl tbl--metric">
+      <thead><tr id="metricHead"></tr></thead>
+      <tbody id="metricBody"></tbody>
+    </table></div>
+    <p class="subnote" id="metricNote"></p>
 
     <h3 class="sub">这次照出来的三处缺口</h3>
     <ol class="gaps" id="gapBox"></ol>
@@ -361,7 +393,7 @@
     <header class="layerhead">
       <div class="layerhead__no">07</div>
       <div class="layerhead__txt">
-        <div class="layerhead__kicker"><span class="mono">LIFECYCLE</span> 七阶段 · 一条八环链 · 四项自检</div>
+        <div class="layerhead__kicker"><span class="mono">LIFECYCLE</span> 七阶段 · 一条八环链 · 六项自检</div>
         <h2>场景只用来做测试，是用掉它十分之一</h2>
         <p class="layerhead__claim" id="useClaim"></p>
       </div>
@@ -373,12 +405,23 @@
     </table></div>
     <p class="subnote" id="useNote"></p>
 
+    <h3 class="sub">同一条场景，左右两侧的角色不一样</h3>
+    <div class="sym" id="symBox"></div>
+    <p class="subnote" id="symNote"></p>
+
     <h3 class="sub">一条八环链：从一项要素取值走到一个试验用例</h3>
     <div class="chain8" id="chainBox"></div>
     <p class="subnote" id="chainNote"></p>
 
-    <h3 class="sub">四项自检</h3>
+    <h3 class="sub">六项自检：数量、需求、风险、边界、分类、判据</h3>
     <div class="checks2" id="checkBox"></div>
+
+    <h3 class="sub">场景入库的六个字段</h3>
+    <div class="table-wrap"><table class="tbl tbl--reg">
+      <thead><tr id="regHead"></tr></thead>
+      <tbody id="regBody"></tbody>
+    </table></div>
+    <p class="subnote" id="regNote"></p>
 
     <h3 class="sub">引用</h3>
     <ul class="refs" id="refList"></ul>
@@ -394,7 +437,7 @@
     <div>
       <p class="mono dim">CLOSURE · 四次作业的接口</p>
       <h3>第四次不是加一章，是把前三次拉回地面</h3>
-      <p>作业 01–03 回答「该是什么样」，作业 04 回答「在什么条件下才算跑得对」。42 项场景要素里有 39 项能指回具体需求，10 条风险场景全部落到 SR 或架构机制——<b>这条链合上，前面三份文档才不是纸面作业</b>。</p>
+      <p>作业 01–03 回答「该是什么样」，作业 04 回答「在什么条件下才算跑得对」。42 项要素里 39 项能指回具体需求，10 条风险场景全部落到 SR 或架构机制——<b>这条链合上，前面三份文档才不是纸面作业</b>。而分类给出了一个不太好听的结论：10 条里 7 条不是「坏了」，是「不够」，所以下一步该投的是判据完备性，不是冗余。</p>
     </div>
     <div style="display:flex;gap:10px;flex-wrap:wrap">
       <a class="btn" href="a3.html">← 回看作业 03</a>

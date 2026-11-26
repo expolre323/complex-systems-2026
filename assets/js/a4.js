@@ -14,6 +14,20 @@
 
   /* ============================================================ 01 方法论 */
   function renderMethod() {
+    const S = D.spine;
+    $('#spineBox').innerHTML = `
+      <p class="a4spine__chain">空间 <i>→</i> 子空间 <i>→</i> 轨迹 <i>→</i> 越界</p>
+      <p class="a4spine__c">${fmt(S.claim)}</p>
+      <div class="a4spine__row">${S.items.map((it, i) => `
+        <article class="a4spine__i">
+          <div class="a4spine__n"><span class="mono">${String(i + 1).padStart(2, '0')}</span>${esc(it.en)}</div>
+          <b>${esc(it.k)}</b>
+          <p class="a4spine__v">${esc(it.v)}</p>
+          <p class="a4spine__d">${fmt(it.d)}</p>
+        </article>`).join('<div class="a4spine__ar" aria-hidden="true">→</div>')}
+      </div>
+      <p class="subnote">${fmt(S.note)}</p>`;
+
     $('#methodCards').innerHTML = D.method.map((m) => `
       <article class="a2-lead__i">
         <div class="a2-lead__n">${esc(m.no)} / ${esc(m.en)}</div>
@@ -33,6 +47,17 @@
         <div><span class="mono">读法</span><p>${fmt(d.mine)}</p></div>
         <div><span class="mono">与自动驾驶的唯一差别</span><p>${fmt(d.diff)}</p></div>
       </div>`;
+
+    const F = C.formal;
+    $('#formBox').innerHTML = `
+      <div class="a4form__eq"><code>${esc(F.f)}</code>
+        <span class="a4form__sub">${esc(F.sub)}</span></div>
+      <div class="a4form__g">${F.items.map((it) => `
+        <article class="a4form__i">
+          <div class="a4form__h"><span class="mono">${esc(it.no)}</span><b>${esc(it.t)}</b></div>
+          <p>${fmt(it.d)}</p>
+        </article>`).join('')}</div>
+      <p class="subnote">${fmt(F.note)}</p>`;
 
     $('#termsBody').innerHTML = C.terms.map((t) => `
       <tr>
@@ -72,6 +97,13 @@
     $('#mapBody').innerHTML = L.map.map((m) => `
       <tr><td class="dim2">${esc(m.iso)}</td><td><b>${esc(m.mine)}</b></td><td>${esc(m.why)}</td></tr>`).join('');
 
+    $('#critBox').innerHTML = L.criterion.items.map((c) => `
+      <div class="checks2__i crit"><b><em class="mono">${esc(c.id)}</em>${esc(c.t)}</b><p>${fmt(c.d)}</p></div>`).join('');
+    $('#critNote').innerHTML = `
+      <p class="l7__h"><span class="mono">L7?</span>查出来的一个缺口</p>
+      <p>${fmt(L.criterion.layer7)}</p>
+      <p class="l7__b">${fmt(L.criterion.layer7b)}</p>`;
+
     $('#layerBox').innerHTML = L.items.map((ly) => `
       <article class="lyr" id="${esc(ly.id)}">
         <header class="lyr__h">
@@ -93,10 +125,18 @@
         <div class="couple__h"><span class="couple__f">${esc(c.from)}</span>
           <svg viewBox="0 0 24 12" aria-hidden="true"><path d="M1 6h20M17 1l4 5-4 5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
           <span class="couple__t">${esc(c.to)}</span></div>
+        <span class="couple__ty couple__ty--${esc(c.ty)}">${esc(c.ty)}</span>
         <p class="couple__w">${esc(c.how)}</p>
         <p class="couple__e">${esc(c.eg)}</p>
       </article>`).join('');
     $('#coupleNote').innerHTML = fmt(L.coupleNote);
+
+    $('#ckindBox').innerHTML = L.coupleKind.map((k) => `
+      <article class="ckind__i">
+        <span class="ckind__t">${esc(k.ty)}</span>
+        <p>${fmt(k.d)}</p>
+      </article>`).join('');
+    $('#ckindNote').innerHTML = fmt(L.coupleKindNote);
   }
 
   /* ============================================================ 04 ODC */
@@ -118,6 +158,17 @@
       <tr><td><b>${esc(r[0])}</b></td><td class="ok">${esc(r[1])}</td><td class="bad">${esc(r[2])}</td></tr>`).join('');
     $('#othBody').innerHTML = O.oth.rows.map((r) => `
       <tr><td><b>${esc(r[0])}</b></td><td class="ok">${esc(r[1])}</td><td class="warn">${esc(r[2])}</td></tr>`).join('');
+
+    const P = O.compose;
+    $('#composeBox').innerHTML = `
+      <div class="compose__h">${esc(P.t)}</div>
+      <div class="compose__r">${P.rules.map((r) => `
+        <article class="compose__i">
+          <div class="compose__n"><span class="mono">${esc(r.no)}</span><b>${esc(r.t)}</b></div>
+          <p>${fmt(r.d)}</p>
+        </article>`).join('')}</div>
+      <div class="compose__w">${fmt(P.warn)}</div>
+      <p class="compose__e">${fmt(P.eg)}</p>`;
 
     const C = O.case;
     $('#caseBox').innerHTML = `
@@ -145,8 +196,15 @@
     $('#sceneTitle').textContent = S.title;
     $('#sceneWhy').innerHTML = fmt(S.why);
 
+    $('#pickBox').innerHTML = S.pickRule.map((r) => `
+      <article class="pick__i">
+        <div class="pick__h"><span class="mono">${esc(r.no)}</span><b>${esc(r.t)}</b></div>
+        <p>${fmt(r.d)}</p>
+      </article>`).join('');
+    $('#pickNote').innerHTML = fmt(S.pickNote);
+
     $('#paramBody').innerHTML = S.params.map((p) => `
-      <tr><td><b>${esc(p.k)}</b></td><td class="mono">${esc(p.v)}</td><td class="dim2">${esc(p.from)}</td></tr>`).join('');
+      <tr><td><b>${esc(p.k)}</b></td><td class="mono dom">${esc(p.dom)}</td><td class="mono val">${esc(p.v)}</td><td class="why2">${fmt(p.why)}</td></tr>`).join('');
 
     $('#tlBox').innerHTML = S.phases.map((p) => `
       <article class="tl__i">
@@ -180,6 +238,15 @@
       </div>`).join('');
     $('#riskRule').innerHTML = fmt(R.rule);
 
+    $('#clsBox').innerHTML = R.classes.map((c) => `
+      <article class="cls3__i cls3__i--${esc(c.id)}">
+        <div class="cls3__h"><span class="cls3__b mono">${esc(c.id)}</span><b>${esc(c.t)}</b><i>${esc(c.en)}</i><span class="cls3__n mono">${c.n}</span></div>
+        <p class="cls3__d">${esc(c.d)}</p>
+        <p class="cls3__f">${fmt(c.fix)}</p>
+      </article>`).join('');
+    $('#clsNote').innerHTML = fmt(R.classesNote);
+    $('#clsWarn').innerHTML = `<span class="warnmark">推论</span>${fmt(R.classesWarn)}`;
+
     const lvCls = { '高': 'lv--h', '中': 'lv--m', '低': 'lv--l' };
     $('#rsBody').innerHTML = R.rows.map((r) => `
       <tr>
@@ -190,7 +257,7 @@
         <td class="mono ctr">${esc(r.uca)}</td>
         <td class="mono ctr">${esc(r.k)}</td>
         <td class="mono ctr sec2">${esc(r.s)}·${esc(r.e)}·${esc(r.c)}</td>
-        <td class="ctr"><span class="lv ${lvCls[r.lv] || ''}">${esc(r.lv)}</span></td>
+        <td class="ctr"><span class="lv ${lvCls[r.lv] || ''}">${esc(r.lv)}</span><span class="rcls rcls--${esc(r.cls)}">${esc(r.cls)}</span></td>
         <td class="fix2">${fmt(r.fix)}</td>
       </tr>`).join('');
 
@@ -209,6 +276,12 @@
     $('#mxBox').innerHTML = html;
     $('#mxNote').innerHTML = fmt(R.matrixNote);
 
+    const MM = R.metricMap;
+    $('#metricHead').innerHTML = MM.head.map((h, i) => `<th${i === 0 ? ' class="c-e2"' : i === 1 ? ' class="c-m1"' : ''}>${esc(h)}</th>`).join('');
+    $('#metricBody').innerHTML = MM.rows.map((r) => `
+      <tr><td><b>${esc(r[0])}</b></td><td class="mono mm">${esc(r[1])}</td><td>${fmt(r[2])}</td></tr>`).join('');
+    $('#metricNote').innerHTML = fmt(MM.note);
+
     $('#gapBox').innerHTML = R.gaps.map((g) => `<li>${fmt(g)}</li>`).join('');
   }
 
@@ -226,6 +299,30 @@
         <td class="mono dim2">${esc(r.at)}</td>
       </tr>`).join('');
     $('#useNote').innerHTML = fmt(U.useNote);
+
+    const SY = U.symmetry;
+    $('#symBox').innerHTML = `
+      <div class="sym__p sym__p--l">
+        <div class="sym__h"><span class="mono">LEFT</span>${esc(SY.left.h)}</div>
+        <ul>${SY.left.items.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+        <p class="sym__r">${fmt(SY.left.rule)}</p>
+      </div>
+      <div class="sym__m" aria-hidden="true">
+        <span class="sym__line"></span>
+        <span class="sym__v">同一库</span>
+      </div>
+      <div class="sym__p sym__p--r">
+        <div class="sym__h"><span class="mono">RIGHT</span>${esc(SY.right.h)}</div>
+        <ul>${SY.right.items.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+        <p class="sym__r">${fmt(SY.right.rule)}</p>
+      </div>`;
+    $('#symNote').innerHTML = fmt(SY.rule);
+
+    const RG = U.registry;
+    $('#regHead').innerHTML = RG.head.map((h, i) => `<th${i === 0 ? ' class="c-id"' : i === 2 ? ' class="c-g2"' : ''}>${esc(h)}</th>`).join('');
+    $('#regBody').innerHTML = RG.rows.map((r) => `
+      <tr><td><b>${esc(r[0])}</b></td><td class="mono">${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join('');
+    $('#regNote').innerHTML = fmt(RG.note);
 
     $('#chainBox').innerHTML = U.chain.map((c, i) => `
       <div class="chain8__i">
@@ -258,9 +355,10 @@
       { v: String(n), k: '场景要素', u: 'FACTORS' },
       { v: String(odc), k: 'ODC 判据', u: 'DESIGN CONDITIONS' },
       { v: String(D.risk.rows.length), k: '风险场景', u: 'RISK SCENARIOS' },
+      { v: D.risk.classes.map((c) => c.n).join(':'), k: '风险分类 不足·误用·故障', u: 'PI / MIS / FLT', cls: 'iswide' },
       { v: String(D.use.rows.length), k: '生命周期阶段', u: 'LIFE CYCLE' }
     ];
-    $('#stats').innerHTML = st.map((s) => `<div class="stat"><b>${esc(s.v)}</b><span>${esc(s.k)}</span><i>${esc(s.u)}</i></div>`).join('');
+    $('#stats').innerHTML = st.map((s) => `<div class="stat"><b${s.cls ? ` class="${s.cls}"` : ''}>${esc(s.v)}</b><span>${esc(s.k)}</span><i>${esc(s.u)}</i></div>`).join('');
   }
 
   function initRail() {
@@ -326,7 +424,7 @@
     renderUse();
     initStats(); initRail(); initKeys();
     $('#footMeta').textContent = D.meta.version;
-    if (window.FX && FX.reveal) FX.reveal('.card, .lyr, .grain__i, .srcs__i, .vote, .couple, .tl__i, .chain8__i, .checks2__i, .a2-lead__i');
+    if (window.FX && FX.reveal) FX.reveal('.card, .lyr, .grain__i, .srcs__i, .vote, .couple, .tl__i, .chain8__i, .checks2__i, .a2-lead__i, .a4spine__i, .a4form__i, .compose__i, .pick__i, .cls3__i, .ckind__i, .sym__p');
     if (window.FX && FX.spotlight) FX.spotlight('.card');
   }
 
