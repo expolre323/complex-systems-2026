@@ -33,11 +33,12 @@
 
     <nav class="layernav" id="nav" aria-label="章节导航">
       <a href="#method"><em>01</em><span>读法</span></a>
-      <a href="#syrs"><em>02</em><span>规格书</span></a>
-      <a href="#arch"><em>03</em><span>架构</span></a>
-      <a href="#stpa"><em>04</em><span>STPA</span></a>
-      <a href="#safety"><em>05</em><span>安全</span></a>
-      <a href="#trace"><em>06</em><span>追溯</span></a>
+      <a href="#analysis"><em>02</em><span>分析</span></a>
+      <a href="#syrs"><em>03</em><span>规格书</span></a>
+      <a href="#arch"><em>04</em><span>架构</span></a>
+      <a href="#stpa"><em>05</em><span>STPA</span></a>
+      <a href="#safety"><em>06</em><span>安全</span></a>
+      <a href="#trace"><em>07</em><span>追溯</span></a>
     </nav>
 
     <div class="topbar__tools">
@@ -67,7 +68,7 @@
         <div class="hero__meta">
           <span class="tag tag--live"><i></i>作业 03 · 已发布</span>
           <span class="tag">复杂系统工程 2026</span>
-          <span class="tag">MBSE · SyRS · STPA</span>
+          <span class="tag">系统定义 · SyRS · STPA</span>
           <span class="tag tag--ghost">第 1–3 步 / 需求 · 架构 · 安全</span>
         </div>
 
@@ -75,11 +76,11 @@
           <span class="hero__code">IBEX-01 / A-03</span>
           <span class="hero__name">系统需求与初始架构</span>
         </h1>
-        <p class="hero__sub">Model-Based Requirements &amp; Architecture&nbsp;&nbsp;/&nbsp;&nbsp;SyRS · STPA</p>
+        <p class="hero__sub">System Definition &amp; Architecture&nbsp;&nbsp;/&nbsp;&nbsp;SyRS · STPA</p>
 
         <p class="hero__lede">
-          作业 02 从外面往里要需求，这一次从里面往外长架构。
-          41 条系统需求先落到四层控制上，才有「谁来承担」；
+          作业 02 从外面往里要需求，这一次先在系统层把需求<b>分析一遍</b>：功能、性能、接口、其他四路拆开，再核三项预算能不能加回总账。
+          41 条系统需求落到四层控制上，才有「谁来承担」；
           结构一旦画成控制回路，<strong>安全需求就不再靠访谈得来</strong>——
           STPA 沿回路问出 20 条不安全控制行为，回填 12 条基线里原本没有的安全需求。
         </p>
@@ -142,8 +143,8 @@
   <div class="wrap">
     <div class="sec__head">
       <div class="sec__kicker"><span class="mono">METHOD</span> 读法说明</div>
-      <h2 class="sec__title">三个动作：把需求变成模型，再用模型反查需求</h2>
-      <p class="sec__lede">MBSE 不是「画图替代写字」。它的价值在于：一旦需求、架构、安全分析都变成同一套模型里的对象，改一处就能立刻知道哪几条需求、哪个控制动作、哪条安全约束会跟着动。</p>
+      <h2 class="sec__title">四个动作：先分析，再规格化，再架构化，最后反查</h2>
+      <p class="sec__lede">讲义里的系统定义不是一步，而是四步：需求分析 → 需求定义（成文为 SyRS）→ 架构定义（三视图 + 权衡）→ 系统分析（含 STPA）。四步之间不是流水线，是<b>互相改写</b>：分析结果决定条目怎么写，架构画出来才发现有些需求谁都没提。</p>
     </div>
 
     <div class="a2-lead" id="methodCards"></div>
@@ -175,15 +176,48 @@
   </div>
 </section>
 
-<!-- ============================================================ 02 规格书 -->
-<section class="sec sec--alt" id="syrs">
+<!-- ============================================================ 02 需求分析 -->
+<section class="sec" id="analysis">
   <div class="wrap">
     <header class="layerhead">
       <div class="layerhead__no">02</div>
       <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">ANALYSIS</span> 系统需求分析</div>
+        <h2>先把需求分析一遍，再开始写条目</h2>
+        <p class="layerhead__claim">讲义在讲需求定义之前先讲分析：<b>功能、性能、接口、其他</b>四路各问一个不同的问题，缺一路就是缺一整个维度。分析完还要做一次分解与分配——整机指标立总账，按分系统切开，<b>切完必须加得回来</b>。</p>
+      </div>
+    </header>
+
+    <h3 class="sub">四类分析，各问一个问题</h3>
+    <p class="subnote" id="anaClaim"></p>
+    <div class="grid grid--4 views" id="anaKinds"></div>
+
+    <h3 class="sub">需求分解与分配：三项预算，三处余量</h3>
+    <p class="subnote" id="budClaim"></p>
+    <div class="table-wrap">
+      <table class="tbl tbl--bud">
+        <thead><tr><th class="c-id">预算项</th><th class="c-cond">整机总账</th><th>分系统切分</th><th class="c-num">合计</th><th class="c-num">余量</th><th>余量放在这里的理由</th></tr></thead>
+        <tbody id="budBody"></tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">三条没闭上的口子</h3>
+    <div class="merge">
+      <div class="merge__h mono">BUDGET GAPS · 加不回来的三处</div>
+      <ol id="budGap"></ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 03 规格书 -->
+<section class="sec sec--alt" id="syrs">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">03</div>
+      <div class="layerhead__txt">
         <div class="layerhead__kicker"><span class="mono">SyRS</span> 系统需求规格说明</div>
         <h2>把「谁在意什么」写成「系统必须做到什么」</h2>
-        <p class="layerhead__claim">按 29148 的 SyRS 范式，六章一节不缺。第 3 章 41 条需求全部携带<b>分配对象、来源、验证方法</b>三个属性——缺任何一个，这条需求就无法进入基线。</p>
+        <p class="layerhead__claim">按 29148 表 5-1 的 15 章内容清单成文，<b>一章不缺</b>；空章必须写「不适用 + 理由」，不许留白。第 4–13 章的 41 条需求全部携带<b>分配对象、来源、验证方法</b>三个属性——缺任何一个，这条需求就无法进入基线。</p>
       </div>
     </header>
 
@@ -211,7 +245,7 @@
     </div>
 
     <h3 class="sub">四条被退回重写的需求</h3>
-    <p class="subnote">初稿都「读起来没问题」，退回的理由全部是判据缺失。这四条覆盖了写得最差的四类：<b>形容词当指标</b>、<b>相对词当阈值</b>、<b>起止点未定义</b>、<b>两个对象塞一条</b>。第四条的毛病到 v1.1 还没改净，登记在第 3 章的已知偏离里。</p>
+    <p class="subnote">初稿都「读起来没问题」，退回的理由全部是判据缺失。这四条覆盖了写得最差的四类：<b>形容词当指标</b>、<b>相对词当阈值</b>、<b>起止点未定义</b>、<b>两个对象塞一条</b>。第四条的毛病到 v1.2 还没改净，登记在第 5 章的已知偏离里。</p>
     <div class="rw" id="rwGrid"></div>
 
     <h3 class="sub">41 条系统需求（SyR）</h3>
@@ -227,23 +261,60 @@
   </div>
 </section>
 
-<!-- ============================================================ 03 架构 -->
+<!-- ============================================================ 04 架构 -->
 <section class="sec" id="arch">
   <div class="wrap">
     <header class="layerhead">
-      <div class="layerhead__no">03</div>
+      <div class="layerhead__no">04</div>
       <div class="layerhead__txt">
         <div class="layerhead__kicker"><span class="mono">ARCHITECTURE</span> 初始系统架构 · 系统控制框图</div>
         <h2>不用零件树，用控制回路</h2>
-        <p class="layerhead__claim">零件树回答「有什么」，控制回路回答「凭什么按预期动」。本平台的核心风险不在零件缺不缺，而在<b>指令与反馈之间是否对得上</b>——所以架构必须先把这条关系画清楚。</p>
+        <p class="layerhead__claim">零件树回答「有什么」，控制回路回答「凭什么按预期动」。架构定义的三步是<b>准备 → 概念化 → 评估</b>：先定评价准则，再综合三个候选构型，最后加权选出首选。本平台的核心风险不在零件缺不缺，而在<b>指令与反馈之间是否对得上</b>——所以控制结构是主视图，功能与物理视图是它的两侧。</p>
       </div>
     </header>
 
-    <h3 class="sub">四个视图，各回答一个问题</h3>
+    <h3 class="sub">四张视图，各回答一个问题</h3>
     <div class="grid grid--4 views" id="views"></div>
 
+    <h3 class="sub">架构定义三步：先定准则，再选构型</h3>
+    <p class="subnote">讲义把架构定义拆成准备、概念化、评估三段。这里最容易偷的是第一步——<b>先画图再找理由</b>。所以准则与权重在动手之前就写死，画完之后只允许按表打分，不允许改权重。</p>
+    <div class="grid grid--3" id="procGrid"></div>
+
+    <h3 class="sub">三个候选构型：加权之后差 0.35</h3>
+    <div class="table-wrap">
+      <table class="tbl tbl--alt">
+        <thead><tr id="altHead"></tr></thead>
+        <tbody id="altBody"></tbody>
+      </table>
+    </div>
+    <p class="table-hint" id="altNote"></p>
+
+    <h3 class="sub">三条架构决策：每条都要写代价</h3>
+    <p class="subnote">决策记录只写「选了什么」没有用。<b>要写清为什么、代价是什么、风险在哪</b>——半年后接手的人只能靠这三行判断能不能改。</p>
+    <div class="adrs" id="adrGrid"></div>
+
+    <h3 class="sub">功能视图 V1：功能按行为分解</h3>
+    <p class="subnote" id="funcClaim"></p>
+    <div class="table-wrap">
+      <table class="tbl tbl--func">
+        <thead><tr><th class="c-id">功能</th><th>功能名</th><th class="c-fb">输入</th><th class="c-from">输出</th><th class="c-alloc">承担</th><th class="c-ref">条目</th></tr></thead>
+        <tbody id="funcBody"></tbody>
+      </table>
+    </div>
+    <p class="table-hint" id="funcNote"></p>
+
+    <h3 class="sub">物理视图 V3：预算落在十个实物上</h3>
+    <p class="subnote" id="physClaim"></p>
+    <div class="table-wrap">
+      <table class="tbl tbl--phys">
+        <thead><tr><th class="c-id">编号</th><th>物理元素</th><th class="c-fb">承担功能</th><th class="c-num">质量 kg</th><th class="c-num">功率 kW</th><th>说明</th></tr></thead>
+        <tbody id="physBody"></tbody>
+      </table>
+    </div>
+    <p class="table-hint" id="physNote"></p>
+
     <h3 class="sub">系统控制框图：四层控制 + 一条使能链</h3>
-    <p class="subnote">实线为控制动作（谁让谁动），虚线为反馈（谁告诉谁现状）。左侧竖线是<b>使能链</b>：它不参与「怎么动」的决策，只决定「允不允许动」。这条线断在哪里，力矩就在哪里归零。</p>
+    <p class="subnote">实线为控制动作（谁让谁动），虚线为反馈（谁告诉谁现状）。左侧竖线是<b>使能链</b>：它不参与「怎么动」的决策，只决定「允不允许动」。这条线断在哪里，力矩就在哪里归零。<b>这张图同时是 STPA 第二步的控制结构模型</b>——第 05 节不再另画一套，四步法直接在这张图上跑。</p>
 
     <div class="csc">
       <div class="csc__h">
@@ -378,19 +449,20 @@
   </div>
 </section>
 
-<!-- ============================================================ 04 STPA -->
+<!-- ============================================================ 05 STPA -->
 <section class="sec sec--alt" id="stpa">
   <div class="wrap">
     <header class="layerhead">
-      <div class="layerhead__no">04</div>
+      <div class="layerhead__no">05</div>
       <div class="layerhead__txt">
-        <div class="layerhead__kicker"><span class="mono">STPA</span> 系统理论过程分析</div>
+        <div class="layerhead__kicker"><span class="mono">STPA</span> 系统理论过程分析 · 四步</div>
         <h2>不问「哪个零件会坏」，只问「哪个动作在什么语境下不安全」</h2>
         <p class="layerhead__claim">FMEA 从部件失效出发，STPA 从控制行为出发。两者最大的差别是：STPA 能发现<b>所有部件都正常、系统依然危险</b>的情形——本页 12 类致因里 10 类不含任何硬件失效（算法 5 · 反馈 4 · 过程 1），只有 2 类与执行器有关。它们不是「坏了」，而是「不是时候」「不是这里」「没人管」。</p>
       </div>
     </header>
 
     <div class="steps" id="stpaSteps"></div>
+    <p class="subnote" id="stpaStepNote"></p>
 
     <h3 class="sub">第一步：损失、危险、系统级约束</h3>
     <p class="subnote">危险（Hazard）是<b>系统状态</b>，不是部件故障。「平台以不可控速度接近人员」是危险，「制动器卡滞」只是它的一种成因。把两者混为一谈，安全需求就会写成「提高制动器可靠性」，而不是「任何单点故障下 5 s 内进入静止安全态」。</p>
@@ -425,11 +497,11 @@
   </div>
 </section>
 
-<!-- ============================================================ 05 安全 -->
+<!-- ============================================================ 06 安全 -->
 <section class="sec" id="safety">
   <div class="wrap">
     <header class="layerhead">
-      <div class="layerhead__no">05</div>
+      <div class="layerhead__no">06</div>
       <div class="layerhead__txt">
         <div class="layerhead__kicker"><span class="mono">SAFETY</span> 安全需求与安全架构</div>
         <h2>安全不是加一层急停，是改一遍权力结构</h2>
@@ -521,21 +593,31 @@
       </table>
     </div>
 
+    <h3 class="sub">安全架构自己也要被验一遍：五项故障注入</h3>
+    <p class="subnote" id="injClaim"></p>
+    <div class="table-wrap">
+      <table class="tbl tbl--inj">
+        <thead><tr id="injHead"></tr></thead>
+        <tbody id="injBody"></tbody>
+      </table>
+    </div>
+    <p class="table-hint" id="injNote"></p>
+
     <div class="note">
       <b>为什么安全架构不能由安全需求反推：</b>安全需求说「必须保持两种降级模式可用」，但没有说这两者怎么共存、谁仲裁、冲突时听谁的。这些只能在架构里回答——<b>需求约束行为，架构分配权力</b>。
     </div>
   </div>
 </section>
 
-<!-- ============================================================ 06 追溯 -->
+<!-- ============================================================ 07 追溯 -->
 <section class="sec sec--alt" id="trace">
   <div class="wrap">
     <header class="layerhead">
-      <div class="layerhead__no">06</div>
+      <div class="layerhead__no">07</div>
       <div class="layerhead__txt">
         <div class="layerhead__kicker"><span class="mono">TRACEABILITY</span> 全链追溯</div>
         <h2>六环一条链：从一条相关方需求走到一个安全机制</h2>
-        <p class="layerhead__claim">选一条链，看它怎么从「谁在意」走到「谁兜底」。<b>任何一环断掉，都能立刻定位到是谁没写</b>——这就是 MBSE 里「单一事实源」的实际含义。</p>
+        <p class="layerhead__claim">选一条链，看它怎么从「谁在意」走到「谁兜底」。<b>任何一环断掉，都能立刻定位到是谁没写</b>——这就是需求链里「单一事实源」的实际含义。</p>
       </div>
     </header>
 
@@ -544,7 +626,7 @@
     <div class="chain__note" id="chainNote"></div>
 
     <h3 class="sub">改一条，动几处：变更传播</h3>
-    <p class="subnote">MBSE 最实际的收益不是「图画得好看」，而是<b>改一个数就能算出哪些条目要跟着动</b>。下表是四种真实变更的影响面——注意第三、四行：<b>不是所有变更都需要重开安全分析</b>，随口说「全都得重做」和说「都不用改」一样不专业。</p>
+    <p class="subnote">把需求、架构、安全放进同一条链，最实际的收益不是「图画得好看」，而是<b>改一个数就能算出哪些条目要跟着动</b>。下表是四种真实变更的影响面——注意第三、四行：<b>不是所有变更都需要重开安全分析</b>，随口说「全都得重做」和说「都不用改」一样不专业。</p>
     <div class="table-wrap">
       <table class="tbl tbl--impact">
         <thead><tr><th class="c-chg">变更</th><th>受影响的 SyR / SR</th><th>要重做的验证</th><th class="c-stpa">重开 STPA</th></tr></thead>

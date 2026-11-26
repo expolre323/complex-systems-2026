@@ -170,7 +170,7 @@
 .ifacebox__f { margin-top: 14px; font-size: 11.5px; color: var(--fg-3); line-height: 1.75; }
 
 /* ---------------------------------------------------------------- STPA 步 */
-.steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line-2); border-radius: var(--r); overflow: hidden; }
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line-2); border-radius: var(--r); overflow: hidden; }
 .step { background: var(--surface); padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 7px; }
 .step__n { font-family: var(--mono); font-size: 20px; color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--accent) 65%, transparent); line-height: 1; }
 .step h4 { font-size: 13.5px; color: var(--fg); }
@@ -405,3 +405,58 @@ html[data-theme="light"] .cov__cell.on { background: color-mix(in srgb, var(--ac
   .views { grid-template-columns: 1fr; }
   .a3 .sec__head { margin-bottom: 30px; }
 }
+
+/* ======================================================== 作业 03 v1.2 新增 */
+/* 需求分析 · 预算表 */
+.table-wrap > .tbl.tbl--bud { min-width: 900px; }
+.tbl--bud td:nth-child(3) { color: var(--fg-2); font-size: 12.5px; }
+
+/* 架构定义三步 / 功能视图 / 物理视图 */
+.table-wrap > .tbl.tbl--func { min-width: 880px; }
+.table-wrap > .tbl.tbl--phys { min-width: 820px; }
+.tbl .c-fb { width: 168px; }
+.tbl .c-from { width: 150px; }
+.tbl .c-ref { width: 150px; }
+.tbl .c-cond { width: 168px; }
+
+/* 备选方案权衡 */
+.table-wrap > .tbl.tbl--alt { min-width: 880px; }
+.tbl--alt tbody tr.is-pick td {
+  background: color-mix(in srgb, var(--accent) 11%, transparent);
+  color: var(--fg);
+}
+.tbl--alt tbody tr.is-pick td:first-child { box-shadow: inset 2px 0 0 var(--accent); }
+
+/* 架构决策记录 */
+.adrs { display: grid; gap: 14px; grid-template-columns: repeat(3, 1fr); margin-top: 14px; }
+.adr {
+  border: 1px solid var(--line-2); border-radius: var(--r);
+  background: var(--surface); padding: 16px 16px 14px;
+}
+.adr__h { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
+.adr__h .mono { color: var(--accent); font-size: 11px; letter-spacing: .12em; }
+.adr__h b { font-size: 14px; line-height: 1.35; }
+.adr p { margin: 0 0 8px; font-size: 12.5px; line-height: 1.62; color: var(--fg-2); }
+.adr p em {
+  display: inline-block; min-width: 30px; margin-right: 6px;
+  font-style: normal; font-family: var(--mono); font-size: 10px;
+  letter-spacing: .1em; color: var(--fg-3);
+}
+.adr__why { border-left: 2px solid color-mix(in srgb, var(--accent) 45%, transparent); padding-left: 9px; }
+.adr__risk { color: var(--fg-3) !important; }
+
+/* 故障注入表 */
+.table-wrap > .tbl.tbl--inj { min-width: 880px; }
+
+@media (max-width: 980px) {
+  .adrs { grid-template-columns: 1fr; }
+}
+
+/* 四个动作 × 四列（method 由三个动作扩展为四个） */
+#methodCards { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1180px) { #methodCards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { #methodCards { grid-template-columns: 1fr; } }
+
+/* 分析卡片：编号回到文档流，避免与标题挤在一行 */
+#anaKinds .card__no { position: static; display: block; margin-bottom: 8px; }
+#anaKinds .card h4 { margin-top: 0; }

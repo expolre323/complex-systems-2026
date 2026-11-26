@@ -23,7 +23,35 @@
       </article>`).join('');
   }
 
-  /* ============================================================ 02 规格书 */
+  /* ============================================================ 02 需求分析 */
+  function renderAnalysis() {
+    const A = D.analysis;
+    if (!A) return;
+    $('#anaClaim').innerHTML = fmt(A.claim);
+    $('#anaKinds').innerHTML = A.kinds.map((k) => `
+      <article class="card">
+        <div class="card__no mono">${esc(k.en)}</div>
+        <h4>${esc(k.k)}</h4>
+        <p>${esc(k.q)}</p>
+        <span class="out">${esc(k.out)}</span>
+        <span class="here">${esc(k.use)}</span>
+      </article>`).join('');
+
+    const B = A.budget;
+    $('#budClaim').innerHTML = fmt(B.claim);
+    $('#budBody').innerHTML = B.rows.map((r) => `
+      <tr>
+        <td class="tid">${esc(r.k)}</td>
+        <td><span class="src">${esc(r.total)} ${esc(r.unit)}</span></td>
+        <td>${esc(r.parts)}</td>
+        <td class="num">${esc(r.sum)}</td>
+        <td class="num">${esc(r.rest)}</td>
+        <td>${fmt(r.note)}</td>
+      </tr>`).join('');
+    $('#budGap').innerHTML = B.gap.map((g) => `<li>${fmt(g)}</li>`).join('');
+  }
+
+  /* ============================================================ 03 规格书 */
   let curItem = 0;
 
   function renderToc() {
@@ -158,6 +186,70 @@
       </article>`).join('');
   }
 
+  /* ------------------------------------------------- V1 功能 / V3 物理 / 三步 / 权衡 */
+  function renderArchExtra() {
+    const A = D.arch;
+
+    if (A.func) {
+      $('#funcClaim').innerHTML = fmt(A.func.claim);
+      $('#funcBody').innerHTML = A.func.rows.map((r) => `
+        <tr>
+          <td class="tid">${esc(r[0])}</td>
+          <td>${esc(r[1])}</td>
+          <td><span class="src">${esc(r[2])}</span></td>
+          <td><span class="alloc">${esc(r[3])}</span></td>
+          <td>${esc(r[4])}</td>
+          <td><span class="tid">${esc(r[5])}</span></td>
+        </tr>`).join('');
+      $('#funcNote').innerHTML = fmt(A.func.note);
+    }
+
+    if (A.phys) {
+      $('#physClaim').innerHTML = fmt(A.phys.claim);
+      $('#physBody').innerHTML = A.phys.rows.map((r) => `
+        <tr>
+          <td class="tid">${esc(r[0])}</td>
+          <td>${esc(r[1])}</td>
+          <td><span class="src">${esc(r[2])}</span></td>
+          <td class="num">${esc(r[3])}</td>
+          <td class="num">${esc(r[4])}</td>
+          <td>${esc(r[5])}</td>
+        </tr>`).join('');
+      $('#physNote').innerHTML = fmt(A.phys.note);
+    }
+
+    if (A.proc) {
+      $('#procGrid').innerHTML = A.proc.map((p) => `
+        <article class="card">
+          <div class="card__no mono">STEP ${esc(p.no)}</div>
+          <h4>${esc(p.t)}</h4>
+          <p>${fmt(p.p)}</p>
+          <span class="out">${esc(p.out)}</span>
+        </article>`).join('');
+    }
+
+    if (A.alt) {
+      $('#altHead').innerHTML = A.alt.head.map((h) => `<th>${esc(h)}</th>`).join('');
+      $('#altBody').innerHTML = A.alt.rows.map((r) => `
+        <tr${/选定/.test(r[6]) ? ' class="is-pick"' : ''}>
+          ${r.map((c, i) => `<td${i === 5 ? ' class="num"' : ''}>${esc(c)}</td>`).join('')}
+        </tr>`).join('');
+      $('#altNote').innerHTML = fmt(A.alt.note);
+    }
+
+    if (A.adr) {
+      $('#adrGrid').innerHTML = A.adr.map((a) => `
+        <article class="adr">
+          <div class="adr__h"><span class="mono">${esc(a.id)}</span><b>${esc(a.t)}</b></div>
+          <p class="adr__pick"><em>决策</em>${esc(a.pick)}</p>
+          <p class="adr__why"><em>理由</em>${esc(a.why)}</p>
+          <p class="adr__cost"><em>代价</em>${esc(a.cost)}</p>
+          <p class="adr__risk"><em>风险</em>${esc(a.risk)}</p>
+        </article>`).join('');
+    }
+  }
+
+
   function renderCA() {
     $('#caBody').innerHTML = D.arch.ca.map((r) => `
       <tr>
@@ -194,6 +286,8 @@
         <p>${esc(s.p)}</p>
         <div class="step__o">${esc(s.out)}</div>
       </div>`).join('');
+    const n = $('#stpaStepNote');
+    if (n && D.stpa.stepNote) n.innerHTML = fmt(D.stpa.stepNote);
   }
 
   function renderTrip() {
@@ -307,6 +401,17 @@
       </tr>`).join('');
   }
 
+  /* -------------------------------------------------- 故障注入（安全架构验证） */
+  function renderInject() {
+    const I = D.sr.inj;
+    if (!I) return;
+    $('#injClaim').innerHTML = fmt(I.claim);
+    $('#injHead').innerHTML = I.head.map((h) => `<th>${esc(h)}</th>`).join('');
+    $('#injBody').innerHTML = I.rows.map((r) => `
+      <tr>${r.map((c, i) => `<td${i === 0 ? ' class="tid"' : ''}>${esc(c)}</td>`).join('')}</tr>`).join('');
+    $('#injNote').innerHTML = fmt(I.note);
+  }
+
   /* ---------------------------------------------------------- 覆盖矩阵 */
   function renderCov() {
     const srs = D.sr.items, ucas = D.stpa.uca;
@@ -418,8 +523,8 @@
 
   /* ============================================================ 页面骨架 */
   const SECS = [
-    ['method', '01', '读法'], ['syrs', '02', '规格书'], ['arch', '03', '架构'],
-    ['stpa', '04', 'STPA'], ['safety', '05', '安全'], ['trace', '06', '追溯']
+    ['method', '01', '读法'], ['analysis', '02', '分析'], ['syrs', '03', '规格书'],
+    ['arch', '04', '架构'], ['stpa', '05', 'STPA'], ['safety', '06', '安全'], ['trace', '07', '追溯']
   ];
 
   function initRail() {
@@ -490,18 +595,19 @@
   /* ================================================================== 启动 */
   function boot() {
     renderMethod();
+    renderAnalysis();
     renderBase();
     renderToc(); goItem(0);
     renderAcct(); renderBal(); renderRewrites();
     renderSyrFilters(); renderSyr(); renderSyrHint();
-    renderViews(); renderCA(); renderAlloc();
+    renderViews(); renderArchExtra(); renderCA(); renderAlloc();
     renderSteps(); renderTrip();
     renderUcaFilters(); renderUca(); renderCauses();
-    renderSR(); renderCov();
+    renderSR(); renderInject(); renderCov();
     renderChainPick(); renderChain(); renderImpact(); renderChecks();
     renderRefs();
     initStats(); initRail(); initKeys();
-    if (window.FX && FX.reveal) FX.reveal('.card, .step, .trip__col, .cause, .chain__n, .doc, .csc, .saf, .base, .bal, .rw__i, .cov, .merge');
+    if (window.FX && FX.reveal) FX.reveal('.card, .step, .trip__col, .cause, .chain__n, .doc, .csc, .saf, .base, .bal, .rw__i, .cov, .merge, .adr');
     if (window.FX && FX.spotlight) FX.spotlight('.card');
   }
 
