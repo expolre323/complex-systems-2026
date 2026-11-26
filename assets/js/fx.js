@@ -1,6 +1,6 @@
 /* ============================================================================
    IBEX-01 · 交互层（两个页面共用）
-   主题（默认深色）· 数字滚动 · 指针光斑 · 分段入场 · 快捷键 · 页面转场
+   主题（默认浅色）· 数字滚动 · 指针光斑 · 分段入场 · 快捷键 · 页面转场
    无依赖，加载顺序：data.js → fx.js → app.js / home.js
    ========================================================================== */
 window.FX = (function () {
@@ -25,7 +25,7 @@ window.FX = (function () {
 
   let saved = null;
   try { saved = localStorage.getItem(KEY); } catch (e) {}
-  setTheme(saved === 'light' ? 'light' : 'dark', false);
+  setTheme(saved === 'dark' ? 'dark' : 'light', false);
 
   function toggleTheme() {
     const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';

@@ -591,3 +591,7 @@ html[data-theme="light"] .lv--m { color: #8a6a1e; }
   writing-mode: vertical-rl; text-orientation: upright;
   letter-spacing: .22em; font-size: 9.5px; padding: 10px 6px;
 }
+
+/* 图示标题两侧留出间距，避免长英文标签贴住中文 */
+.hero__viz .viz__h { gap: 12px; }
+.hero__viz .viz__h .mono { white-space: nowrap; }

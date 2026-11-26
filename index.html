@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IBEX-01 轮腿式无人作战平台 · 复杂系统工程 2026 小组作业</title>
-<meta name="description" content="复杂系统工程 2026 小组作业：以 IBEX-01 轮腿式无人作战平台为对象。作业 01 回答它由什么构成，作业 02 回答它凭什么这样要求，作业 03 回答谁来承担、失效时谁兜底，作业 04 回答它在什么里面跑。">
-<meta name="theme-color" content="#07080a">
+<meta name="description" content="复杂系统工程 2026 小组作业：以 IBEX-01 轮腿式无人作战平台为对象。作业 01 界定构成与层级边界，作业 02 建立需求基线，作业 03 输出系统需求规格与初始架构并反推安全约束，作业 04 给出运行设计条件与场景判据。">
+<meta name="theme-color" content="#f4f2e9">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307080a'/%3E%3Cpath d='M6 22h20M9 22v-6l3-4 3 4v6M17 22v-6l3-4 3 4v6' stroke='%23d8b45e' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/fx.css">
 <link rel="stylesheet" href="assets/css/home.css">
 <script>
-  /* 首屏前锁定主题：默认深色，只有用户主动选过浅色才覆盖 */
-  (function(){try{var t=localStorage.getItem('cse-theme-v2');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();
+  /* 首屏前锁定主题：默认浅色，仅当用户主动切换过深色时才覆盖 */
+  (function(){try{var t=localStorage.getItem('cse-theme-v2');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();
 </script>
 </head>
 <body>
@@ -75,11 +75,11 @@
       <p class="hero__sub">Complex Systems Engineering 2026&nbsp;&nbsp;/&nbsp;&nbsp;Four Assignments</p>
 
       <p class="hero__lede">
-        同一台平台，四次作业回答四个层层递进的问题：作业 01 回答它<strong>由什么构成</strong>，
-        作业 02 回答它<strong>凭什么这样要求</strong>，作业 03 回答<strong>谁来承担、失效时谁兜底</strong>，
-        作业 04 回答<strong>它在什么里面跑</strong>。
-        从六层分解到 40 条相关方需求、41 条系统需求与 12 条安全需求，再到六层 42 项场景要素——
-        四次共用一套编号，所以第 04 页的每一条风险场景，都能落回第 01 页的某个系统上。
+        同一平台，四次作业沿 V 模型左下行逐级细化：作业 01 界定<strong>构成与层级边界</strong>，
+        作业 02 建立<strong>业务与相关方需求基线</strong>，作业 03 输出<strong>系统需求规格与初始架构</strong>并反推安全约束，
+        作业 04 给出<strong>运行设计条件与场景判据</strong>。
+        自六层分解至 40 条相关方需求、41 条系统需求与 12 条安全需求，再至六层 42 项场景要素，
+        四次作业共用同一编号体系，故第 04 页的每条风险场景均可回溯至第 01 页的系统条目。
       </p>
 
       <div class="hero__cta">
@@ -104,7 +104,7 @@
   <div class="wrap about">
     <div class="about__l">
       <div class="sec__kicker"><span class="mono">ABOUT</span> 关于本页</div>
-      <h2 class="sec__title">一个静态站点，没有后端</h2>
+      <h2 class="sec__title">静态站点的架构与内容组织</h2>
     </div>
     <div class="about__r">
       <p>全站为纯静态页面，不依赖任何框架或 CDN，断网也能打开。所有结构化内容集中在 <span class="mono">assets/js/data.js</span>、<span class="mono">assets/js/a2-data.js</span> 与 <span class="mono">assets/js/a3-data.js</span> 与 <span class="mono">assets/js/a4-data.js</span>，页面结构只负责呈现。</p>
