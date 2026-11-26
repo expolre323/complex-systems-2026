@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作业 04 · 场景分层与运行设计条件 | IBEX-01 轮腿式无人作战平台</title>
+<meta name="description" content="复杂系统工程 2026 小组作业 04：按第七课把 IBEX-01 所处的环境拆成六层、42 项场景要素，给出 ODD／系统状态／人员状态／其他条件四类运行设计条件共 33 项判据，选取一个具体场景做时间轴论述，并沿控制结构反推 10 条风险场景。">
+<meta name="theme-color" content="#07080a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307080a'/%3E%3Cpath d='M6 22h20M9 22v-6l3-4 3 4v6M17 22v-6l3-4 3 4v6' stroke='%23d8b45e' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/fx.css">
+<link rel="stylesheet" href="assets/css/a2.css">
+<link rel="stylesheet" href="assets/css/a3.css">
+<link rel="stylesheet" href="assets/css/a4.css">
+<script>
+  /* 首屏前锁定主题：默认深色，只有用户主动选过浅色才覆盖 */
+  (function(){try{var t=localStorage.getItem('cse-theme-v2');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();
+</script>
+</head><body class="a3 a4">
+<div class="scrollbar" id="scrollbar" aria-hidden="true"></div>
+<a class="skip-link" href="#main">跳到正文</a>
+
+<!-- ============================================================ 顶栏 -->
+<header class="topbar" id="topbar">
+  <div class="topbar__in">
+    <a class="brand" href="#top" aria-label="回到顶部">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M5 23h22M8 23v-7l4-5 4 5v7M16 23v-7l4-5 4 5v7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <circle cx="8" cy="23" r="1.6" fill="currentColor"/><circle cx="16" cy="23" r="1.6" fill="currentColor"/><circle cx="24" cy="23" r="1.6" fill="currentColor"/>
+      </svg>
+      <span class="brand__txt"><b>IBEX-01</b><i>轮腿式无人作战平台</i></span>
+    </a>
+    <a class="backlink" href="index.html" aria-label="返回首页"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>首页</span></a>
+
+    <nav class="layernav" id="nav" aria-label="章节导航">
+      <a href="#method"><em>01</em><span>读法</span></a>
+      <a href="#concept"><em>02</em><span>概念</span></a>
+      <a href="#layers"><em>03</em><span>分层</span></a>
+      <a href="#odc"><em>04</em><span>条件</span></a>
+      <a href="#scene"><em>05</em><span>场景</span></a>
+      <a href="#risk"><em>06</em><span>风险</span></a>
+      <a href="#use"><em>07</em><span>用法</span></a>
+    </nav>
+
+    <div class="topbar__tools">
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="切换明暗主题" aria-pressed="false">
+        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/>
+        </svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <path d="M20.5 14.4A8.6 8.6 0 0 1 9.6 3.5a8.7 8.7 0 1 0 10.9 10.9Z" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="iconbtn menu-btn" id="menuBtn" type="button" aria-label="展开导航" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================ HERO -->
+<section class="hero" id="top">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="wrap hero__wrap">
+    <div class="hero__body">
+      <div class="hero__l">
+        <div class="hero__meta">
+          <span class="tag tag--live"><i></i>作业 04 · 已发布</span>
+          <span class="tag">复杂系统工程 2026</span>
+          <span class="tag">场景 · ODC · 风险</span>
+          <span class="tag tag--ghost">第 4 步 / 它在什么里面跑</span>
+        </div>
+
+        <h1 class="hero__title">
+          <span class="hero__code">IBEX-01 / A-04</span>
+          <span class="hero__name">场景分层与运行设计条件</span>
+        </h1>
+        <p class="hero__sub">Scenario-Based Systems Engineering&nbsp;&nbsp;/&nbsp;&nbsp;Layering · ODC · Risk</p>
+
+        <p class="hero__lede">
+          前三次作业都在回答「系统该是什么样」，这一次问的是「它到底在什么里面跑」。
+          六层、42 项要素，不是为了把环境写全——是为了让每一层能<b>单独拧一个旋钮</b>；
+          ODC 也不是 ODD 的同义词，<strong>环境许可只是三票里的一票</strong>。
+          最后一段场景里链路断了 96 秒，它照出了作业 03 里四条没人写过的需求。
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#layers">先看六层分层<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn" href="#scene">看典型场景</a>
+          <a class="btn btn--ghost" href="#risk">直达风险场景</a>
+        </div>
+      </div>
+
+      <aside class="hero__viz" aria-label="六层场景要素与三张许可票的关系">
+        <div class="viz__h"><span class="mono">LAYER → VOTE → ENTER</span><i>六层与三票</i></div>
+        <svg viewBox="0 0 460 400" role="img" aria-label="六层场景要素汇入环境票、系统票、人员票，三票全过才允许进入">
+          <defs>
+            <marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 1 L9 5 L0 9" fill="none" stroke="var(--fg-3)" stroke-width="1.6"/>
+            </marker>
+          </defs>
+          <text class="a4v__cap" x="10" y="12">SCENE LAYERS</text>
+          <text class="a4v__cap" x="322" y="12">PERMIT VOTES</text>
+
+          <g class="a4v__lyr">
+            <rect x="10" y="22" width="250" height="34" rx="5"/>
+            <text x="22" y="44" class="a4v__id">S6</text><text x="56" y="44" class="a4v__n">网联与电磁</text>
+            <text x="248" y="44" class="a4v__c" text-anchor="end">6</text>
+          </g>
+          <g class="a4v__lyr">
+            <rect x="10" y="62" width="250" height="34" rx="5"/>
+            <text x="22" y="84" class="a4v__id">S5</text><text x="56" y="84" class="a4v__n">天气与光照</text>
+            <text x="248" y="84" class="a4v__c" text-anchor="end">7</text>
+          </g>
+          <g class="a4v__lyr">
+            <rect x="10" y="102" width="250" height="34" rx="5"/>
+            <text x="22" y="124" class="a4v__id">S4</text><text x="56" y="124" class="a4v__n">参与者</text>
+            <text x="248" y="124" class="a4v__c" text-anchor="end">8</text>
+          </g>
+          <g class="a4v__lyr">
+            <rect x="10" y="142" width="250" height="34" rx="5"/>
+            <text x="22" y="164" class="a4v__id">S3</text><text x="56" y="164" class="a4v__n">临时变更</text>
+            <text x="248" y="164" class="a4v__c" text-anchor="end">7</text>
+          </g>
+          <g class="a4v__lyr">
+            <rect x="10" y="182" width="250" height="34" rx="5"/>
+            <text x="22" y="204" class="a4v__id">S2</text><text x="56" y="204" class="a4v__n">标识与规则</text>
+            <text x="248" y="204" class="a4v__c" text-anchor="end">6</text>
+          </g>
+          <g class="a4v__lyr a4v__lyr--base">
+            <rect x="10" y="222" width="250" height="34" rx="5"/>
+            <text x="22" y="244" class="a4v__id">S1</text><text x="56" y="244" class="a4v__n">通行面</text>
+            <text x="248" y="244" class="a4v__c" text-anchor="end">8</text>
+          </g>
+
+          <path class="a4v__ln" d="M260 239 C 290 239 290 239 300 239" marker-end="url(#ar4)"/>
+          <text class="a4v__sm" x="20" y="282">42 项要素 · 4 条跨层耦合</text>
+
+          <g class="a4v__vote">
+            <rect x="312" y="22" width="134" height="46" rx="6"/>
+            <text x="324" y="42" class="a4v__vid">V1 · ODD</text>
+            <text x="324" y="60" class="a4v__vt">环境许可 11 项</text>
+          </g>
+          <g class="a4v__vote">
+            <rect x="312" y="96" width="134" height="46" rx="6"/>
+            <text x="324" y="116" class="a4v__vid">V2 · SYS</text>
+            <text x="324" y="134" class="a4v__vt">系统状态 9 项</text>
+          </g>
+          <g class="a4v__vote">
+            <rect x="312" y="170" width="134" height="46" rx="6"/>
+            <text x="324" y="190" class="a4v__vid">V3 · HUM</text>
+            <text x="324" y="208" class="a4v__vt">人员状态 7 项</text>
+          </g>
+          <g class="a4v__vote">
+            <rect x="312" y="244" width="134" height="46" rx="6"/>
+            <text x="324" y="264" class="a4v__vid">V4 · OTH</text>
+            <text x="324" y="282" class="a4v__vt">其他条件 6 项</text>
+          </g>
+
+          <rect class="a4v__out" x="10" y="312" width="436" height="56" rx="7"/>
+          <text x="28" y="336" class="a4v__ot">四票全过 → 进入；任一票不过 → 降级或退出</text>
+          <text x="28" y="355" class="a4v__om">环境没问题、它自己不行了 —— 这是无人系统最典型的失效</text>
+        </svg>
+        <p class="viz__f">42 项要素只是原材料，判定要看四张票</p>
+      </aside>
+    </div>
+
+    <div class="stats" id="stats"></div>
+  </div>
+</section>
+
+<!-- ============================================================ 01 读法 -->
+<section class="sec sec--tight" id="method">
+  <div class="wrap">
+    <div class="sec__head">
+      <div class="sec__kicker"><span class="mono">METHOD</span> 读法说明</div>
+      <h2 class="sec__title">四个动作：分层，定界，取材，反推</h2>
+      <p class="sec__lede">讲义把场景这一章放在最后一讲，不是因为它最简单，而是因为它是前面所有工作的<b>落地口</b>：需求要有场景才可验证，架构要有场景才可评估，安全分析要有场景才可触发。四个动作的顺序不能倒——先分层才有参数，先定界才知道哪些参数在界内，先取材才有可分析的实例，最后才可能反推出风险。</p>
+    </div>
+    <div class="a2-lead" id="methodCards"></div>
+  </div>
+</section>
+
+<!-- ============================================================ 02 概念 -->
+<section class="sec sec--alt" id="concept">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">02</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">CONCEPT</span> 场景 · 情景 · 用例 · 三级粒度</div>
+        <h2>五个词天天混用，混一次就返工一次</h2>
+        <p class="layerhead__claim">定义本身不复杂，难的是分清<b>哪一层在说什么</b>：场景有时间，情景没有；场景描述能存，用例还带通过准则。把「情景」当「场景」交付，交出去的就是一张没有时间的参数表。</p>
+      </div>
+    </header>
+
+    <div class="scn-def" id="defBox"></div>
+
+    <h3 class="sub">五个术语，各管一段</h3>
+    <div class="table-wrap"><table class="tbl tbl--terms">
+      <thead><tr><th class="c-id">编号</th><th class="c-t2">术语</th><th>含义与边界</th><th class="c-here2">在本页的落点</th></tr></thead>
+      <tbody id="termsBody"></tbody>
+    </table></div>
+    <p class="subnote" id="termsNote"></p>
+
+    <h3 class="sub">同一个场景，三级收敛</h3>
+    <div class="grain" id="grainBox"></div>
+    <p class="subnote" id="grainNote"></p>
+
+    <h3 class="sub">场景从哪来：四类来源，互相补盲</h3>
+    <div class="srcs" id="srcBox"></div>
+    <p class="subnote" id="srcNote"></p>
+
+    <h3 class="sub">怎么采：三种方式的取舍</h3>
+    <div class="table-wrap"><table class="tbl tbl--coll">
+      <thead><tr><th class="c-id">方式</th><th class="c-g">能给你什么</th><th class="c-b2">给不了什么</th><th class="c-here2">本平台怎么用</th></tr></thead>
+      <tbody id="collBody"></tbody>
+    </table></div>
+    <p class="subnote" id="collNote"></p>
+  </div>
+</section>
+
+<!-- ============================================================ 03 分层 -->
+<section class="sec" id="layers">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">03</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">LAYERING</span> 六层 · 42 项要素 · 4 条跨层耦合</div>
+        <h2>层是拿来拧旋钮的，不是拿来归档的</h2>
+        <p class="layerhead__claim">讲义那六层是为道路场景写的。轮腿平台不跑道路，跑的是<b>通行面</b>——没有车道线，只有过不过得去。层数保留，内容重写，并且每一层都要写出它对应谁：照搬名字而不改内容，是这类作业最常见的偷懒。</p>
+      </div>
+    </header>
+
+    <h3 class="sub">先交代对应关系：六层照搬，内容不照搬</h3>
+    <div class="table-wrap"><table class="tbl tbl--laymap">
+      <thead><tr><th class="c-id">讲义原层</th><th class="c-new">本页改称</th><th>为什么必须改</th></tr></thead>
+      <tbody id="mapBody"></tbody>
+    </table></div>
+
+    <h3 class="sub">六层要素明细</h3>
+    <p class="subnote">每层先给一个问题，再给要素。<b>「影响路径」这一列是这张表的价值所在</b>——只写取值不写影响，等于把字典抄了一遍。</p>
+    <div id="layerBox"></div>
+
+    <h3 class="sub">跨层耦合：有的层改的是另一层的有效值</h3>
+    <div class="couples" id="coupleBox"></div>
+    <p class="subnote" id="coupleNote"></p>
+  </div>
+</section>
+
+<!-- ============================================================ 04 ODC -->
+<section class="sec sec--alt" id="odc">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">04</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">ODC</span> 运行设计条件 · 四张票 · 33 项判据</div>
+        <h2>环境没问题，是它自己不行了</h2>
+        <p class="layerhead__claim">ODC ＝ ODD ＋ 车辆状态 ＋ 驾乘人员状态 ＋ 其他必要条件。无人平台没有驾乘人员，这一栏换成<b>操作手 + 授权链 + 指挥关系</b>。四张票必须分开投——合成一张，就会在电量偏低时照常爬坡。</p>
+      </div>
+    </header>
+
+    <div class="votes" id="voteBox"></div>
+
+    <h3 class="sub">V1 环境票：ODD 十一项</h3>
+    <div class="table-wrap"><table class="tbl tbl--odd">
+      <thead><tr><th class="c-e2">要素</th><th class="c-g">许可范围</th><th class="c-j">判定方式</th><th class="c-a2">越界后动作</th></tr></thead>
+      <tbody id="oddBody"></tbody>
+    </table></div>
+
+    <h3 class="sub">V2 系统票：九个状态量，三档</h3>
+    <div class="table-wrap"><table class="tbl tbl--sys">
+      <thead><tr><th class="c-e2">状态量</th><th class="c-g">正常</th><th class="c-j">降级</th><th class="c-a2">禁止</th></tr></thead>
+      <tbody id="sysBody"></tbody>
+    </table></div>
+
+    <h3 class="sub">V3 人员票：七个组织状态</h3>
+    <div class="table-wrap"><table class="tbl tbl--hum">
+      <thead><tr><th class="c-e2">人员与组织状态</th><th class="c-g">要求</th><th class="c-a2">不满足时</th></tr></thead>
+      <tbody id="humBody"></tbody>
+    </table></div>
+
+    <h3 class="sub">V4 其他票：六个版本与时效条件</h3>
+    <div class="table-wrap"><table class="tbl tbl--oth">
+      <thead><tr><th class="c-e2">其他必要条件</th><th class="c-g">要求</th><th class="c-a2">失效后果</th></tr></thead>
+      <tbody id="othBody"></tbody>
+    </table></div>
+
+    <h3 class="sub">一个例子：同一个坡度，两个结论</h3>
+    <div class="odc-case" id="caseBox"></div>
+  </div>
+</section>
+
+<!-- ============================================================ 05 典型场景 -->
+<section class="sec" id="scene">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">05</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">INSTANCE</span> 具体场景 · 十项参数 · 七段</div>
+        <h2 id="sceneTitle">城区废墟抵近观察 · 夜间小雨 · 链路中断 96 秒</h2>
+        <p class="layerhead__claim" id="sceneWhy"></p>
+      </div>
+    </header>
+
+    <h3 class="sub">十项参数：每个值都得有出处</h3>
+    <div class="table-wrap"><table class="tbl tbl--params">
+      <thead><tr><th class="c-e2">参数</th><th class="c-v2">取值</th><th class="c-s2">取值来源</th></tr></thead>
+      <tbody id="paramBody"></tbody>
+    </table></div>
+
+    <h3 class="sub">七段时间轴：从入区到驻车</h3>
+    <div class="tl" id="tlBox"></div>
+    <p class="subnote" id="sceneNote"></p>
+  </div>
+</section>
+
+<!-- ============================================================ 06 风险 -->
+<section class="sec sec--alt" id="risk">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">06</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">RISK</span> 安全风险分析 · 10 条风险场景</div>
+        <h2>风险场景不是事故清单</h2>
+        <p class="layerhead__claim" id="riskClaim"></p>
+      </div>
+    </header>
+
+    <div class="risk-hd">
+      <div class="rsteps" id="riskSteps"></div>
+      <div class="scales" id="scaleBox"></div>
+    </div>
+    <p class="subnote" id="riskRule"></p>
+
+    <h3 class="sub">风险场景列表</h3>
+    <div class="table-wrap"><table class="tbl tbl--rs">
+      <thead><tr>
+        <th class="c-id">编号</th><th class="c-ph">段</th><th class="c-rn">风险场景</th>
+        <th class="c-hz2">H</th><th class="c-uca">UCA</th><th class="c-k">K</th>
+        <th class="c-sec">S/E/C</th><th class="c-lv">等级</th><th class="c-fix">对策</th>
+      </tr></thead>
+      <tbody id="rsBody"></tbody>
+    </table></div>
+
+    <h3 class="sub">分布：看空档，不要看颜色</h3>
+    <div class="mxwrap">
+      <table class="mx4" id="mxBox"></table>
+      <p class="subnote" id="mxNote"></p>
+    </div>
+
+    <h3 class="sub">这次照出来的三处缺口</h3>
+    <ol class="gaps" id="gapBox"></ol>
+  </div>
+</section>
+
+<!-- ============================================================ 07 用法 -->
+<section class="sec" id="use">
+  <div class="wrap">
+    <header class="layerhead">
+      <div class="layerhead__no">07</div>
+      <div class="layerhead__txt">
+        <div class="layerhead__kicker"><span class="mono">LIFECYCLE</span> 七阶段 · 一条八环链 · 四项自检</div>
+        <h2>场景只用来做测试，是用掉它十分之一</h2>
+        <p class="layerhead__claim" id="useClaim"></p>
+      </div>
+    </header>
+
+    <div class="table-wrap"><table class="tbl tbl--life">
+      <thead><tr><th class="c-id">阶段</th><th class="c-l2">用场景做什么</th><th class="c-s3">切片</th><th class="c-o2">产出物</th><th class="c-at2">对应作业</th></tr></thead>
+      <tbody id="lifeBody"></tbody>
+    </table></div>
+    <p class="subnote" id="useNote"></p>
+
+    <h3 class="sub">一条八环链：从一项要素取值走到一个试验用例</h3>
+    <div class="chain8" id="chainBox"></div>
+    <p class="subnote" id="chainNote"></p>
+
+    <h3 class="sub">四项自检</h3>
+    <div class="checks2" id="checkBox"></div>
+
+    <h3 class="sub">引用</h3>
+    <ul class="refs" id="refList"></ul>
+    <p class="disclaimer" id="disclaimer"></p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================ 收束 -->
+<section class="sec sec--tight" id="next">
+  <div class="wrap nextbar">
+    <div>
+      <p class="mono dim">CLOSURE · 四次作业的接口</p>
+      <h3>第四次不是加一章，是把前三次拉回地面</h3>
+      <p>作业 01–03 回答「该是什么样」，作业 04 回答「在什么条件下才算跑得对」。42 项场景要素里有 39 项能指回具体需求，10 条风险场景全部落到 SR 或架构机制——<b>这条链合上，前面三份文档才不是纸面作业</b>。</p>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn" href="a3.html">← 回看作业 03</a>
+      <a class="btn" href="a2.html">回看作业 02</a>
+      <a class="btn btn--primary" href="index.html">返回首页<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<nav class="rail" id="rail" aria-label="章节快速跳转"></nav>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__left">
+      <div class="foot__code mono">IBEX-01 / A-04 · SCN-001</div>
+      <p>复杂系统工程 2026 · 轮腿式无人作战平台</p>
+    </div>
+    <div class="foot__right">
+      <p class="mono dim">场景分层 · ODC · 风险场景</p>
+      <p class="mono dim" id="footMeta"></p>
+      <a class="btn btn--sm" href="#top">回到顶部</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/fx.js"></script>
+<script src="assets/js/a4-data.js"></script>
+<script src="assets/js/a4.js"></script>
+</body>
+</html>
