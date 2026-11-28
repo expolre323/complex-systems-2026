@@ -14,11 +14,11 @@ window.CSE = {
     theme: '轮腿式无人作战平台',
     course: '复杂系统工程 2026',
     teacher: '张玉新',
-    assignment: '小组作业 01–03',
+    assignment: '小组作业 01–04',
     subtitle: '从六层分解，到需求基线，再到架构与安全',
     deadline: '',
-    updated: '2026-11-26',
-    version: 'v4.0',
+    updated: '2026-11-28',
+    version: 'v4.1',
     stats: [
       { k: '层级', v: '6', u: 'LAYERS' },
       { k: '体系成员', v: '7', u: 'SoS MEMBERS' },
@@ -707,6 +707,7 @@ window.CSE = {
   /* --------------------------------------------------------------- 后续作业 */
   roadmap: [
     { no: '01', name: '系统构成与六层分解', en: 'System Decomposition', status: 'published', date: '2026.11.11', href: 'a1.html',
+      img: 'assets/img/plat-hero.jpg', alt: 'IBEX-01 停在塌陷街区边缘，四条轮腿着地，桅杆升起',
       q: '系统由什么构成',
       note: '任务→体系→整机→系统→子系统→模块，含接口清单、质量/功率/信息流预算闭合与六层追溯链。',
       keys: [
@@ -716,6 +717,7 @@ window.CSE = {
       ],
       gain: '建立 S01–S11 系统编号、47 个子系统边界、188 个末端模块，以及五类体系接口的量化约束。' },
     { no: '02', name: '概念定义与需求分析', en: 'Requirements', status: 'published', date: '2026.11.18', href: 'a2.html',
+      img: 'assets/img/deploy-truck.jpg', alt: '两人在卡车平板上解除系留，将平台展开至可行驶状态',
       q: '需求依据从何而来',
       note: 'BRS + StRS 双文档：业务/任务需求、ConOps、OpsCon、18 类相关方、40 条相关方需求与追溯矩阵。',
       keys: [
@@ -725,6 +727,7 @@ window.CSE = {
       ],
       gain: '完整输出 BRS（表 4-1 框架）与 StRS（表 4-5 框架），形成 6 条 BRQ、10 条 TR、40 条 StR 的需求基线。' },
     { no: '03', name: '系统需求与初始架构', en: 'SyRS & Architecture', status: 'published', date: '2026.11.21', href: 'a3.html',
+      img: 'assets/img/bay-interface.jpg', alt: '维修间内平台侧板打开，舱位、线束与电池包外露',
       q: '需求由谁承担、失效由谁控制',
       note: 'SyRS + 系统控制框图 + STPA：41 条系统需求、四层控制结构、20 条 UCA 与 12 条安全需求。',
       keys: [
@@ -734,6 +737,7 @@ window.CSE = {
       ],
       gain: '把 40 条相关方需求转成 41 条系统需求并分配到 S01–S11，再用 STPA 反推出 12 条安全需求，形成基线 B2。' },
     { no: '04', name: '场景分层与运行设计条件', en: 'Scenario & ODC', status: 'published', date: '2026.11.26', href: 'a4.html',
+      img: 'assets/img/degraded.jpg', alt: '平台停在城区的混凝土碎块上，车顶信标闪烁',
       q: '系统在什么条件下可运行',
       note: '场景六层 42 项要素、ODC 四类 33 项判据、一个具体场景的七段时间轴，以及 10 条分类后的风险场景。',
       keys: [

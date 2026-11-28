@@ -21,6 +21,7 @@
 
   const card = (r, i) => `
     <a class="gate" href="${esc(r.href)}" aria-label="进入作业 ${esc(r.no)} ${esc(r.name)}">
+      ${r.img ? `<div class="gate__fig"><img src="${esc(r.img)}" alt="${esc(r.alt || '')}" decoding="async"></div>` : ''}
       <div class="gate__top">
         <span class="gate__no">${esc(r.no)}</span>
         <span class="gate__tag mono">${esc(r.en)}</span>
