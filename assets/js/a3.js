@@ -48,7 +48,6 @@
         <td class="num">${esc(r.rest)}</td>
         <td>${fmt(r.note)}</td>
       </tr>`).join('');
-    $('#budGap').innerHTML = B.gap.map((g) => `<li>${fmt(g)}</li>`).join('');
   }
 
   /* ============================================================ 03 规格书 */

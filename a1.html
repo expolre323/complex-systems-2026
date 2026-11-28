@@ -321,6 +321,11 @@
       </div>
     </header>
 
+    <figure class="figure figure--photo" style="margin-bottom:26px">
+      <img src="assets/img/plat-hero.jpg" alt="IBEX-01 在坍塌建筑边缘的实地状态，四条轮腿撑地，桅杆升起" loading="lazy">
+      <figcaption><b>IBEX-01 实装状态。</b>四条髋膝两自由度轮腿撑地，车体距地 0.4 m，桅杆升起至 4 m。任务载荷舱门位于左侧，快换电池从后部水平抽出——三个选择分别对应任务层的三对矛盾。</figcaption>
+    </figure>
+
     <div class="split split--rev">
       <div>
         <h3 class="sub">构型空间：两条轴线穷举</h3>
@@ -393,6 +398,21 @@
 
     <h3 class="sub">四种机动模态：单一机构的四类物理行为</h3>
     <div class="grid grid--4" id="modes"></div>
+
+    <div class="pgrid pgrid--3">
+      <figure class="figure figure--photo">
+        <img src="assets/img/mode-wheel.jpg" alt="轮式巡航：腿折叠、四轮着地、车体降低" loading="lazy">
+        <figcaption><b>MD-1 轮式巡航。</b>腿折叠至最短，四轮着地，车体降低 200 mm，40 km/h 不掉队。</figcaption>
+      </figure>
+      <figure class="figure figure--photo">
+        <img src="assets/img/mode-climb.jpg" alt="腿式越障：前轮搭上碎石堆，后腿支撑推进" loading="lazy">
+        <figcaption><b>MD-2 腿式越障。</b>前腿把轮端抬上 0.7 m 台阶，后腿支撑推进，无需变形机构。</figcaption>
+      </figure>
+      <figure class="figure figure--photo">
+        <img src="assets/img/mode-observe.jpg" alt="姿态调平：四条腿独立伸缩，车体归零，桅杆垂直" loading="lazy">
+        <figcaption><b>MD-3 姿态调平。</b>四条腿独立伸缩把俯仰与横滚归零，桅杆垂直度 ≤ 0.5°。</figcaption>
+      </figure>
+    </div>
 
     <h3 class="sub">概念基线指标（用于向下分配预算，非实测值）</h3>
     <div class="specs" id="specs"></div>
@@ -492,15 +512,6 @@
       <div class="trace__body" id="chainBody"></div>
     </div>
 
-    <div class="panel panel--wide">
-      <h4 class="panel__h">分解质量的四条自检</h4>
-      <div class="grid grid--4 gap-sm">
-        <div class="qc"><b>01 无孤儿</b><p>188 个模块全部能上溯到一条任务；没有「因为行业惯例所以要有」的模块。</p></div>
-        <div class="qc"><b>02 无重叠</b><p>任一功能只在一个系统内实现。例如「定位」只在 S05，S06 只用不建。</p></div>
-        <div class="qc"><b>03 无断链</b><p>每层接口都有对端。凡说「对外接口」的，必须指出对方是谁（SoS-0X 或 S0X）。</p></div>
-        <div class="qc"><b>04 预算闭合</b><p>质量、功率、信息流三项从模块向上汇总，与整机指标闭合，误差 ≤ 5%。</p></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -551,12 +562,7 @@
       </table>
     </div>
 
-    <div class="grid grid--2 gap-lg" style="margin-top:22px">
-      <div class="panel panel--warn">
-        <h4 class="panel__h">自评：质量余量偏低，构成实际风险</h4>
-        <p>按 NASA 系统工程手册的分阶段余量口径（方案阶段 20%–30%、详细设计 10%–20%、定型 5%–10%），5.3% 已经是「接近定型」的水平——原因是把 400 kg 任务载荷一次性全额计入了上限，余量被吃掉。</p>
-        <p class="panel__foot">这个隐患没有被藏起来：作业 02 第 07 节的五处冲突里，第二条正是「载荷 400 kg ↔ 1 台 / 20 ft 箱运输边界」，协商结果是载荷分两级（300 kg 常态 + 100 kg 任务包）。</p>
-      </div>
+    <div class="grid gap-lg" style="margin-top:22px">
       <div class="panel">
         <h4 class="panel__h">余量并非越高越优</h4>
         <ul class="mini-list">

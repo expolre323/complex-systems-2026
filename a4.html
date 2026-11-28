@@ -294,6 +294,11 @@
       <tbody id="humBody"></tbody>
     </table></div>
 
+    <figure class="figure figure--photo" style="margin:18px 0 24px">
+      <img src="assets/img/console.jpg" alt="指挥车内操作手在席位上操作遥控终端与两块显示屏" loading="lazy">
+      <figcaption><b>V3 的实物现场。</b>操作手、席位与授权链三者同时在场，才构成「人员许可」。无人平台没有驾乘人员，这一项不能删除——它换成了谁有权发出指令、谁在什么条件下收回。</figcaption>
+    </figure>
+
     <h3 class="sub">V4 其他许可：六个版本与时效条件</h3>
     <div class="table-wrap"><table class="tbl tbl--oth">
       <thead><tr><th class="c-e2">其他必要条件</th><th class="c-g">要求</th><th class="c-a2">失效后果</th></tr></thead>
@@ -319,6 +324,17 @@
         <p class="layerhead__claim" id="sceneWhy"></p>
       </div>
     </header>
+
+    <div class="pgrid pgrid--2">
+      <figure class="figure figure--photo">
+        <img src="assets/img/night-gap.jpg" alt="夜间小雨中平台从净宽 1.9 m 的墙体缺口进入" loading="lazy">
+        <figcaption><b>进入时刻。</b>缺口净宽 1.9 m，两侧钢筋外露，地面浮渣；能见度 60 m，轮式模态 0.8 m/s。</figcaption>
+      </figure>
+      <figure class="figure figure--photo">
+        <img src="assets/img/degraded.jpg" alt="灰霾小雨中平台停驻等待授权，车体抬升，车顶警示灯闪烁" loading="lazy">
+        <figcaption><b>链路中断后的停驻。</b>信标亮起，车体抬至最大离地间隙等待授权；地上的备用线缆盘与折叠天线是操作手在中继失效时的手工兜底——96 s 的中断因此不构成失控。</figcaption>
+      </figure>
+    </div>
 
     <h3 class="sub">取值规则：从参数域到取值点</h3>
     <div class="pick" id="pickBox"></div>
@@ -357,7 +373,6 @@
     <h3 class="sub">先分类后定级：SOTIF 三类划分</h3>
     <div class="cls3" id="clsBox"></div>
     <p class="subnote" id="clsNote"></p>
-    <p class="subnote" id="clsWarn"></p>
 
     <h3 class="sub">风险场景列表</h3>
     <div class="table-wrap"><table class="tbl tbl--rs">
@@ -381,9 +396,6 @@
       <tbody id="metricBody"></tbody>
     </table></div>
     <p class="subnote" id="metricNote"></p>
-
-    <h3 class="sub">本次分析识别的三处缺口</h3>
-    <ol class="gaps" id="gapBox"></ol>
   </div>
 </section>
 

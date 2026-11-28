@@ -245,7 +245,6 @@
         <p class="cls3__f">${fmt(c.fix)}</p>
       </article>`).join('');
     $('#clsNote').innerHTML = fmt(R.classesNote);
-    $('#clsWarn').innerHTML = `<span class="warnmark">推论</span>${fmt(R.classesWarn)}`;
 
     const lvCls = { '高': 'lv--h', '中': 'lv--m', '低': 'lv--l' };
     $('#rsBody').innerHTML = R.rows.map((r) => `
@@ -282,7 +281,6 @@
       <tr><td><b>${esc(r[0])}</b></td><td class="mono mm">${esc(r[1])}</td><td>${fmt(r[2])}</td></tr>`).join('');
     $('#metricNote').innerHTML = fmt(MM.note);
 
-    $('#gapBox').innerHTML = R.gaps.map((g) => `<li>${fmt(g)}</li>`).join('');
   }
 
   /* ============================================================ 07 用法 */
